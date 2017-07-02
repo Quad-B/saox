@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\""
+    "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=BoyPhongsakorn_Network --version-string.FileDescription=JOOX --version-string.ProductName=\"Electron Tutorial App\""
   },
   "repository": {
     "type": "git",
