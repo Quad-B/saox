@@ -14,12 +14,16 @@ function createWindow() {
 	win.loadURL('http://music.sanook.com');
 
 	win.webContents.on('did-finish-load', function() {
- 	win.webContents.insertCSS('.sn-header{ display: none;} .dialog-col--register {display: none;} .span-6 {width: 100% !important;}')
+ 	win.webContents.insertCSS('.sn-header{ display: none;}')
 	});
 
 	session.defaultSession.cookies.get({}, (error, cookies) => {
   	console.log(error, cookies)
 	})
+
+	win.webContents.on('new-window', function() {
+ 	win.webContents.executeJavaScript('alert(" Please view this is Firefox");')
+	});
 }
 
 // Run create window function
