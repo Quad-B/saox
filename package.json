@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=BoyPhongsakorn_Network --version-string.FileDescription=JOOX --version-string.ProductName=\"Electron Tutorial App\""
+    "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=BoyPhongsakorn_Network --version-string.FileDescription=JOOX --version-string.ProductName=\"SAOX\""
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "electron": "^1.6.11",
-    "electron-packager": "^8.7.2",
-    "jquery": "^3.2.1"
+    "electron-packager": "^8.7.2"
   }
 }
