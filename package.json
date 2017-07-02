@@ -1,0 +1,25 @@
+{
+  "name": "saox",
+  "version": "1.0.0",
+  "description": "Sanook Music (Or JOOX) Web App",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boyphongsakorn/saox.git"
+  },
+  "author": "BoyPhongsakorn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boyphongsakorn/saox/issues"
+  },
+  "homepage": "https://github.com/boyphongsakorn/saox#readme",
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-packager": "^8.7.2",
+    "jquery": "^3.2.1"
+  }
+}
