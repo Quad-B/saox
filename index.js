@@ -11,7 +11,7 @@ function createWindow() {
 	win = new BrowserWindow({width:800, height:600, icon:__dirname+'/img/saoxlogo.png'})
 
 	// Load index.html
-	win.loadURL('http://music.sanook.com');
+	win.loadURL('http://music.sanook.com/music/');
 
 	win.webContents.on('did-finish-load', function() {
  	win.webContents.insertCSS('.sn-header{ display: none;}')
