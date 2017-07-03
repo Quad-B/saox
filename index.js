@@ -2,7 +2,6 @@ const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 const {session} = require('electron');
-const {shell} = require('electron');
 
 // init win
 let win;
@@ -15,7 +14,18 @@ function createWindow() {
 	win.loadURL('http://music.sanook.com');
 
 	win.webContents.on('did-finish-load', function() {
- 	win.webContents.insertCSS('.sn-header{ display: none;} .dialog-login__button--fb {display: none !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: initial !important;}')
+ 	win.webContents.insertCSS('.sn-header{ display: none;} .modal__footer--fb-login .dialog-login__button:last-child {float: initial !important;}')
+	});
+
+	win.webContents.on('new-window', (event, url) => {
+  	event.preventDefault()
+  	const win = new BrowserWindow({show: false})
+  	win.once('ready-to-show', () => win.show())
+  	win.loadURL(url)
+	session.defaultSession.cookies.get({}, (error, cookies) => {
+  	console.log(error, cookies)
+	});
+  	event.newGuest = win
 	});
 
 	session.defaultSession.cookies.get({}, (error, cookies) => {
