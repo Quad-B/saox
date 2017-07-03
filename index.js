@@ -14,7 +14,7 @@ function createWindow() {
 	win.loadURL('http://music.sanook.com');
 
 	win.webContents.on('did-finish-load', function() {
- 	win.webContents.insertCSS('.sn-header{ display: none;} .modal__footer--fb-login .dialog-login__button:last-child {float: initial !important;}')
+ 	win.webContents.insertCSS('.sn-header{ display: none;}')
 	});
 
 	win.webContents.on('new-window', (event, url) => {
