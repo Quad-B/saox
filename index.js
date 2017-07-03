@@ -13,6 +13,8 @@ function createWindow() {
 	// Load index.html
 	win.loadURL('http://music.sanook.com/music');
 
+	win.maximize();
+
 	win.webContents.on('new-window', function(event, url, frameName, disposition, windowOptions) {
     	windowOptions['node-integration'] = false;
 	});
