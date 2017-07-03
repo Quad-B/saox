@@ -14,7 +14,7 @@ function createWindow() {
 	win.loadURL('http://music.sanook.com/music/');
 
 	win.webContents.on('did-finish-load', function() {
- 	win.webContents.insertCSS('.sn-header{ display: none;}')
+ 	win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-linear-gradient(transparent,transparent)  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,linear-gradient(transparent,transparent)  !important;}')
 	});
 
 	win.webContents.on('new-window', (event, url) => {
