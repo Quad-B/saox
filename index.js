@@ -8,28 +8,26 @@ let win;
 
 function createWindow() {
 	// Create browser window
-	win = new BrowserWindow({width:800, height:600, icon:__dirname+'/img/saoxlogo.png'})
+	win = new BrowserWindow({width:800, 'node-integration': false, height:600, icon:__dirname+'/img/saoxlogo.png'})
 
 	// Load index.html
-	win.loadURL('http://music.sanook.com/music/');
+	win.loadURL('http://music.sanook.com/music');
+
+	win.webContents.on('new-window', function(event, url, frameName, disposition, windowOptions) {
+    	windowOptions['node-integration'] = false;
+	});
+
+	session.defaultSession.cookies.get({}, (error, cookies) => {
+  	console.log(error, cookies)
+	});
 
 	win.webContents.on('did-finish-load', function() {
- 	win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-linear-gradient(transparent,transparent)  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,linear-gradient(transparent,transparent)  !important;}')
+ 	win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,-webkit-linear-gradient(transparent,transparent)  !important;background: url(https://www.img.in.th/images/d23f00e75c0ffbd1a8f4f3dbc8cabe33.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .dialog-login__button--fb {display: none !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
+	win.webContents.executeJavaScript("let $ = require(“jquery”);");
 	});
 
-	win.webContents.on('new-window', (event, url) => {
-  	event.preventDefault()
-  	const win = new BrowserWindow({show: false})
-  	win.once('ready-to-show', () => win.show())
-  	win.loadURL(url)
-	session.defaultSession.cookies.get({}, (error, cookies) => {
-  	console.log(error, cookies)
-	});
-  	event.newGuest = win
-	});
-
-	session.defaultSession.cookies.get({}, (error, cookies) => {
-  	console.log(error, cookies)
+	win.webContents.on('new-window', function() {
+    	win.webContents.executeJavaScript("require('electron-cookies');");
 	});
 }
 

@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "oauth-electron-facebook": "^0.1.2"
   },
   "devDependencies": {
     "electron": "^1.6.11",
-    "electron-packager": "^8.7.2"
+    "electron-packager": "^8.7.2",
+    "jquery": "^3.2.1"
   }
 }
