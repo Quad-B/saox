@@ -10,7 +10,8 @@ function createWindow() {
 	// Create browser window
 	win = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 600,
+    icon:__dirname+'/img/saoxlogo.png'
 });
 
 	// Load index.html
