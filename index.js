@@ -14,7 +14,7 @@ function createWindow() {
 });
 
 	// Load index.html
-	win.loadURL('https://play.google.com/store');
+	win.loadURL('http://music.sanook.com/music/');
 
 	win.maximize();
 

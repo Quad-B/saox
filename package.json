@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
+    "async": "^2.5.0",
     "jquery": "^3.2.1",
     "oauth-electron-facebook": "^0.1.2"
   },
