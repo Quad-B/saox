@@ -27,6 +27,7 @@ function createWindow() {
 	});
 }
 
+
 // Run create window function
 app.on('ready', createWindow);
 
