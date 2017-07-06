@@ -15,7 +15,7 @@ function createWindow() {
 });
 
 	// Load index.html
-	win.loadURL('http://music.sanook.com');
+	win.loadURL('http://music.sanook.com/music');
 
 	win.maximize();
 
