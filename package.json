@@ -24,7 +24,7 @@
     "run-async": "^2.3.0"
   },
   "devDependencies": {
-    "electron": "^1.6.11",
+    "electron": "1.7.9",
     "electron-packager": "^8.7.2",
     "jquery": "^3.2.1",
     "webpack": "^3.0.0"
