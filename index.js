@@ -23,9 +23,9 @@ function createWindow() {
   	console.log(error, cookies)
 	});
 
-	win.webContents.on('did-finish-load', function() {
-		win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-linear-gradient(transparent,transparent) !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .dialog-login__button--fb {display: none !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
-	});
+	//win.webContents.on('did-finish-load', function() {
+		//win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-linear-gradient(transparent,transparent) !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
+	//});
 }
 
 // Run create window function

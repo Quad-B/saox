@@ -19,14 +19,13 @@
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
     "async": "^2.5.0",
-    "jquery": "^3.2.1",
     "oauth-electron-facebook": "^0.1.2",
     "run-async": "^2.3.0"
   },
   "devDependencies": {
-    "electron": "1.7.9",
-    "electron-packager": "^8.7.2",
-    "jquery": "^3.2.1",
+    "electron": "^5.0.3",
+    "electron-packager": "^13.1.1",
+    "jquery": "^3.4.1",
     "webpack": "^3.0.0"
   }
 }
