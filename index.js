@@ -19,6 +19,8 @@ function createWindow() {
 
 	win.maximize();
 
+	win.removeMenu();
+
 	session.defaultSession.cookies.get({}, (error, cookies) => {
   	console.log(error, cookies)
 	});
