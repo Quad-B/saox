@@ -9,17 +9,17 @@ let win;
 function createWindow() {
 	// Create browser window
 	win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    icon:__dirname+'/img/saoxlogo.png'
+	icon:__dirname+'/img/saoxlogo.png',
+	darkTheme: true,
+	minWidth: 1000,
+	minHeight: 700
 });
-
 	// Load index.html
 	win.loadURL('https://www.joox.com/th');
 
-	win.maximize();
-
 	win.removeMenu();
+
+	win.maximize();
 
 	session.defaultSession.cookies.get({}, (error, cookies) => {
   	console.log(error, cookies)
