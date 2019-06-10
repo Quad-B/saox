@@ -1,4 +1,4 @@
-# saox
+# saox (https://img.shields.io/badge/<LABEL>-<MESSAGE>-<COLOR>.svg)
 Sanook! Music (Or JOOX) Web App
 
 # รายละเอียดโปรแกรม
