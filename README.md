@@ -1,4 +1,4 @@
-# saox ![badge](https://img.shields.io/badge/version-1.5%20pre-41fc63.svg) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
+# saox ![badge](https://img.shields.io/github/release-pre/boyphongsakorn/saox.svg?label=Latest%20Version) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
 Sanook! Music (Or JOOX) Web App
 
 # รายละเอียดโปรแกรม
