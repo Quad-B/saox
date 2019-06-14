@@ -1,0 +1,12 @@
+language: node_js
+install:
+  - npm update node-sass@latest
+  - npm install
+  - npm install electron --save-dev
+  - npm install electron-builder --save-dev
+  - npm install electron-packager --save-dev
+  - npm install jquery --save-dev
+  - npm install webpack --save-dev
+  - npm install async --save
+  - npm install oauth-electron-facebook --save
+  - npm install run-async --save
