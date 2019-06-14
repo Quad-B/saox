@@ -18,8 +18,8 @@ install:
 deploy:
   provider: releases
   api_key: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
-  file: "FILE TO UPLOAD"
+  file_glob: true
+  file: dirt/*
   skip_cleanup: true
-  draft: true
   on:
     tags: true
