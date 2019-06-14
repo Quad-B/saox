@@ -12,6 +12,7 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+  - set DEBUG=electron-builder
   - npm run dist
   - dir
 deploy:
