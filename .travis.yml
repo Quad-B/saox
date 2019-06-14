@@ -2,7 +2,6 @@ os: windows
 language: node_js
 node_js: '10'
 install:
-  - npm install fsevents
   - npm install --global yarn
   - npm update node-sass@latest
   - npm install electron --save-dev
