@@ -1,8 +1,8 @@
 language: node_js
 node_js: '10'
 install:
-  - npm update node-sass@latest
   - npm install
+  - npm update node-sass@latest
   - npm install electron --save-dev
   - npm install electron-builder --save-dev
   - npm install electron-packager --save-dev
