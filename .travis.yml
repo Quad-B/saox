@@ -5,7 +5,7 @@ install:
   - npm install --global yarn
   - npm update node-sass@latest
   - npm install electron --save-dev
-  - npm install electron-builder --save-dev
+  - yarn add electron-builder --dev
   - npm install electron-packager --save-dev
   - npm install jquery --save-dev
   - npm install webpack --save-dev
