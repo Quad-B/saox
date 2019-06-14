@@ -1,4 +1,4 @@
-# saox ![GitHub release](https://img.shields.io/github/release-pre/boyphongsakorn/saox.svg?label=Latest%20Pre%20Version) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
+# saox ![Build](https://api.travis-ci.org/boyphongsakorn/saox.svg?branch=master) ![GitHub release](https://img.shields.io/github/release-pre/boyphongsakorn/saox.svg?label=Latest%20Pre%20Version) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
 Sanook! Music (Or JOOX) Web App
 
 # รายละเอียดโปรแกรม
