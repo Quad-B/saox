@@ -7,7 +7,7 @@
     "start": "electron .",
     "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=\"Quad B Software\" --version-string.FileDescription=SAOX --version-string.ProductName=\"SAOX\"",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
+    "dist": "electron-builder -mwl",
     "postinstall": "electron-builder install-app-deps"
   },
   "repository": {
