@@ -11,9 +11,10 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+  - dir
 deploy:
   provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
+  api_key: "fa6b7c0bc13031da888ef89d39acd18645130c4b"
   file: "FILE TO UPLOAD"
   skip_cleanup: true
   draft: true
