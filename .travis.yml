@@ -11,6 +11,7 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+  - npm run dist
   - dir
 deploy:
   provider: releases
