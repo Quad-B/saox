@@ -17,7 +17,7 @@ install:
   - dir
 deploy:
   provider: releases
-  api_key: "fa6b7c0bc13031da888ef89d39acd18645130c4b"
+  api_key: "75155d69f8b57bfb39d051682affdee31a57ed63"
   file: "FILE TO UPLOAD"
   skip_cleanup: true
   draft: true
