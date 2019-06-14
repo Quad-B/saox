@@ -1,5 +1,6 @@
 language: node_js
 install:
+  - npm update node-sass@latest
   - npm install
   - npm install electron --save-dev
   - npm install electron-builder --save-dev
