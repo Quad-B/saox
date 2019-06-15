@@ -2,9 +2,10 @@ os: windows
 language: node_js
 node_js: '10'
 install:
+  - npm install --global yarn
   - npm update node-sass@latest
   - npm install electron --save-dev
-  - npm install electron-builder --save-dev
+  - yarn add electron-builder --dev
   - npm install electron-packager --save-dev
   - npm install jquery --save-dev
   - npm install webpack --save-dev
@@ -12,7 +13,7 @@ install:
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
   - set DEBUG=electron-builder
-  - build
+  - yarn dist
   - dir
 deploy:
   provider: releases
