@@ -15,7 +15,7 @@ install:
   - set DEBUG=electron-builder
   - yarn dist -p "onTag"
   - dir
-  - del yarn.lock
+  - del "yarn.lock"
   - npm uninstall --global yarn
 deploy:
   provider: releases
