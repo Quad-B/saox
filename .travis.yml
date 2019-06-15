@@ -8,7 +8,8 @@ before_install:
   - sudo apt-key add winehq.key
   - sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ trusty main'
   - sudo apt-get update
-  - sudo apt-get install --install-recommends winehq-stable
+  - sudo apt-get install -y aptitude
+  - sudo aptitude install -y winehq-stable
 install:
   - npm install --global yarn
   - npm install electron --save-dev
