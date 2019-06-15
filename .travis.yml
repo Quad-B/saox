@@ -2,7 +2,7 @@ os: windows
 language: node_js
 node_js: '10'
 install:
-   - npm install --global yarn
+  - npm install --global yarn
   - npm update node-sass@latest
   - npm install electron --save-dev
   - yarn add electron-builder --dev
