@@ -20,6 +20,7 @@
     "url": "https://github.com/boyphongsakorn/saox/issues"
   },
   "build": {
+    "appId": "com.aaronlenoir.gnucash-reporter",
     "win": {
       "target": [
         {
