@@ -20,7 +20,6 @@
     "url": "https://github.com/boyphongsakorn/saox/issues"
   },
   "build": {
-    "appId": "quadbsoftware.jooxpc",
     "win": {
       "target": [
         {
