@@ -1,4 +1,4 @@
-/ include node fs module
+// include node fs module
 var fs = require('fs');
  
 // delete file named 'sample.txt'
