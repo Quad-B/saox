@@ -1,4 +1,5 @@
-os: windows
+sudo: required
+dist: trusty
 language: node_js
 node_js: '10'
 install:
