@@ -2,7 +2,7 @@ os: windows
 language: node_js
 node_js: '10'
 install:
-  - npm install --global yarn
+   - npm install --global yarn
   - npm update node-sass@latest
   - npm install electron --save-dev
   - yarn add electron-builder --dev
@@ -13,8 +13,10 @@ install:
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
   - set DEBUG=electron-builder
-  - yarn dist
+  - yarn dist -p "onTag"
+  - del /f yarn.lock
   - dir
+  - npm uninstall --global yarn
 deploy:
   provider: releases
   api_key: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
