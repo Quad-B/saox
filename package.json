@@ -21,9 +21,6 @@
   },
   "build": {
     "appId": "quadbsoftware.jooxpc",
-    "mac": {
-      "category": "quadbsoftware.jooxpc.music.software"
-    },
     "win": {
       "target": [
         {
