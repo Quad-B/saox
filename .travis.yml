@@ -13,7 +13,7 @@ install:
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
   - set DEBUG=electron-builder
-  - yarn dist
+  - build
   - dir
   - node deletelock.js
   - dir
