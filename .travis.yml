@@ -11,6 +11,7 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+after_install:
   - set DEBUG=electron-builder
   - node deletepackage.js
   - yarn dist
