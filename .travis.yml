@@ -1,0 +1,31 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js: '10'
+install:
+  - npm install --global yarn
+  - npm install electron --save-dev
+  - yarn add electron-builder --dev
+  - npm install electron-packager --save-dev
+  - npm install jquery --save-dev
+  - npm install webpack --save-dev
+  - npm install async --save
+  - npm install oauth-electron-facebook --save
+  - npm install run-async --save
+  - set DEBUG=electron-builder
+  - node deletepackage.js
+  - yarn dist
+  - dir
+  - node deletelock.js
+  - dir
+  - npm uninstall --global yarn
+deploy:
+  provider: releases
+  api_key: 
+    secure: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
+  file_glob: true
+  file: dist/*
+  skip_cleanup: true
+  draft: true
+  on:
+    tags: true
