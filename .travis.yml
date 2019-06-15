@@ -14,9 +14,6 @@ install:
   - npm install run-async --save
   - set DEBUG=electron-builder
   - yarn dist -p "onTag"
-  - del /f yarn.lock
-  - npm uninstall --global yarn
-  - dir
 deploy:
   provider: releases
   api_key: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
