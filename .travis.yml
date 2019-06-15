@@ -18,3 +18,11 @@ install:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
+deploy:
+  provider: releases
+  api_key: 
+    secure: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
+  file_glob: true
+  file: dist/*
+  skip_cleanup: true
+  draft: true
