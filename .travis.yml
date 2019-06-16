@@ -30,7 +30,8 @@ script:
   - npm uninstall --global yarn
 deploy:
   provider: releases
-  api_key: "50c254662d290e179b48"
+  user: "boyphongsakorn"
+  password: "team1556th"
   file_glob: true
   file: dist/*
   skip_cleanup: true
