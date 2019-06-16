@@ -27,6 +27,8 @@ install:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
+after_install:
+  - travis setup releases
 deploy:
   provider: releases
   api_key: 
