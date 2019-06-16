@@ -30,6 +30,8 @@ function createWindow() {
 	//});
 }
 
+app.requestSingleInstanceLock();
+
 // Run create window function
 app.on('ready', createWindow);
 
