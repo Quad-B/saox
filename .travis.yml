@@ -29,4 +29,4 @@ script:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-  - npm run release --ci
+  - npm run release --ci --no-npm.publish
