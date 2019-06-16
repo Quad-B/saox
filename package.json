@@ -10,7 +10,7 @@
     "dist-all": "electron-builder -mwl",
     "dist-win": "electron-builder --win",
     "postinstall": "electron-builder install-app-deps",
-    "release": "release-it --config .release-it.json --ci --no-npm.publish"
+    "release": "release-it --config .release-it.json --ci --no-npm.publish --no-git.requireCleanWorkingDir"
   },
   "repository": {
     "type": "git",
