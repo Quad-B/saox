@@ -29,4 +29,4 @@ script:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-  - release-it 1.5.2 --config .release-it.json --no-npm.publish --no-git
+  - release-it 1.5.3 --config .release-it.json --no-npm.publish --no-git

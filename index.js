@@ -6,6 +6,12 @@ const {session} = require('electron');
 // init win
 let win;
 
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+	app.quit()
+  } else {
+
 function createWindow() {
 	// Create browser window
 	win = new BrowserWindow({
@@ -30,10 +36,18 @@ function createWindow() {
 	//});
 }
 
-app.requestSingleInstanceLock();
+app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (win) {
+      if (win.isMinimized()) win.restore()
+      win.focus()
+    }
+  })
 
 // Run create window function
 app.on('ready', createWindow);
+
+  }
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
