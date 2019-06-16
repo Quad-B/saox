@@ -28,8 +28,6 @@ script:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-after_script:
-  - travis setup releases
 deploy:
   provider: releases
   api_key: "50c254662d290e179b48"
