@@ -18,12 +18,11 @@ function createWindow() {
 	icon:__dirname+'/img/saoxlogo.png',
 	darkTheme: true,
 	minWidth: 1000,
-	minHeight: 700
+	minHeight: 700,
+	autoHideMenuBar: true
 });
 	// Load index.html
 	win.loadURL('https://www.joox.com/th');
-
-	win.removeMenu();
 
 	win.maximize();
 
@@ -34,6 +33,7 @@ function createWindow() {
 	//win.webContents.on('did-finish-load', function() {
 		//win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-linear-gradient(transparent,transparent) !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
 	//});
+
 }
 
 app.on('second-instance', (event, commandLine, workingDirectory) => {
