@@ -28,11 +28,5 @@ script:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-deploy:
-  provider: releases
-  user: "boyphongsakorn"
-  password: "team1556th"
-  file_glob: true
-  file: dist/*
-  skip_cleanup: true
-  draft: true
+  - npm install --save-dev release-it
+  - npm run release
