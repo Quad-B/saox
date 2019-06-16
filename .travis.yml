@@ -22,7 +22,7 @@ install:
   - npm install run-async --save
   - set DEBUG=electron-builder
   - node deletepackage.js
-  - yarn dist-win
+  - yarn dist-win --publish "never"
   - dir
   - node deletelock.js
   - dir
