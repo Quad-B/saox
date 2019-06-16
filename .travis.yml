@@ -20,6 +20,7 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+  - npm install --save-dev release-it
 script:
   - set DEBUG=electron-builder
   - node deletepackage.js
@@ -28,5 +29,4 @@ script:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-  - npm install --save-dev release-it
   - npm run release
