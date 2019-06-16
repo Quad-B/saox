@@ -20,6 +20,7 @@ install:
   - npm install async --save
   - npm install oauth-electron-facebook --save
   - npm install run-async --save
+script:
   - set DEBUG=electron-builder
   - node deletepackage.js
   - yarn dist-win --publish "never"
@@ -27,12 +28,11 @@ install:
   - node deletelock.js
   - dir
   - npm uninstall --global yarn
-after_install:
+after_script:
   - travis setup releases
 deploy:
   provider: releases
-  api_key: 
-    secure: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
+  api_key: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
   file_glob: true
   file: dist/*
   skip_cleanup: true
