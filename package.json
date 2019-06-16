@@ -21,7 +21,8 @@
     "url": "https://github.com/boyphongsakorn/saox/issues"
   },
   "build": {
-    "appId": "com.aaronlenoir.gnucash-reporter",
+    "appId": "com.boyphongsakorn.saox",
+    "copyright": "copyright © 2019 Quad B Software",
     "win": {
       "target": [
         {
