@@ -32,7 +32,7 @@ after_script:
   - travis setup releases
 deploy:
   provider: releases
-  api_key: "13bf1391e204c797c38a7c1dad79c391c5dc6724"
+  api_key: "50c254662d290e179b48"
   file_glob: true
   file: dist/*
   skip_cleanup: true
