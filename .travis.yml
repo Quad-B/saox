@@ -34,4 +34,5 @@ script:
   - npm uninstall --global yarn
   - cd dist
   - dir
+  - cd -
   - release-it 1.5.3 --config .release-it.json --no-npm.publish --no-git
