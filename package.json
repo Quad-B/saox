@@ -2,7 +2,7 @@
   "name": "saox",
   "version": "1.5.3",
   "description": "Sanook Music (Or JOOX) Web App",
-  "main": "./index.js",
+  "main": "index.js",
   "scripts": {
     "start": "electron .",
     "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=\"Quad B Software\" --version-string.FileDescription=SAOX --version-string.ProductName=\"SAOX\"",
