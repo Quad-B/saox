@@ -34,7 +34,7 @@ script:
   - rm -f footer.png
   - dir
   - cd -
-  - electron-builder --win --publish "never"
+  - electron-builder -wl --publish "never"
   - dir
   - node deletepackage.js
   - dir
