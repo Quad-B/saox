@@ -13,7 +13,7 @@ before_install:
 install:
   - npm install --global yarn
   - npm install electron --save-dev
-  - npm uninstall electron-builder --dev
+  - npm uninstall electron-builder --save-dev
   - yarn global add electron-builder
   - npm install electron-packager --save-dev
   - npm install jquery --save-dev
@@ -37,7 +37,6 @@ script:
   - electron-builder --win --publish "never"
   - dir
   - node deletepackage.js
-  - node deletelock.js
   - dir
   - npm uninstall --global yarn
   - cd dist
