@@ -26,6 +26,7 @@ script:
   - npm uninstall async --save
   - npm uninstall run-async --save
   - cat package.json
+  - rm -rf docs
   - yarn dist-win --publish "never"
   - dir
   - node deletepackage.js
