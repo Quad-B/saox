@@ -24,7 +24,7 @@ install:
 script:
   - set DEBUG=electron-builder
   - npm uninstall electron-builder --save-dev
-  - less package.json
+  - cat package.json
   - yarn dist-win --publish "never"
   - dir
   - node deletepackage.js
