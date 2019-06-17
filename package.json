@@ -34,7 +34,7 @@
       ]
     },
     "linux": {
-      "target": "snap,AppImage"
+      "target": ["snap,AppImage"]
     }
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
