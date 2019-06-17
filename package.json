@@ -32,6 +32,9 @@
           ]
         },{"target": "portable"}
       ]
+    },
+    "linux": {
+      "target": "snap",
     }
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
