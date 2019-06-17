@@ -2,6 +2,6 @@
   "github": {
     "release": true,
     "draft": true,
-    "assets": ["dist/*.exe"]
+    "assets": ["dist/*"]
   }
 }
