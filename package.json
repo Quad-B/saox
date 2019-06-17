@@ -33,9 +33,11 @@
         },{"target": "portable"}
       ]
     },
-    "snap": {
-      "confinement": "strict",
-      "grade": "stable"
+    "linux": {
+      "snap": {
+        "confinement": "strict",
+        "grade": "stable"
+      }
     }
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
