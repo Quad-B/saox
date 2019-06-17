@@ -33,9 +33,10 @@
         },{"target": "portable"}
       ]
     },
-    "linux": {
-      "target": "snap",
-      "target": "AppImage"
+    "linux": { [
+      {"target": "snap"},
+      {"target": "AppImage"}
+      ]
     }
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
