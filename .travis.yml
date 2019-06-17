@@ -13,7 +13,8 @@ before_install:
 install:
   - npm install --global yarn
   - npm install electron --save-dev
-  - yarn add electron-builder --dev
+  - yarn remove electron-builder --dev
+  - yarn global add electron-builder
   - npm install electron-packager --save-dev
   - npm install jquery --save-dev
   - npm install webpack --save-dev
@@ -33,7 +34,7 @@ script:
   - rm -f footer.png
   - dir
   - cd -
-  - yarn dist-win --publish "never"
+  - electron-builder --win --publish "never"
   - dir
   - node deletepackage.js
   - node deletelock.js
