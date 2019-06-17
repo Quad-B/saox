@@ -15,7 +15,7 @@ install:
   - npm install electron --save-dev
   - npm uninstall electron-builder --save-dev
   - yarn global add electron-builder
-  - npm install electron-packager --save-dev
+  - npm uninstall electron-packager --save-dev
   - npm install jquery --save-dev
   - npm install webpack --save-dev
   - npm install async --save
