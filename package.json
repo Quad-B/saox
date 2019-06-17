@@ -37,8 +37,12 @@
       "target": [
         {
         "target": "snap",
-        "confinement": ["strict"],
-        "grade": ["stable"]
+        "confinement": [
+          "strict"
+        ],
+        "grade": [
+          "stable"
+        ]
         }
       ]
     }
