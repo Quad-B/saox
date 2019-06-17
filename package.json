@@ -34,7 +34,10 @@
       ]
     },
     "linux": {
-      "target": "snap"
+      "target": [{
+        "target": "snap"
+      }
+      ]
     }
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
