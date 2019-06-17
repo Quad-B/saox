@@ -36,7 +36,9 @@
     "linux": {
       "target": [
         {
-        "target": "snap"
+        "target": "snap",
+        "confinement": "strict",
+        "grade": "stable"
         }
       ]
     }
