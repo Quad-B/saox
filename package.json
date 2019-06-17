@@ -34,7 +34,7 @@
       ]
     },
     "linux": {
-      "target": "sanp",
+      "target": "snap",
       "confinement": "strict",
       "grade": "stable"
     }
