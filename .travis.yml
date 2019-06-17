@@ -27,6 +27,12 @@ script:
   - npm uninstall run-async --save
   - cat package.json
   - rm -rf docs
+  - cd img
+  - rm -f saoxnew.psd
+  - rm -f footer_bg.png
+  - rm -f footer.png
+  - dir
+  - cd -
   - yarn dist-win --publish "never"
   - dir
   - node deletepackage.js
