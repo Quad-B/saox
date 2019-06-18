@@ -1,4 +1,3 @@
 exports.default = async function(context) {
-    "chmod 4755 ./dist/linux-unpacked/chrome-sandbox",
-     "echo 'work'"
+    await execShell(["chmod", ["4755", path.join("./dist/linux-unpacked/chrome-sandbox", "chrome-sandbox")]]);
 }
