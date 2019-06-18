@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
             "ia32"
           ]
         },{"target": "portable"}
-      ]
+      ],"compression": "maximum"
     },
     "linux": { 
       "target": ["snap","AppImage"],
