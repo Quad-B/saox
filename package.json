@@ -41,7 +41,7 @@
     "confinement": "strict",
     "grade": "stable",
     "summary": "Unofficial JOOX Web App",
-    "plugs": [ { "browser-sandbox": { "interface": "browser-support", "allow-sandbox": true }, }, "default" ]
+    "plugs": [ { "browser-sandbox": { "interface": "browser-support", "allow-sandbox": true } }, "default" ]
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
