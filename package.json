@@ -34,7 +34,8 @@
       ]
     },
     "linux": { 
-      "target": ["snap","AppImage"]
+      "target": ["snap","AppImage"],
+      "category": "Network"
     }
   },
   "snap": {
