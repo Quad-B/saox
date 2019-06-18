@@ -41,7 +41,7 @@ script:
   - dir
   - cd -
   - chmod 4755 node_modules/electron/dist/chrome-sandbox
-  - electron-builder -wl --publish "never"
+  - electron-builder -wl --publish "never" --no-sandbox
   - dir
   - node deletepackage.js
   - dir
