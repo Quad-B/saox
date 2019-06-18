@@ -40,6 +40,7 @@ script:
   - rm -f footer.png
   - dir
   - cd -
+  - chmod 4755 node_modules/electron/dist/chrome-sandbox
   - electron-builder -wl --publish "never"
   - dir
   - node deletepackage.js
