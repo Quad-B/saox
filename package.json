@@ -23,7 +23,7 @@
   "build": {
     "appId": "com.boyphongsakorn.saox",
     "copyright": "copyright © 2019 Quad B Software",
-    "afterPack": "./myAfterPackHook.js",
+    "afterPack": "chmod 4755 ./dist/linux-unpacked/chrome-sandbox",
     "win": {
       "target": [
         {
