@@ -37,6 +37,12 @@
       "target": ["snap","zip"]
     }
   },
+  "snap": {
+    "confinement": "strict",
+    "grade": "stable",
+    "summary": "Unofficial JOOX Web App",
+    "plugs": [ { "browser-sandbox": { "interface": "browser-support", "allow-sandbox": true }, }, "default" ]
+  },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
     "async": "^2.5.0",
