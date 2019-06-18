@@ -38,7 +38,7 @@
     }
   },
   "snap": {
-    "confinement": "strict",
+    "confinement": "classic",
     "grade": "stable",
     "summary": "Unofficial JOOX Web App"
   },
