@@ -35,14 +35,14 @@
     },
     "linux": { 
       "target": ["snap","AppImage"],
-      "category": "Network"
+      "category": "Network",
+      "compression": "maximum"
     }
   },
   "snap": {
-    "confinement": "classic",
+    "confinement": "strict",
     "grade": "stable",
-    "summary": "Unofficial JOOX Web App",
-    "plugs": ["browser-sandbox"]
+    "summary": "Unofficial JOOX Web App"
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
