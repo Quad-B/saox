@@ -34,7 +34,7 @@
       ]
     },
     "linux": { 
-      "target": ["snap","zip"]
+      "target": ["snap","AppImage"]
     }
   },
   "snap": {
