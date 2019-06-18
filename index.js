@@ -19,7 +19,8 @@ function createWindow() {
 	darkTheme: true,
 	minWidth: 1000,
 	minHeight: 700,
-	autoHideMenuBar: true
+	autoHideMenuBar: true,
+	webPreferences: { sandbox: true }
 });
 	// Load index.html
 	win.loadURL('https://www.joox.com/th');
