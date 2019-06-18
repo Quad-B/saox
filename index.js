@@ -20,7 +20,7 @@ function createWindow() {
 	minWidth: 1000,
 	minHeight: 700,
 	autoHideMenuBar: true,
-	webPreferences: { sandbox: true }
+	webPreferences: { sandbox: false }
 });
 	// Load index.html
 	win.loadURL('https://www.joox.com/th');
