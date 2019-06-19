@@ -34,7 +34,7 @@
       ],"compression": "maximum"
     },
     "linux": { 
-      "target": ["snap","AppImage"],
+      "target": ["snap","AppImage","7z"],
       "category": "Network",
       "compression": "maximum"
     }
