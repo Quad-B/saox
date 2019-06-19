@@ -10,15 +10,11 @@ function createWindow() {
 	// Create browser window
 	win = new BrowserWindow({
 	icon:__dirname+'/img/saoxlogo.png',
-	darkTheme: true,
 	minWidth: 1000,
 	minHeight: 700,
-	autoHideMenuBar: true
 });
 	// Load index.html
 	win.loadURL('https://www.joox.com/th');
-
-	win.maximize();
 
 	session.defaultSession.cookies.get({}, (error, cookies) => {
   	console.log(error, cookies)
