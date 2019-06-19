@@ -17,7 +17,8 @@ before_install:
   - sudo aptitude install -y winehq-stable
 install:
   - npm install --global yarn
-  - npm install electron --save-dev
+  - npm uninstall electron --save-dev
+  - npm install electron-nightly --save-dev
   - npm uninstall electron-builder --save-dev
   - yarn global add electron-builder
   - npm install jquery --save-dev
