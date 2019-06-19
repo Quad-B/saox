@@ -17,8 +17,6 @@ before_install:
   - sudo aptitude install -y winehq-stable
 install:
   - npm install --global yarn
-  - npm uninstall electron --save-dev
-  - npm install electron-nightly --save-dev
   - npm uninstall electron-builder --save-dev
   - yarn global add electron-builder
   - npm install jquery --save-dev
@@ -38,7 +36,10 @@ script:
   - rm -f footer.png
   - dir
   - cd -
-  - electron-builder -wl --publish "never"
+  - electron-builder -w --publish "never"
+  - npm uninstall electron --save-dev
+  - npm install electron@2.0.18 --save-dev
+  - electron-builder -l --publish "never"
   - dir
   - node deletepackage.js
   - dir
