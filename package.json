@@ -30,7 +30,7 @@
           "arch": [
             "ia32"
           ]
-        },{"target": "portable"}
+        },{"target": "portable"},{"target": "appx"}
       ],"compression": "maximum"
     },
     "linux": { 
