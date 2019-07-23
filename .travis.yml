@@ -1,6 +1,3 @@
-os:
-  - windows
-  - linux
 sudo: required
 dist: xenial
 language: node_js
