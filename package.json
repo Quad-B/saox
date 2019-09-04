@@ -30,11 +30,19 @@
           "arch": [
             "ia32"
           ]
-        },{"target": "portable"}
-      ],"compression": "maximum"
+        },
+        {
+          "target": "portable"
+        }
+      ],
+      "compression": "maximum"
     },
-    "linux": { 
-      "target": ["snap","AppImage","7z"],
+    "linux": {
+      "target": [
+        "snap",
+        "AppImage",
+        "7z"
+      ],
       "category": "Network",
       "compression": "maximum"
     }
@@ -51,7 +59,7 @@
     "run-async": "^2.3.0"
   },
   "devDependencies": {
-    "electron": "^5.0.3",
+    "electron": "^6.0.7",
     "electron-builder": "^20.43.0",
     "electron-packager": "^13.1.1",
     "jquery": "^3.4.1",
