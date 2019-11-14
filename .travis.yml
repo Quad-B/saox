@@ -15,16 +15,6 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y aptitude
   - sudo aptitude install -y winehq-stable
-install:
-  - npm install --global yarn
-  - npm uninstall electron-builder --save-dev
-  - yarn global add electron-builder
-  - npm install jquery --save-dev
-  - npm install webpack --save-dev
-  - npm install async --save
-  - npm install oauth-electron-facebook --save
-  - npm install run-async --save
-  - npm install --global release-it
 script:
   - npm uninstall async --save
   - npm uninstall run-async --save
