@@ -1,0 +1,52 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm install --global release-it
+        npm install --global yarn
+        npm uninstall electron-builder --save-dev
+        npm uninstall async --save
+        npm uninstall run-async --save
+        cat package.json
+        rm -rf docs
+        cd img
+        rm -f saoxnew.psd
+        rm -f footer_bg.png
+        rm -f footer.png
+        dir
+        cd -
+        electron-builder -w --publish "never"
+        npm uninstall electron --save-dev
+        npm install electron@2.0.18 --save-dev
+        rm -f index.js
+        mv index_2.js index.js
+        electron-builder -l --publish "never"
+        dir
+        node deletepackage.js
+        dir
+        npm uninstall --global yarn
+        cd dist
+        dir
+        cd -
+        release-it 1.5.4 --config .release-it.json --no-npm.publish --no-git
+        npm test
+      env:
+        CI: true
