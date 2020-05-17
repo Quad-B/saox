@@ -9,6 +9,7 @@
     we live in tweetspace and your description wants to look good in the snap
     store.
 
+  base: core
   grade: stable # must be 'stable' to release into candidate/stable channels # devel
   confinement: strict # use 'strict' once you have the right plugs and slots # devmode
 
