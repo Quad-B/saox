@@ -23,13 +23,15 @@ function createWindow () {
   win.maximize();
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   session.defaultSession.cookies.get({}, (error, cookies) => {
     console.log(error, cookies)
   });
 
 }
+
+app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
