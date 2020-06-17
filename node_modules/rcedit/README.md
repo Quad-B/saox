@@ -1,25 +1,19 @@
 # node-rcedit
 
 [![CircleCI build status](https://circleci.com/gh/electron/node-rcedit/tree/master.svg?style=svg)](https://circleci.com/gh/electron/node-rcedit/tree/master)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/m880ovvfwukowyne/branch/master?svg=true)](https://ci.appveyor.com/project/electron-bot/node-rcedit/branch/master)
 
 Node module to edit resources of Windows executables.
 
-## Building
-
-* Clone the repository
-* Run `npm install`
-* Run `npm test` to run the tests
-
 ## Docs
 
-```js
-var rcedit = require('rcedit')
+```javascript
+const rcedit = require('rcedit')
 ```
+
 On platforms other than Windows, you will need to have [Wine](http://winehq.org)
 1.6 or later installed and in the system path.
 
-### `rcedit(exePath, options, callback)`
+### `async rcedit(exePath, options)`
 
 `exePath` is the path to the Windows executable to be modified.
 
@@ -38,5 +32,10 @@ On platforms other than Windows, you will need to have [Wine](http://winehq.org)
   See [here](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374191.aspx)
   for more details.
 
-`callback` is the `Function` called when the command completes. The function
-signature is `function (error)`.
+Returns a `Promise` with no value.
+
+## Building
+
+* Clone the repository
+* Run `npm install`
+* Run `npm test` to run the tests

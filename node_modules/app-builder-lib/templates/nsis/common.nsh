@@ -14,20 +14,33 @@ Name "${PRODUCT_NAME}"
 !define UNINSTALL_FILENAME "Uninstall ${PRODUCT_FILENAME}.exe"
 
 !macro check64BitAndSetRegView
-  ${IfNot} ${AtLeastWin7}
+  # https://github.com/electron-userland/electron-builder/issues/2420
+  ${If} ${IsWin2000}
+  ${OrIf} ${IsWinME}
+  ${OrIf} ${IsWinXP}
+  ${OrIf} ${IsWinVista}
     MessageBox MB_OK "$(win7Required)"
     Quit
   ${EndIf}
 
-  !ifdef APP_64
+  !ifdef APP_ARM64
     ${If} ${RunningX64}
       SetRegView 64
-    ${Else}
-      !ifndef APP_32
-        MessageBox MB_OK|MB_ICONEXCLAMATION "$(x64WinRequired)"
-        Quit
-      !endif
     ${EndIf}
+    ${If} ${IsNativeARM64}
+      SetRegView 64
+    ${EndIf}
+  !else
+    !ifdef APP_64
+      ${If} ${RunningX64}
+        SetRegView 64
+      ${Else}
+        !ifndef APP_32
+          MessageBox MB_OK|MB_ICONEXCLAMATION "$(x64WinRequired)"
+          Quit
+        !endif
+      ${EndIf}
+    !endif
   !endif
 !macroend
 

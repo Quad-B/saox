@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -53,15 +53,15 @@
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
-    "async": "^2.5.0",
-    "oauth-electron-facebook": "^0.1.2",
-    "run-async": "^2.3.0"
+    "async": "^3.2.0",
+    "oauth-electron-facebook": "^2.0.9",
+    "run-async": "^2.4.1"
   },
   "devDependencies": {
-    "electron": "^6.0.7",
-    "electron-builder": "^20.43.0",
-    "electron-packager": "^13.1.1",
-    "jquery": "^3.5.0",
-    "webpack": "^3.0.0"
+    "electron": "^6.1.12",
+    "electron-builder": "^22.7.0",
+    "electron-packager": "^14.2.1",
+    "jquery": "^3.5.1",
+    "webpack": "^4.43.0"
   }
 }

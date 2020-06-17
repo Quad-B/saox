@@ -1,5 +1,4 @@
 import { Arch } from "builder-util";
-import { UploadTask } from "electron-publish/out/publisher";
 import { Target } from "../core";
 import { PlatformPackager } from "../platformPackager";
 export declare class RemoteBuilder {
@@ -12,13 +11,3 @@ export declare class RemoteBuilder {
     private _build;
     private artifactInfoToArtifactCreatedEvent;
 }
-interface ArtifactInfo extends UploadTask {
-    target: string | null;
-    readonly isWriteUpdateInfo?: boolean;
-    readonly updateInfo?: any;
-}
-export interface RemoteBuilderResponse {
-    files: Array<ArtifactInfo> | null;
-    error: string | null;
-}
-export {};

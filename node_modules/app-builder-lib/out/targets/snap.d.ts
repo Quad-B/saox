@@ -11,7 +11,7 @@ export default class SnapTarget extends Target {
     isUseTemplateApp: boolean;
     constructor(name: string, packager: LinuxPackager, helper: LinuxTargetHelper, outDir: string);
     private replaceDefault;
-    private readonly isElectron2;
     private createDescriptor;
     build(appOutDir: string, arch: Arch): Promise<any>;
+    private isElectronVersionGreaterOrEqualThen;
 }

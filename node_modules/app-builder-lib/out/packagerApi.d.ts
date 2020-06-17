@@ -21,7 +21,7 @@ export interface ArtifactCreated extends UploadTask {
     readonly target: Target | null;
     updateInfo?: any;
     readonly safeArtifactName?: string | null;
-    readonly publishConfig?: PublishConfiguration;
+    readonly publishConfig?: PublishConfiguration | null;
     readonly isWriteUpdateInfo?: boolean;
 }
 export interface ArtifactBuildStarted {

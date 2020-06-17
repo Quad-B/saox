@@ -1,6 +1,6 @@
 import { Configuration } from "../configuration";
 import { Framework } from "../Framework";
-import { ElectronPlatformName, Packager } from "../index";
+import { Packager } from "../index";
 export declare type ElectronPlatformName = "darwin" | "linux" | "win32" | "mas";
 export interface ElectronDownloadOptions {
     version?: string;

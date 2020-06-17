@@ -13,17 +13,17 @@ export declare class NsisTarget extends Target {
     readonly archs: Map<Arch, string>;
     constructor(packager: WinPackager, outDir: string, targetName: string, packageHelper: AppPackageHelper);
     build(appOutDir: string, arch: Arch): Promise<void>;
-    readonly isBuildDifferentialAware: boolean;
+    get isBuildDifferentialAware(): boolean;
     private getPreCompressedFileExtensions;
     /** @private */
     buildAppPackage(appOutDir: string, arch: Arch): Promise<PackageFileInfo>;
     finishBuild(): Promise<any>;
-    protected readonly installerFilenamePattern: string;
-    private readonly isPortable;
+    protected get installerFilenamePattern(): string;
+    private get isPortable();
     private buildInstaller;
     protected generateGitHubInstallerName(): string;
-    private readonly isUnicodeEnabled;
-    readonly isWebInstaller: boolean;
+    private get isUnicodeEnabled();
+    get isWebInstaller(): boolean;
     private computeScriptAndSignUninstaller;
     private computeVersionKey;
     protected configureDefines(oneClick: boolean, defines: any): Promise<any>;

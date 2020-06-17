@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isElectronBased = isElectronBased;
 
 function isElectronBased(framework) {
-  return framework.name === "electron" || framework.name === "muon";
+  return framework.name === "electron";
 } 
 // __ts-babel@6.0.4
 //# sourceMappingURL=Framework.js.map

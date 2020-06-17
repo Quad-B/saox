@@ -18,11 +18,6 @@ export interface LinuxConfiguration extends CommonLinuxOptions, PlatformSpecific
      */
     readonly vendor?: string | null;
     /**
-     * @deprecated
-     * @private
-     */
-    readonly depends?: Array<string> | null;
-    /**
      * The executable name. Defaults to `productName`.
      * Cannot be specified per target, allowed only in the `linux`.
      */
@@ -59,6 +54,10 @@ export interface CommonLinuxOptions {
      * The [Desktop file](https://developer.gnome.org/integration-guide/stable/desktop-files.html.en) entries (name to value).
      */
     readonly desktop?: any | null;
+    /**
+     * The executable parameters. Pass to executableName
+     */
+    readonly executableArgs?: Array<string> | null;
 }
 export interface LinuxTargetSpecificOptions extends CommonLinuxOptions, TargetSpecificOptions {
     /**
@@ -101,11 +100,6 @@ export interface DebOptions extends LinuxTargetSpecificOptions {
     readonly priority?: string | null;
 }
 export interface AppImageOptions extends CommonLinuxOptions, TargetSpecificOptions {
-    /**
-     * The system integration installation.
-     * @default ask
-     */
-    readonly systemIntegration?: "ask" | "doNotAsk";
     /**
      * The path to EULA license file. Defaults to `license.txt` or `eula.txt` (or uppercase variants). Only plain text is supported.
      */

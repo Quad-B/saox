@@ -6,18 +6,18 @@ import { AfterPackContext, CompressionLevel, Configuration, ElectronPlatformName
 export declare abstract class PlatformPackager<DC extends PlatformSpecificBuildOptions> {
     readonly info: Packager;
     readonly platform: Platform;
-    readonly packagerOptions: PackagerOptions;
-    readonly buildResourcesDir: string;
-    readonly projectDir: string;
-    readonly config: Configuration;
+    get packagerOptions(): PackagerOptions;
+    get buildResourcesDir(): string;
+    get projectDir(): string;
+    get config(): Configuration;
     readonly platformSpecificBuildOptions: DC;
-    readonly resourceList: Promise<Array<string>>;
+    get resourceList(): Promise<Array<string>>;
     private readonly _resourceList;
     readonly appInfo: AppInfo;
     protected constructor(info: Packager, platform: Platform);
-    readonly compression: CompressionLevel;
-    readonly debugLogger: DebugLogger;
-    abstract readonly defaultTarget: Array<string>;
+    get compression(): CompressionLevel;
+    get debugLogger(): DebugLogger;
+    abstract get defaultTarget(): Array<string>;
     protected prepareAppInfo(appInfo: AppInfo): AppInfo;
     private static normalizePlatformSpecificBuildOptions;
     abstract createTargets(targets: Array<string>, mapper: (name: string, factory: (outDir: string) => Target) => void): void;
@@ -30,8 +30,6 @@ export declare abstract class PlatformPackager<DC extends PlatformSpecificBuildO
     protected packageInDistributableFormat(appOutDir: string, arch: Arch, targets: Array<Target>, taskManager: AsyncTaskManager): void;
     private static buildAsyncTargets;
     private getExtraFileMatchers;
-    readonly electronDistExecutableName: "electron" | "brave";
-    readonly electronDistMacOsExecutableName: "Electron" | "Brave";
     createGetFileMatchersOptions(outDir: string, arch: Arch, customBuildOptions: PlatformSpecificBuildOptions): GetFileMatchersOptions;
     protected doPack(outDir: string, appOutDir: string, platformName: ElectronPlatformName, arch: Arch, platformSpecificBuildOptions: DC, targets: Array<Target>): Promise<void>;
     protected createTransformerForExtraFiles(packContext: AfterPackContext): FileTransformer | null;
@@ -52,9 +50,9 @@ export declare abstract class PlatformPackager<DC extends PlatformSpecificBuildO
     expandMacro(pattern: string, arch?: string | null, extra?: any, isProductNameSanitized?: boolean): string;
     generateName2(ext: string | null, classifier: string | null | undefined, deployment: boolean): string;
     getTempFile(suffix: string): Promise<string>;
-    readonly fileAssociations: Array<FileAssociation>;
+    get fileAssociations(): Array<FileAssociation>;
     getResource(custom: string | null | undefined, ...names: Array<string>): Promise<string | null>;
-    readonly forceCodeSigning: boolean;
+    get forceCodeSigning(): boolean;
     protected getOrConvertIcon(format: IconFormat): Promise<string | null>;
     getDefaultFrameworkIcon(): string | null;
     resolveIcon(sources: Array<string>, fallbackSources: Array<string>, outputFormat: IconFormat): Promise<Array<IconInfo>>;
@@ -65,6 +63,8 @@ export interface IconInfo {
 }
 export declare type IconFormat = "icns" | "ico" | "set";
 export declare function isSafeGithubName(name: string): boolean;
+export declare function computeSafeArtifactNameIfNeeded(suggestedName: string | null, safeNameProducer: () => string): string | null;
 export declare function normalizeExt(ext: string): string;
 export declare function resolveFunction<T>(executor: T | string, name: string): T;
 export declare function chooseNotNull(v1: string | null | undefined, v2: string | null | undefined): string | null | undefined;
+export declare function isSafeToUnpackElectronOnRemoteBuildServer(packager: PlatformPackager<any>): boolean;

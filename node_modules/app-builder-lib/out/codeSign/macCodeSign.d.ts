@@ -2,10 +2,10 @@ import { TmpDir } from "builder-util/out/util";
 export declare const appleCertificatePrefixes: string[];
 export declare type CertType = "Developer ID Application" | "Developer ID Installer" | "3rd Party Mac Developer Application" | "3rd Party Mac Developer Installer" | "Mac Developer";
 export interface CodeSigningInfo {
-    keychainName?: string | null;
+    keychainFile?: string | null;
 }
 export declare function isSignAllowed(isPrintWarn?: boolean): boolean;
-export declare function reportError(isMas: boolean, certificateType: CertType, qualifier: string | null | undefined, keychainName: string | null | undefined, isForceCodeSigning: boolean): Promise<void>;
+export declare function reportError(isMas: boolean, certificateType: CertType, qualifier: string | null | undefined, keychainFile: string | null | undefined, isForceCodeSigning: boolean): Promise<void>;
 export interface CreateKeychainOptions {
     tmpDir: TmpDir;
     cscLink: string;
@@ -14,6 +14,7 @@ export interface CreateKeychainOptions {
     cscIKeyPassword?: string | null;
     currentDir: string;
 }
+export declare function removeKeychain(keychainFile: string, printWarn?: boolean): Promise<any>;
 export declare function createKeychain({ tmpDir, cscLink, cscKeyPassword, cscILink, cscIKeyPassword, currentDir }: CreateKeychainOptions): Promise<CodeSigningInfo>;
 /** @private */
 export declare function sign(path: string, name: string, keychain: string): Promise<any>;

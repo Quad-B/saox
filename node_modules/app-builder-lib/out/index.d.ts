@@ -28,5 +28,6 @@ export { PublishManager } from "./publish/PublishManager";
 export { PlatformPackager } from "./platformPackager";
 export { Framework, PrepareApplicationStageDirectoryOptions } from "./Framework";
 export { buildForge, ForgeOptions } from "./forge-maker";
+export { SnapStoreOptions } from "./publish/SnapStorePublisher";
 export declare function checkBuildRequestOptions(options: PackagerOptions & PublishOptions): void;
 export declare function build(options: PackagerOptions & PublishOptions, packager?: Packager): Promise<Array<string>>;

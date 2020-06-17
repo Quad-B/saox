@@ -14,9 +14,9 @@ export declare class WinPackager extends PlatformPackager<WindowsConfiguration> 
     readonly vm: Lazy<VmManager>;
     readonly computedPublisherName: Lazy<string[] | null>;
     readonly lazyCertInfo: Lazy<CertificateInfo | null>;
-    readonly isForceCodeSigningVerification: boolean;
+    get isForceCodeSigningVerification(): boolean;
     constructor(info: Packager);
-    readonly defaultTarget: Array<string>;
+    get defaultTarget(): Array<string>;
     protected doGetCscPassword(): string | undefined | null;
     createTargets(targets: Array<string>, mapper: (name: string, factory: (outDir: string) => Target) => void): void;
     getIconPath(): Promise<string | null>;
