@@ -54,6 +54,7 @@
             const menu = new Menu();
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
+
             menu.append(new MenuItem({
                 label: 'Main',
                 submenu: [
@@ -62,6 +63,13 @@
                         click: async () => {
                             const { shell } = require('electron')
                             await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
+                        }
+                    },
+                    {
+                        label: 'ดู เอ็มวี เพลงนี้',
+                        click: async () => {
+                            const { shell } = require('electron')
+                            await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
                         }
                     },
                     isMac ? { role: 'close' } : { role: 'quit' }
