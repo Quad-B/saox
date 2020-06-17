@@ -43,7 +43,7 @@
         menu.append(new MenuItem({
           label: 'Main',
           submenu: [
-            isMac ? { role: 'close' } : { role: 'quit' }
+            isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออก',role: 'quit' }
           ]
         }));
 
@@ -72,7 +72,7 @@
                             await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
                         }
                     },
-                    isMac ? { role: 'close' } : { role: 'quit' }
+                    isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออก',role: 'quit' }
                 ]
             }));
 
