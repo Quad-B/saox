@@ -1,7 +1,6 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const url = require('url');
-const {session} = require('electron');
 
 // init win
 let win;
@@ -16,23 +15,27 @@ function createWindow() {
 	// Create browser window
 	win = new BrowserWindow({
 	icon:__dirname+'/img/saoxlogo.png',
-	darkTheme: true,
 	minWidth: 1000,
 	minHeight: 700,
-	autoHideMenuBar: true
+	autoHideMenuBar: false,
+	webPreferences: {
+		nodeIntegration: true
+	}
 });
-	// Load index.html
+
+	// Load Website
 	win.loadURL('https://www.joox.com/th');
 
 	win.maximize();
 
 	session.defaultSession.cookies.get({}, (error, cookies) => {
-  	console.log(error, cookies)
+  		console.log(error, cookies)
 	});
 
-	//win.webContents.on('did-finish-load', function() {
-		//win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-linear-gradient(transparent,transparent) !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
-	//});
+	// win.webContents.on('did-finish-load', function() {
+		// win.webContents.executeJavaScript('import { Titlebar, Color } from \'custom-electron-titlebar\'; new Titlebar({backgroundColor: Color.fromHex(\'#ECECEC\')});')
+		// win.webContents.insertCSS('.sn-header{ display: none;} .logo a {background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-gradient(linear,left top,left bottom,from(transparent),to(transparent))  !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,-webkit-linear-gradient(transparent,transparent) !important;background: url(https://raw.githubusercontent.com/boyphongsakorn/saox/master/img/weblogo.png) no-repeat,linear-gradient(transparent,transparent)  !important;} .modal__footer--fb-login .dialog-login__button:last-child {float: inherit !important;}');
+	// });
 
 }
 
