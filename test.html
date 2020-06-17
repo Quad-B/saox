@@ -18,11 +18,17 @@
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden">
 
-    <iframe src="https://www.joox.com/th" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
+    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
 
     <script>
 
+        const { remote } = require('electron')
+        const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
 
         let MyTitleBar = new customTitlebar.Titlebar({
@@ -30,7 +36,44 @@
           shadow: true
         });
 
-    </script>
+        const isMac = process.platform === 'darwin'
 
+        const menu = new Menu();
+
+        menu.append(new MenuItem({
+          label: 'Main',
+          submenu: [
+            isMac ? { role: 'close' } : { role: 'quit' }
+          ]
+        }));
+
+        MyTitleBar.updateMenu(menu);
+
+        setInterval(function(){
+
+            const menu = new Menu();
+
+            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
+            menu.append(new MenuItem({
+                label: 'Main',
+                submenu: [
+                    {
+                        label: 'ดาว์นโหลด เพลงนี้',
+                        click: async () => {
+                            const { shell } = require('electron')
+                            await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
+                        }
+                    },
+                    isMac ? { role: 'close' } : { role: 'quit' }
+                ]
+            }));
+
+            MyTitleBar.updateMenu(menu);
+
+            },20000
+        );
+
+    </script>
+    
 </body>
 </html>
