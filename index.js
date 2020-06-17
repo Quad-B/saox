@@ -2,29 +2,39 @@ const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const url = require('url');
 
+let win;
+
 function createWindow () {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     autoHideMenuBar: true,
     frame: false,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      nativeWindowOpen: true
     }
   })
 
   // and load the index.html of the app.
   win.loadFile('test.html')
 
+  win.maximize();
+
   // Open the DevTools.
   //win.webContents.openDevTools()
+
+  session.defaultSession.cookies.get({}, (error, cookies) => {
+    console.log(error, cookies)
+  });
+
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

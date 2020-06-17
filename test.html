@@ -17,12 +17,10 @@
     </style>
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden">
-    <p id="demo" style="display: none;"></p>
 
-    <iframe src="https://www.joox.com/th" id="frame" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
+    <iframe src="https://www.joox.com/th" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
     <script>
 
         const customTitlebar = require('custom-electron-titlebar');
@@ -32,12 +30,7 @@
           shadow: true
         });
 
-        $('iframe').load(function(){
-            $(this).contents().find("body").on('click', function(event) { console.log(2); });
-        });
-
     </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
 </body>
 </html>
