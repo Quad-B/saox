@@ -36,6 +36,10 @@
           shadow: true
         });
 
+        MyTitleBar.updateIcon('./img/saoxlogo.ico');
+
+        MyTitleBar.updateTitle('SAOX');
+
         const isMac = process.platform === 'darwin'
 
         const menu = new Menu();
@@ -55,8 +59,10 @@
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
 
+            MyTitleBar.updateTitle('SAOX : ' + elmnt);
+
             menu.append(new MenuItem({
-                label: 'Main',
+                label: 'เมนูหลัก',
                 submenu: [
                     {
                         label: 'ดาว์นโหลด เพลงนี้',
