@@ -41,13 +41,15 @@
         const menu = new Menu();
 
         menu.append(new MenuItem({
-          label: 'Main',
+          label: 'เมนูหลัก',
           submenu: [
-            isMac ? { role: 'close' } : { role: 'quit' }
+            isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
           ]
         }));
 
         MyTitleBar.updateMenu(menu);
+
+        MyTitleBar.updateTitle('SAOX');
 
         setInterval(function(){
 
@@ -55,8 +57,15 @@
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
             menu.append(new MenuItem({
-                label: 'Main',
+                label: 'เมนูหลัก',
                 submenu: [
+                    {
+                        label: 'ดู เอ็มวี เพลงนี้',
+                        click: async () => {
+                            const { shell } = require('electron')
+                            await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
+                        }
+                    },
                     {
                         label: 'ดาว์นโหลด เพลงนี้',
                         click: async () => {
@@ -64,11 +73,13 @@
                             await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
                         }
                     },
-                    isMac ? { role: 'close' } : { role: 'quit' }
+                    isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
                 ]
             }));
 
             MyTitleBar.updateMenu(menu);
+
+            MyTitleBar.updateTitle('SAOX : ' + elmnt);
 
             },20000
         );

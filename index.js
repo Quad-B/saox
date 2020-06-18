@@ -7,6 +7,7 @@ let win;
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
+    icon: __dirname + '/img/saoxlogo.png',
     width: 800,
     height: 600,
     autoHideMenuBar: true,
@@ -25,9 +26,9 @@ function createWindow () {
   // Open the DevTools.
   // win.webContents.openDevTools()
 
-  session.defaultSession.cookies.get({}, (error, cookies) => {
-    console.log(error, cookies)
-  });
+  // session.defaultSession.cookies.get({}, (error, cookies) => {
+  //  console.log(error, cookies)
+  // });
 
 }
 
