@@ -56,33 +56,37 @@
             const menu = new Menu();
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
-            menu.append(new MenuItem({
-                label: 'เมนูหลัก',
-                submenu: [
-                    {
-                        label: 'ดู เอ็มวี เพลงนี้',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
+
+            if (elmnt != "") {
+
+                menu.append(new MenuItem({
+                    label: 'เมนูหลัก',
+                    submenu: [
+                        {
+                            label: 'ดู เอ็มวี เพลงนี้',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
+                            }
+                        },
+                        {
+                            label: 'ดาว์นโหลด เพลงนี้',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
                         }
-                    },
-                    {
-                        label: 'ดาว์นโหลด เพลงนี้',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
-                        }
-                    },
-                    isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
-                ]
-            }));
+                        },
+                            isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
+                    ]
+                }));
 
-            MyTitleBar.updateMenu(menu);
+                MyTitleBar.updateMenu(menu);
 
-            MyTitleBar.updateTitle('SAOX : ' + elmnt);
+                MyTitleBar.updateTitle('SAOX : ' + elmnt);
 
-            },20000
-        );
+            }
+
+        },20000);
 
     </script>
     
