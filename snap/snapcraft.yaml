@@ -95,7 +95,7 @@ parts:
       - -README.md
 apps:
   qr-code-generator-desktop:
-    command: bin/desktop-launch $SNAP/app/qr-code-generator-desktop
+    command: bin/desktop-launch $SNAP/app/SAOX
     plugs:
       - home
       - desktop
