@@ -99,7 +99,12 @@
                 menu.append(new MenuItem({
                     label: 'ช่วยเหลือ',
                     submenu: [
-                        {label: 'ติดตาม เฟสบุ๊ค'},
+                        {label: 'ติดตาม เฟสบุ๊ค',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                            }
+                        },
                         {label: 'สนับสนุน'},
                         {label: 'แจ้ง Bug'},
                         {label: 'เกี่ยวกับ SAOX'}
