@@ -49,3 +49,4 @@ script:
   # - dir
   # - cd -
   # - release-it 1.5.5 --config .release-it.json --no-npm.publish --no-git
+  - electron-builder install-app-deps
