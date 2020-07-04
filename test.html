@@ -112,7 +112,12 @@
                             }
                         },
                         {role: 'separator'},
-                        {label: 'แจ้ง Bug'},
+                        {label: 'แจ้ง Bug',
+                        click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                            }
+                        },
                         {label: 'เกี่ยวกับ SAOX'}
                     ]
                 }));
