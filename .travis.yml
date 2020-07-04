@@ -18,6 +18,8 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y aptitude
   - sudo aptitude install -y winehq-stable
+  - sudo apt-get update
+  - sudo apt-get install osslsigncode
 install:
   - npm install --global release-it
   - npm install --global yarn
