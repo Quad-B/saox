@@ -18,7 +18,7 @@
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden">
 
-    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
+    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onLoad="updatedl()" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
@@ -47,11 +47,27 @@
           ]
         }));
 
+        menu.append(new MenuItem({
+          label: 'ช่วยเหลือ',
+          submenu: [
+            {label: 'ติดตาม เฟสบุ๊ค'},
+            {label: 'สนับสนุน'},
+            {label: 'แจ้ง Bug'},
+            {label: 'เกี่ยวกับ SAOX'}
+          ]
+        }));
+
         MyTitleBar.updateMenu(menu);
 
         MyTitleBar.updateTitle('SAOX');
 
         setInterval(function(){
+
+            updatedl()
+
+        },20000);
+
+        function updatedl() {
 
             const menu = new Menu();
 
@@ -80,13 +96,23 @@
                     ]
                 }));
 
+                menu.append(new MenuItem({
+                    label: 'ช่วยเหลือ',
+                    submenu: [
+                        {label: 'ติดตาม เฟสบุ๊ค'},
+                        {label: 'สนับสนุน'},
+                        {label: 'แจ้ง Bug'},
+                        {label: 'เกี่ยวกับ SAOX'}
+                    ]
+                }));
+
                 MyTitleBar.updateMenu(menu);
 
                 MyTitleBar.updateTitle('SAOX : ' + elmnt);
 
             }
-
-        },20000);
+            
+        }
 
     </script>
     

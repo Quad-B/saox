@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boyphongsakorn/saox.git"
-  },
+  },"keywords": [
+    "Music Player App"
+  ],
   "author": "BoyPhongsakorn",
   "license": "ISC",
   "bugs": {
@@ -25,17 +27,11 @@
     "copyright": "copyright © 2019 Quad B Software",
     "win": {
       "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "ia32"
-          ]
-        },
-        {
-          "target": "portable"
-        }
+          "nsis",
+          "portable"
       ],
-      "compression": "maximum"
+      "compression": "maximum",
+      "publisherName": "Quad B Software"
     },
     "linux": {
       "target": [
