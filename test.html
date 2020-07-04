@@ -105,7 +105,12 @@
                                 await shell.openExternal('https://www.facebook.com/QuadBCoder/')
                             }
                         },
-                        {label: 'สนับสนุน'},
+                        {label: 'สนับสนุน',
+                        click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                            }
+                        },
                         {label: 'แจ้ง Bug'},
                         {label: 'เกี่ยวกับ SAOX'}
                     ]
