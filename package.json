@@ -9,7 +9,9 @@
     "pack": "electron-builder --dir",
     "dist-all": "electron-builder -mwl",
     "dist-win": "electron-builder --win",
-    "postinstall": "electron-builder install-app-deps"
+    "dist-lin": "electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps",
+    "distandpuh": "electron-builder -wl --publish \"always\" -c.snap.publish=github"
   },
   "repository": {
     "type": "git",
