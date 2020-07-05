@@ -28,7 +28,8 @@ before_install:
   - sudo make test
   - sudo make install
   - cd /etc/ld.so.conf.d/
-  - chmod -R 777 openssl-1.1.1c.conf
+  # chmod -R 777 openssl-1.1.1c.conf
+  - touch openssl-1.1.1c.conf
   - echo "/usr/local/ssl/lib" >> openssl-1.1.1c.conf
   - sudo ldconfig -v
   - sudo mv /usr/bin/c_rehash /usr/bin/c_rehash.backup
