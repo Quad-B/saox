@@ -29,7 +29,7 @@ before_install:
   - sudo make install
   - cd /etc/ld.so.conf.d/
   - cat
-  - sudo echo "/usr/local/ssl/lib" >> openssl-1.1.1c.conf
+  - echo "/usr/local/ssl/lib" >> openssl-1.1.1c.conf
   - sudo ldconfig -v
   - sudo mv /usr/bin/c_rehash /usr/bin/c_rehash.backup
   - sudo mv /usr/bin/openssl /usr/bin/openssl.backup
