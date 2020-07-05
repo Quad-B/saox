@@ -33,8 +33,7 @@
       "compression": "maximum",
       "publisherName": "Quad B Software",
       "signingHashAlgorithms": [
-        "sha1", 
-        "sha256"
+        "sha1"
       ]
     },
     "linux": {
