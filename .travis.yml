@@ -59,8 +59,8 @@ script:
   # - rm -f footer.png
   # - dir
   # - cd -
-  # - electron-builder -wl --publish "always" -c.snap.publish=github
-  - npm run dist-win
+  - electron-builder -wl --publish "always" -c.snap.publish=github
+  # - npm run dist-win
   # - electron-builder -w --publish "never"
   # - npm uninstall electron --save-dev
   # - npm install electron@2.0.18 --save-dev
