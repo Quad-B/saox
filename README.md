@@ -1,4 +1,4 @@
-# saox [![Build Status](https://travis-ci.org/boyphongsakorn/saox.svg?branch=master)](https://travis-ci.org/boyphongsakorn/saox) ![GitHub release](https://img.shields.io/github/release-pre/boyphongsakorn/saox.svg?label=Latest%20Pre%20Version) [![saox](https://snapcraft.io/saox/badge.svg)](https://snapcraft.io/saox) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
+# saox [![Build Status](https://travis-ci.org/Quad-B/saox.svg?branch=master)](https://travis-ci.org/Quad-B/saox) ![GitHub release](https://img.shields.io/github/release-pre/boyphongsakorn/saox.svg?label=Latest%20Pre%20Version) [![saox](https://snapcraft.io/saox/badge.svg)](https://snapcraft.io/saox) ![badge](https://img.shields.io/github/downloads-pre/boyphongsakorn/saox/latest/total.svg?label=Download%20Pre-release%20total)
 JOOX Web App
 
 # รายละเอียดโปรแกรม
