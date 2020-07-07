@@ -17,7 +17,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boyphongsakorn/saox.git"
-  },"keywords": [
+  },
+  "keywords": [
     "Music Player App"
   ],
   "author": "BoyPhongsakorn",
@@ -30,8 +31,8 @@
     "copyright": "copyright © 2019 Quad B Software",
     "win": {
       "target": [
-          "nsis",
-          "portable"
+        "nsis",
+        "portable"
       ],
       "compression": "maximum",
       "publisherName": "Quad B Software",
@@ -62,7 +63,7 @@
     "run-async": "^2.4.1"
   },
   "devDependencies": {
-    "electron": "^6.1.12",
+    "electron": "^7.2.4",
     "electron-builder": "^22.7.0",
     "electron-packager": "^14.2.1",
     "jquery": "^3.5.1",
