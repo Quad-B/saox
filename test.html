@@ -48,13 +48,29 @@
         }));
 
         menu.append(new MenuItem({
-          label: 'ช่วยเหลือ',
-          submenu: [
-            {label: 'ติดตาม เฟสบุ๊ค'},
-            {label: 'สนับสนุน'},
-            {label: 'แจ้ง Bug'},
-            {label: 'เกี่ยวกับ SAOX'}
-          ]
+            label: 'ช่วยเหลือ',
+            submenu: [
+                {label: 'ติดตาม เฟสบุ๊ค',
+                click: async () => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                    }
+                },
+                {label: 'สนับสนุน',
+                click: async () => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                    }
+                },
+                {type: 'separator'},
+                {label: 'แจ้ง Bug',
+                click: async () => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                    }
+                },
+                {label: 'เกี่ยวกับ SAOX'}
+            ]
         }));
 
         MyTitleBar.updateMenu(menu);
@@ -111,7 +127,7 @@
                                 await shell.openExternal('https://ko-fi.com/boyphongsakorn')
                             }
                         },
-                        {role: 'separator'},
+                        {type: 'separator'},
                         {label: 'แจ้ง Bug',
                         click: async () => {
                                 const { shell } = require('electron')
