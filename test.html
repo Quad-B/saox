@@ -77,6 +77,8 @@
 
         MyTitleBar.updateTitle('SAOX');
 
+        MyTitleBar.updateIcon('/img/saoxlogo.png');
+
         setInterval(function(){
 
             updatedl()
@@ -87,7 +89,7 @@
 
             const menu = new Menu();
 
-            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-hmzhuo xXMwE")[0].innerText;
+            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw dHtlWP")[0].innerText;
 
             if (elmnt != "") {
 
@@ -134,7 +136,12 @@
                                 await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
                             }
                         },
-                        {label: 'เกี่ยวกับ SAOX'}
+                        {label: 'เกี่ยวกับ SAOX',
+                        click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://quad-b.github.io/saox/')
+                            }
+                        }
                     ]
                 }));
 
