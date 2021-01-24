@@ -95,7 +95,14 @@
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw dHtlWP")[0].innerText;
 
+            var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
+
             if (elmnt != "") {
+
+                $.get('https://pwisetthon.com/getcolor.php?url='+image,  // url
+                    function (data, textStatus, jqXHR) {  // success callback
+                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
+                });
 
                 menu.append(new MenuItem({
                     label: 'เมนูหลัก',
