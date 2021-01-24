@@ -33,7 +33,8 @@
 
         let MyTitleBar = new customTitlebar.Titlebar({
           backgroundColor: customTitlebar.Color.fromHex('#444'),
-          shadow: true
+          shadow: true,
+          icon: 'img/saoxnew.svg'
         });
 
         const isMac = process.platform === 'darwin'
@@ -43,7 +44,7 @@
         menu.append(new MenuItem({
           label: 'เมนูหลัก',
           submenu: [
-            isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
+            isMac ? { role: 'close' } : { role: 'quit' }
           ]
         }));
 
@@ -69,15 +70,18 @@
                     await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
                     }
                 },
-                {label: 'เกี่ยวกับ SAOX'}
+                {label: 'เกี่ยวกับ SAOX',
+                click: async () => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://quad-b.github.io/saox/')
+                    }
+                }
             ]
         }));
 
         MyTitleBar.updateMenu(menu);
 
         MyTitleBar.updateTitle('SAOX');
-
-        MyTitleBar.updateIcon('/img/saoxlogo.png');
 
         setInterval(function(){
 
@@ -110,7 +114,7 @@
                                 await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
                         }
                         },
-                            isMac ? { label: 'ปิด',role: 'close' } : { label: 'ออกจากโปรแกรม',role: 'quit' }
+                            isMac ? { role: 'close' } : { role: 'quit' }
                     ]
                 }));
 
