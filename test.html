@@ -87,7 +87,7 @@
 
             updatedl()
 
-        },20000);
+        },10000);
 
         function updatedl() {
 
@@ -100,11 +100,6 @@
             }
 
             if (elmnt != "") {
-
-                $.get('https://pwisetthon.com/getcolor.php?url='+image,  // url
-                    function (data, textStatus, jqXHR) {  // success callback
-                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
-                });
 
                 menu.append(new MenuItem({
                     label: 'เมนูหลัก',
@@ -161,6 +156,11 @@
                 MyTitleBar.updateMenu(menu);
 
                 MyTitleBar.updateTitle('SAOX : ' + elmnt);
+
+                $.get('https://pwisetthon.com/getcolor.php?url='+image,  // url
+                    function (data, textStatus, jqXHR) {  // success callback
+                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
+                });
 
             }
             
