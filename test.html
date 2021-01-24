@@ -95,7 +95,12 @@
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw dHtlWP")[0].innerText;
 
-            var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
+            const img = document.querySelector('img');
+            img.classList.contains('secondary');
+            
+            if(img == true) {
+                var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
+            }
 
             if (elmnt != "") {
 
@@ -153,10 +158,9 @@
 
                 MyTitleBar.updateMenu(menu);
 
-                MyTitleBar.updateTitle('SAOX : ' + elmnt);
-
                 $.get('https://pwisetthon.com/getcolor.php?url='+image,  // url
                     function (data, textStatus, jqXHR) {  // success callback
+                        MyTitleBar.updateTitle('SAOX : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                 });
 
