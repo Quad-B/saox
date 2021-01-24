@@ -95,7 +95,9 @@
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw dHtlWP")[0].innerText;
 
-            var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
+            if(iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src != NULL) {
+                var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
+            }
 
             if (elmnt != "") {
 
