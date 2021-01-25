@@ -27,7 +27,7 @@
   },
   "build": {
     "appId": "com.boyphongsakorn.saox",
-    "artifactName": "${productName}${os}.${ext}",
+    "artifactName": "${productName}${platform}.${ext}",
     "copyright": "copyright © 2019 Quad B Software",
     "win": {
       "target": [
