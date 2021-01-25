@@ -39,6 +39,21 @@
 
         const isMac = process.platform === 'darwin'
 
+        var auplay = 1
+
+        require('electron').ipcRenderer.on('media-key', (event, message) => {
+            if(message == "MediaPlayPause") {
+                if(auplay == 0)
+                {
+                    iframe.contentWindow.document.getElementById("jooxAudio").play()
+                    auplay = '1'
+                }else{
+                    iframe.contentWindow.document.getElementById("jooxAudio").pause()
+                    auplay = '0'
+                }
+            }
+        })
+
         const menu = new Menu();
 
         menu.append(new MenuItem({
@@ -93,14 +108,9 @@
 
             const menu = new Menu();
 
-            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw dHtlWP")[0].innerText;
+            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText;
 
-            const img = document.querySelector('img');
-            img.classList.contains('secondary');
-            
-            if(img == true) {
-                var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay fpvQKT")[0].src;
-            }
+            var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay")[0].src;
 
             if (elmnt != "") {
 

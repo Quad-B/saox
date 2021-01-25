@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session} = require('electron');
+const {app, BrowserWindow, session, globalShortcut} = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -21,6 +21,14 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('test.html')
+
+  win.setThumbarButtons([
+    {
+      tooltip: 'Play',
+      icon: path.join(__dirname, '/img/play.png'),
+      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+    }
+  ])
 
   win.maximize();
 
@@ -51,6 +59,7 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
+  globalShortcut.unregisterAll()
   win.removeAllListeners('close');
   win.close();
 });
