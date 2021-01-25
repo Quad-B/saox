@@ -64,7 +64,7 @@ script:
   # - electron-builder -w --publish "never"
   # - npm uninstall electron --save-dev
   # - npm install electron@2.0.18 --save-dev
-  # -  rm -f index.js
+  # - rm -f index.js
   # - mv index_2.js index.js
   # - electron-builder -l --publish "never"
   # - dir
