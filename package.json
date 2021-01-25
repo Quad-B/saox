@@ -31,7 +31,8 @@
     "win": {
       "target": [
         "nsis",
-        "portable"
+        "portable",
+        "zip"
       ],
       "compression": "maximum",
       "publisherName": "Quad B Software",
