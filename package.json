@@ -56,7 +56,8 @@
   },
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
-    "custom-electron-titlebar": "^3.2.6"
+    "custom-electron-titlebar": "^3.2.6",
+    "uaup-js": "0.0.21"
   },
   "devDependencies": {
     "electron": "^7.3.3",
