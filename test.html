@@ -112,7 +112,7 @@
 
             var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay")[0].src;
 
-            if (elmnt != "") {
+            if (elmnt != "" && image != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
 
                 menu.append(new MenuItem({
                     label: 'เมนูหลัก',
@@ -172,6 +172,9 @@
                     function (data, textStatus, jqXHR) {  // success callback
                         MyTitleBar.updateTitle('SAOX : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
+                        console.log(iframe.contentWindow.document.getElementsByClassName('MainHeader jsx-1834506763')[0].style.backgroundColor = data)
+                        console.log(iframe.contentWindow.document.getElementsByClassName('sidebar jsx-2761629659')[0].style.backgroundColor = data)
+                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.backgroundColor = data)
                 });
 
             }
