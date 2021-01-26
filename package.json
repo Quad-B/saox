@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -51,6 +51,11 @@
       ],
       "category": "Network",
       "compression": "maximum"
+    },
+    "publish": {
+      "GithubOptions": {
+        "vPrefixedTagName": false
+      }
     }
   },
   "snap": {
