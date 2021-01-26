@@ -61,7 +61,11 @@
         menu.append(new MenuItem({
           label: 'เมนูหลัก',
           submenu: [
-            isMac ? { role: 'close' } : { role: 'quit' }
+            {label: 'ปิดโปรแกรม',
+            click: async () => {
+                window.close();
+                }
+            }
           ]
         }));
 
@@ -131,9 +135,14 @@
                             click: async () => {
                                 const { shell } = require('electron')
                                 await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
-                        }
+                            }
                         },
-                            isMac ? { role: 'close' } : { role: 'quit' }
+                        {
+                            label: 'ปิดโปรแกรม',
+                            click: async () => {
+                                window.close();
+                            }
+                        }
                     ]
                 }));
 
