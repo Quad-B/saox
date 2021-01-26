@@ -45,7 +45,7 @@
       "artifactName": "${productName}-Setup.${ext}",
       "oneClick": false,
       "perMachine": true,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": false
     },
     "linux": {
       "target": [
