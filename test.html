@@ -185,7 +185,8 @@
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                         console.log(iframe.contentWindow.document.getElementsByClassName('MainHeader jsx-1834506763')[0].style.backgroundColor = data)
                         console.log(iframe.contentWindow.document.getElementsByClassName('sidebar jsx-2761629659')[0].style.backgroundColor = data)
-                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.backgroundColor = data)
+                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data + " !important")
+                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data + " !important")
                 });
 
             }
