@@ -52,9 +52,12 @@
       "category": "Network",
       "compression": "maximum"
     },
-    "publish": {
-      "vPrefixedTagName": false
-    }
+    "publish": [
+      {
+        "provider": "github",
+        "vPrefixedTagName": false
+      }
+    ]
   },
   "snap": {
     "confinement": "strict",
