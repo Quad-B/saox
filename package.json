@@ -44,7 +44,7 @@
     "nsis": {
       "artifactName": "${productName}-Setup.${ext}",
       "oneClick": false,
-      "perMachine": true,
+      "perMachine": false,
       "allowToChangeInstallationDirectory": false
     },
     "linux": {
