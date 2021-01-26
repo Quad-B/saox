@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session, globalShortcut} = require('electron');
+const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -15,7 +15,8 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       webviewTag: true,
-      nativeWindowOpen: true
+      nativeWindowOpen: true,
+      enableRemoteModule: true
     }
   })
 
