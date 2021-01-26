@@ -29,7 +29,7 @@
 
     <script>
 
-        const { remote } = require('electron')
+        const { app, remote } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
 
@@ -96,7 +96,8 @@
                     const { shell } = require('electron')
                     await shell.openExternal('https://quad-b.github.io/saox/')
                     }
-                }
+                },
+                {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
             ]
         }));
 
@@ -173,7 +174,8 @@
                                 const { shell } = require('electron')
                                 await shell.openExternal('https://quad-b.github.io/saox/')
                             }
-                        }
+                        },
+                        {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
                     ]
                 }));
 
@@ -185,8 +187,8 @@
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                         console.log(iframe.contentWindow.document.getElementsByClassName('MainHeader jsx-1834506763')[0].style.backgroundColor = data)
                         console.log(iframe.contentWindow.document.getElementsByClassName('sidebar jsx-2761629659')[0].style.backgroundColor = data)
-                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data + " !important")
-                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data + " !important")
+                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data)
+                        console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                 });
 
             }
