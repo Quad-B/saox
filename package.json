@@ -53,9 +53,7 @@
       "compression": "maximum"
     },
     "publish": {
-      "github": {
-        "vPrefixedTagName": false
-      }
+      "vPrefixedTagName": false
     }
   },
   "snap": {
