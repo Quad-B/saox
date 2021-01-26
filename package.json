@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -42,7 +42,9 @@
       ]
     },
     "nsis": {
-      "artifactName": "${productName}-Setup.${ext}"
+      "artifactName": "${productName}-Setup.${ext}",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
     },
     "linux": {
       "target": [
