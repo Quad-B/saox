@@ -81,7 +81,7 @@ app.on('ready', function()  {
 
 app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
-  globalShortcut.unregisterAll()
+  //globalShortcut.unregisterAll()
   win.removeAllListeners('close');
   win.close();
 });
