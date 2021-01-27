@@ -32,6 +32,7 @@
         const { app, remote } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
+        //const {autoUpdater} = require('electron-updater');
 
         let MyTitleBar = new customTitlebar.Titlebar({
           backgroundColor: customTitlebar.Color.fromHex('#444'),
@@ -97,7 +98,7 @@
                     await shell.openExternal('https://quad-b.github.io/saox/')
                     }
                 },
-                {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion()}
             ]
         }));
 

@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -58,7 +58,7 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "Quad-B",
+        "owner": "quad-b",
         "repo": "saox",
         "vPrefixedTagName": false
       }
