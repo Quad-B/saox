@@ -50,6 +50,15 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
 // Some APIs can only be used after this event occurs.
 //app.on('ready', createWindow);
 
+autoUpdater.on('update-downloaded', (ev, info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  setTimeout(function() {
+    autoUpdater.quitAndInstall();  
+  }, 5000)
+})
+
 app.on('ready', function()  {
   autoUpdater.checkForUpdatesAndNotify();
   createWindow();
