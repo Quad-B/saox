@@ -35,7 +35,7 @@ function createWindow () {
   win.maximize();
 
   // Open the DevTools.
-   win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
