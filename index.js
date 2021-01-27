@@ -24,6 +24,8 @@ function createWindow () {
   // and load the index.html of the app.
   win.loadFile('test.html')
 
+  autoUpdater.checkForUpdatesAndNotify();
+
   win.setThumbarButtons([
     {
       tooltip: 'Play',
@@ -34,9 +36,9 @@ function createWindow () {
 
   win.maximize();
 
-  win.once('ready-to-show', () => {
+  /*win.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
-  });
+  });*/
 
   // Open the DevTools.
   // win.webContents.openDevTools()
