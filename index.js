@@ -1,6 +1,7 @@
 const {app, BrowserWindow, session} = require('electron');
 const path = require('path');
 const url = require('url');
+const {autoUpdater} = require("electron-updater");
 
 let win;
 
@@ -34,7 +35,7 @@ function createWindow () {
   win.maximize();
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+   win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
@@ -68,6 +69,7 @@ app.on('before-quit', () => {
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
+  autoUpdater.checkForUpdatesAndNotify();
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
