@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -72,13 +72,11 @@
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
     "custom-electron-titlebar": "^3.2.6",
-    "electron-updater": "^4.3.5",
-    "uaup-js": "0.0.21"
+    "electron-updater": "^4.3.5"
   },
   "devDependencies": {
     "electron": "^7.3.3",
     "electron-builder": "^22.9.1",
-    "http-server": "^0.12.3",
     "jquery": "^3.5.1"
   }
 }
