@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        .hidden {
+            display: none;
+        }
         .container-after-titlebar {
             overflow: hidden !important; /* Hide scrollbars */
         }
@@ -21,6 +34,16 @@
     <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onLoad="updatedl()" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
 
+    <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="closeNotification()">
+          Close
+        </button>
+        <button id="restart-button" onClick="restartApp()" class="hidden">
+          Restart
+        </button>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
@@ -29,10 +52,34 @@
 
     <script>
 
-        const { app, remote } = require('electron')
+        const { app, remote, ipcRenderer } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
         //const {autoUpdater} = require('electron-updater');
+        const notification = document.getElementById('notification');
+        const message = document.getElementById('message');
+        const restartButton = document.getElementById('restart-button');
+
+        ipcRenderer.on('update_available', () => {
+            ipcRenderer.removeAllListeners('update_available');
+            message.innerText = 'A new update is available. Downloading now...';
+            notification.classList.remove('hidden');
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            ipcRenderer.removeAllListeners('update_downloaded');
+            message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+            restartButton.classList.remove('hidden');
+            notification.classList.remove('hidden');
+        });
+
+        function closeNotification() {
+            notification.classList.add('hidden');
+        }
+    
+        function restartApp() {
+            ipcRenderer.send('restart_app');
+        }
 
         let MyTitleBar = new customTitlebar.Titlebar({
           backgroundColor: customTitlebar.Color.fromHex('#444'),
@@ -186,8 +233,8 @@
                     function (data, textStatus, jqXHR) {  // success callback
                         MyTitleBar.updateTitle('SAOX : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
-                        console.log(iframe.contentWindow.document.getElementsByClassName('MainHeader jsx-1834506763')[0].style.backgroundColor = data)
-                        console.log(iframe.contentWindow.document.getElementsByClassName('sidebar jsx-2761629659')[0].style.backgroundColor = data)
+                        // console.log(iframe.contentWindow.document.getElementsByClassName('MainHeader jsx-1834506763')[0].style.backgroundColor = data)
+                        // console.log(iframe.contentWindow.document.getElementsByClassName('sidebar jsx-2761629659')[0].style.backgroundColor = data)
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data)
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                 });

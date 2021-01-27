@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session} = require('electron');
+const {app, BrowserWindow, session, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
@@ -34,6 +34,10 @@ function createWindow () {
 
   win.maximize();
 
+  win.once('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
+
   // Open the DevTools.
   // win.webContents.openDevTools()
 
@@ -50,17 +54,17 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
 // Some APIs can only be used after this event occurs.
 //app.on('ready', createWindow);
 
-autoUpdater.on('update-downloaded', (ev, info) => {
+//autoUpdater.on('update-downloaded', (ev, info) => {
   // Wait 5 seconds, then quit and install
   // In your application, you don't need to wait 5 seconds.
   // You could call autoUpdater.quitAndInstall(); immediately
-  setTimeout(function() {
-    autoUpdater.quitAndInstall();  
-  }, 5000)
-})
+  //setTimeout(function() {
+    //autoUpdater.quitAndInstall();  
+  //}, 5000)
+//})
 
 app.on('ready', function()  {
-  autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.checkForUpdatesAndNotify();
   createWindow();
 });
 
@@ -90,3 +94,19 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
+autoUpdater.on('update-available', () => {
+  win.webContents.send('update_available');
+});
+
+autoUpdater.on('update-downloaded', () => {
+  win.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+});
