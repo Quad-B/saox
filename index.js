@@ -159,9 +159,9 @@ autoUpdater.on('update-downloaded', () => {
 })
 
 ipcMain.on('restart_app', () => {
-  update = '1';
-  win.close();
-  //autoUpdater.quitAndInstall();
+  //update = '1';
+  //win.close();
+  autoUpdater.quitAndInstall();
 });
 
 ipcMain.on('pause', () => {
