@@ -60,9 +60,9 @@
         const message = document.getElementById('message');
         const restartButton = document.getElementById('restart-button');
 
-        ipcRenderer.on('update_available', () => {
+        ipcRenderer.on('update_available', function (event, data) {
             ipcRenderer.removeAllListeners('update_available');
-            message.innerText = 'A new update is available. Downloading now...';
+            message.innerText = 'A new update is available. Downloading now...'+data;
             notification.classList.remove('hidden');
         });
 
