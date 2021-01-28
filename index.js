@@ -101,7 +101,7 @@ app.on('window-all-closed', function () {
   }
 });
 
-app.on('window-all-closed', app.quit);
+//app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
   if (update == '1'){
