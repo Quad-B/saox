@@ -4,7 +4,7 @@ const url = require('url');
 const {autoUpdater} = require("electron-updater");
 
 let win;
-let update;
+//let update;
 
 function createWindow () {
   // Create the browser window.
@@ -102,7 +102,7 @@ app.on('window-all-closed', function () {
 });
 
 //app.on('window-all-closed', app.quit);
-app.on('before-quit', () => {
+//app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
   /*if (update == '1'){
     autoUpdater.quitAndInstall();
@@ -110,9 +110,9 @@ app.on('before-quit', () => {
     win.removeAllListeners('close');
     win.close();
   }*/
-  win.removeAllListeners('close');
-  win.close();
-});
+  //win.removeAllListeners('close');
+  //win.close();
+//});
 
 app.on('activate', function () {
   if (mainWindow === null) {
@@ -149,7 +149,7 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 ipcMain.on('restart_app', () => {
-  update = '1';
+  //update = '1';
   win.close();
   //autoUpdater.quitAndInstall();
 });
