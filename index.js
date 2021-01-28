@@ -103,6 +103,7 @@ app.on('window-all-closed', function () {
 //app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
+  autoUpdater.quitAndInstall();
   win.removeAllListeners('close');
   win.close();
 });
