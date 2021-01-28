@@ -66,6 +66,12 @@
             notification.classList.remove('hidden');
         });
 
+        ipcRenderer.on('incoming', function (event, data) {
+            ipcRenderer.removeAllListeners('update_available');
+            message.innerText = data;
+            notification.classList.remove('hidden');
+        });
+
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
             message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';

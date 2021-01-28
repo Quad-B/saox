@@ -129,7 +129,7 @@ autoUpdater.on('update-available', () => {
 });
 
 autoUpdater.on('download-progress', (progressObj) => {
-  win.webContents.send('update_available',progressObj.percent);
+  win.webContents.send('incoming',progressObj.percent);
 });
 
 autoUpdater.on('update-downloaded', () => {
@@ -148,7 +148,7 @@ ipcMain.on('pause', () => {
       click () { win.webContents.send('media-key', 'Prev') }
     },
     {
-      tooltip: 'Pause',
+      tooltip: 'Play',
       icon: path.join(__dirname, '/img/play.png'),
       click () { win.webContents.send('media-key', 'MediaPlayPause') }
     },
@@ -169,7 +169,7 @@ ipcMain.on('play', () => {
       click () { win.webContents.send('media-key', 'Prev') }
     },
     {
-      tooltip: 'Play',
+      tooltip: 'Pause',
       icon: path.join(__dirname, '/img/pause.png'),
       click () { win.webContents.send('media-key', 'MediaPlayPause') }
     },
