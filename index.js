@@ -144,22 +144,22 @@ autoUpdater.on('download-progress', (progressObj) => {
   win.webContents.send('incoming',progressObj.percent);
 });
 
-/*autoUpdater.on('update-downloaded', () => {
+autoUpdater.on('update-downloaded', () => {
   update = '1';
   win.webContents.send('update_downloaded');
-});*/
+});
 
-autoUpdater.on('update-downloaded', () => {
+/*autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
     title: 'Install Updates',
     message: 'Updates downloaded, application will be quit for update...'
   }, () => {
     setImmediate(() => autoUpdater.quitAndInstall())
   })
-})
+})*/
 
 ipcMain.on('restart_app', () => {
-  //update = '1';
+  update = '1';
   //win.close();
   autoUpdater.quitAndInstall();
 });
