@@ -4,7 +4,7 @@ const url = require('url');
 const {autoUpdater} = require("electron-updater");
 
 let win;
-//let update;
+let update;
 
 function createWindow () {
   // Create the browser window.
