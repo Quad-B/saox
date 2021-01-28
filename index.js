@@ -4,7 +4,7 @@ const url = require('url');
 const {autoUpdater} = require("electron-updater");
 
 let win;
-let update;
+//let update;
 
 function createWindow () {
   // Create the browser window.
@@ -104,12 +104,12 @@ app.on('window-all-closed', function () {
 //app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
-  if (update == '1'){
-    autoUpdater.quitAndInstall();
-  }else{
+  //if (update == '1'){
+    //autoUpdater.quitAndInstall();
+  //}else{
     win.removeAllListeners('close');
     win.close();
-  }
+  //}
   //win.removeAllListeners('close');
   //win.close();
 });
