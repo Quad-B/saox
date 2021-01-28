@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap" rel="stylesheet">
     <style>
         #notification {
             position: fixed;
@@ -35,11 +37,11 @@
     </iframe>
 
     <div id="notification" class="hidden">
-        <p id="message"></p>
-        <button id="close-button" onClick="closeNotification()">
+        <p id="message" style="font-family: 'Mitr', sans-serif;"></p>
+        <button id="close-button" onClick="closeNotification()" style="font-family: 'Mitr', sans-serif;">
           ปิด
         </button>
-        <button id="restart-button" onClick="restartApp()" class="hidden">
+        <button id="restart-button" onClick="restartApp()" class="hidden" style="font-family: 'Mitr', sans-serif;">
           อัพเดต
         </button>
     </div>
