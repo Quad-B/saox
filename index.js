@@ -57,7 +57,7 @@ function createWindow () {
   });*/
 
   // Open the DevTools.
-   win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
@@ -106,9 +106,10 @@ app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
   if (update == '1'){
     autoUpdater.quitAndInstall();
+  }else{
+    win.removeAllListeners('close');
+    win.close();
   }
-  win.removeAllListeners('close');
-  win.close();
 });
 
 app.on('activate', function () {
