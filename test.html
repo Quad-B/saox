@@ -54,6 +54,7 @@
 
     <script>
 
+        let musicname
         const { app, remote, ipcRenderer } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
@@ -189,13 +190,17 @@
 
         function updatedl() {
 
+            checkplay()
+
             const menu = new Menu();
 
             var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText;
 
             var image = iframe.contentWindow.document.getElementsByClassName("sc-gPEVay")[0].src;
 
-            if (elmnt != "" && image != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
+            if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
+
+                musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
                 menu.append(new MenuItem({
                     label: 'เมนูหลัก',
