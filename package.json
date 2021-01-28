@@ -74,7 +74,7 @@
     "electron-updater": "^4.3.5"
   },
   "devDependencies": {
-    "electron": "^7.3.3",
+    "electron": "^9.4.0",
     "electron-builder": "^22.9.1"
   }
 }
