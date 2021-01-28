@@ -136,8 +136,8 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
-  win.webContents.send('update_available');
   autoUpdater.downloadUpdate();
+  win.webContents.send('update_available');
 });
 
 autoUpdater.on('download-progress', (progressObj) => {

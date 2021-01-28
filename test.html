@@ -57,7 +57,6 @@
         const { app, remote, ipcRenderer } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
-        //const {autoUpdater} = require('electron-updater');
         const notification = document.getElementById('notification');
         const message = document.getElementById('message');
         const restartButton = document.getElementById('restart-button');
@@ -74,11 +73,11 @@
             notification.classList.remove('hidden');
         });
 
-        //ipcRenderer.on('incoming', function (event, data) {
-        //    ipcRenderer.removeAllListeners('incoming');
-        //    message.innerText = data;
-        //    notification.classList.remove('hidden');
-        //});
+        ipcRenderer.on('incoming', function (event, data) {
+            ipcRenderer.removeAllListeners('incoming');
+            message.innerText = data;
+            notification.classList.remove('hidden');
+        });
 
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
