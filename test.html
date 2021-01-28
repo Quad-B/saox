@@ -62,7 +62,7 @@
 
         ipcRenderer.on('update_available', function (event, data) {
             ipcRenderer.removeAllListeners('update_available');
-            message.innerText = 'A new update is available. Downloading now...'+data;
+            message.innerText = 'A new update is available. Downloading now...';
             notification.classList.remove('hidden');
         });
 
