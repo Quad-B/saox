@@ -101,11 +101,11 @@ app.on('window-all-closed', function () {
 });
 
 //app.on('window-all-closed', app.quit);
-//app.on('before-quit', () => {
+app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
-  //win.removeAllListeners('close');
-  //win.close();
-//});
+  win.removeAllListeners('close');
+  win.close();
+});
 
 app.on('activate', function () {
   if (mainWindow === null) {
