@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "1.9.6",
+  "version": "1.9.7",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -75,7 +75,6 @@
   },
   "devDependencies": {
     "electron": "^7.3.3",
-    "electron-builder": "^22.9.1",
-    "jquery": "^3.5.1"
+    "electron-builder": "^22.9.1"
   }
 }
