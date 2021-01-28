@@ -72,11 +72,11 @@
             notification.classList.remove('hidden');
         });
 
-        ipcRenderer.on('incoming', function (event, data) {
-            ipcRenderer.removeAllListeners('incoming');
-            message.innerText = data;
-            notification.classList.remove('hidden');
-        });
+        //ipcRenderer.on('incoming', function (event, data) {
+        //    ipcRenderer.removeAllListeners('incoming');
+        //    message.innerText = data;
+        //    notification.classList.remove('hidden');
+        //});
 
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
