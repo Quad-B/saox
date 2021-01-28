@@ -33,7 +33,7 @@ function createWindow () {
   win.setThumbarButtons([
     {
       tooltip: 'Prev',
-      icon: path.join(__dirname, '/img/play.png'),
+      icon: path.join(__dirname, '/img/previous.png'),
       click () { win.webContents.send('media-key', 'Prev') }
     },
     {
@@ -43,11 +43,10 @@ function createWindow () {
     },
     {
       tooltip: 'Next',
-      icon: path.join(__dirname, '/img/play.png'),
+      icon: path.join(__dirname, '/img/next.png'),
       click () { win.webContents.send('media-key', 'Next') }
     }
     
-
   ])
 
   win.maximize();
@@ -139,4 +138,46 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
+});
+
+ipcMain.on('pause', () => {
+  win.setThumbarButtons([
+    {
+      tooltip: 'Prev',
+      icon: path.join(__dirname, '/img/previous.png'),
+      click () { win.webContents.send('media-key', 'Prev') }
+    },
+    {
+      tooltip: 'Pause',
+      icon: path.join(__dirname, '/img/play.png'),
+      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+    },
+    {
+      tooltip: 'Next',
+      icon: path.join(__dirname, '/img/next.png'),
+      click () { win.webContents.send('media-key', 'Next') }
+    }
+    
+  ])
+});
+
+ipcMain.on('play', () => {
+  win.setThumbarButtons([
+    {
+      tooltip: 'Prev',
+      icon: path.join(__dirname, '/img/previous.png'),
+      click () { win.webContents.send('media-key', 'Prev') }
+    },
+    {
+      tooltip: 'Play',
+      icon: path.join(__dirname, '/img/pause.png'),
+      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+    },
+    {
+      tooltip: 'Next',
+      icon: path.join(__dirname, '/img/next.png'),
+      click () { win.webContents.send('media-key', 'Next') }
+    }
+    
+  ])
 });

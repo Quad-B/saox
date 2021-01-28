@@ -91,20 +91,33 @@
 
         require('electron').ipcRenderer.on('media-key', (event, message) => {
             if(message == "MediaPlayPause") {
-                if(document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") < 0)
+                if(iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0)
                 {
-                    document.querySelectorAll('.YCPsB')[0].click()
+                    iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].click()
+                    ipcRenderer.send('play');
                 }else{
-                    document.querySelectorAll('.YCPsB')[0].click()
+                    iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].click()
+                    ipcRenderer.send('pause');
                 }
             }
             if(message == "Prev") {
                 iframe.contentWindow.document.querySelectorAll('.ilQaFf')[0].click()
+                setTimeout(checkplay(),1000)
             }
             if(message == "Next") {
                 iframe.contentWindow.document.querySelectorAll('.ilQaFf')[1].click()
+                setTimeout(checkplay(),1000)
             }
         })
+
+        function checkplay() {
+            if(iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0)
+            {
+                ipcRenderer.send('pause');
+            }else{
+                ipcRenderer.send('play');
+            }
+        }
 
         const menu = new Menu();
 
