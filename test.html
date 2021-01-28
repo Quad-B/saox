@@ -37,10 +37,10 @@
     <div id="notification" class="hidden">
         <p id="message"></p>
         <button id="close-button" onClick="closeNotification()">
-          Close
+          ปิด
         </button>
         <button id="restart-button" onClick="restartApp()" class="hidden">
-          Restart
+          อัพเดต
         </button>
     </div>
 
@@ -62,13 +62,13 @@
 
         ipcRenderer.on('update_not_available', () => {
             ipcRenderer.removeAllListeners('update_not_available');
-            message.innerText = 'You are install last version, Thank you';
+            message.innerText = 'คุณติดตั้งเวอร์ชั่นล่าสุดแล้ว';
             notification.classList.remove('hidden');
         });
 
         ipcRenderer.on('update_available', () => {
             ipcRenderer.removeAllListeners('update_available');
-            message.innerText = 'A new update is available. Downloading now...';
+            message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่ <br> กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
         });
 
@@ -80,7 +80,7 @@
 
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
-            message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+            message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
             restartButton.classList.remove('hidden');
             notification.classList.remove('hidden');
         });
