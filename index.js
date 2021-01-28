@@ -104,12 +104,14 @@ app.on('window-all-closed', function () {
 //app.on('window-all-closed', app.quit);
 app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
-  if (update == '1'){
+  /*if (update == '1'){
     autoUpdater.quitAndInstall();
   }else{
     win.removeAllListeners('close');
     win.close();
-  }
+  }*/
+  win.removeAllListeners('close');
+  win.close();
 });
 
 app.on('activate', function () {
