@@ -32,10 +32,22 @@ function createWindow () {
 
   win.setThumbarButtons([
     {
+      tooltip: 'Prev',
+      icon: path.join(__dirname, '/img/play.png'),
+      click () { win.webContents.send('media-key', 'Prev') }
+    },
+    {
       tooltip: 'Play',
       icon: path.join(__dirname, '/img/play.png'),
       click () { win.webContents.send('media-key', 'MediaPlayPause') }
+    },
+    {
+      tooltip: 'Next',
+      icon: path.join(__dirname, '/img/play.png'),
+      click () { win.webContents.send('media-key', 'Next') }
     }
+    
+
   ])
 
   win.maximize();

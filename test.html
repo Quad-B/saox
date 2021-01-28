@@ -89,18 +89,20 @@
 
         const isMac = process.platform === 'darwin'
 
-        var auplay = 1
-
         require('electron').ipcRenderer.on('media-key', (event, message) => {
             if(message == "MediaPlayPause") {
-                if(auplay == 0)
+                if(document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") < 0)
                 {
-                    iframe.contentWindow.document.getElementById("jooxAudio").play()
-                    auplay = '1'
+                    document.querySelectorAll('.YCPsB')[0].click()
                 }else{
-                    iframe.contentWindow.document.getElementById("jooxAudio").pause()
-                    auplay = '0'
+                    document.querySelectorAll('.YCPsB')[0].click()
                 }
+            }
+            if(message == "Prev") {
+                iframe.contentWindow.document.querySelectorAll('.ilQaFf')[0].click()
+            }
+            if(message == "Next") {
+                iframe.contentWindow.document.querySelectorAll('.ilQaFf')[1].click()
             }
         })
 
