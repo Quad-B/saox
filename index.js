@@ -140,11 +140,12 @@ autoUpdater.on('update-available', () => {
   autoUpdater.downloadUpdate();
 });
 
-//autoUpdater.on('download-progress', (progressObj) => {
-  //win.webContents.send('incoming',progressObj.percent);
-//});
+autoUpdater.on('download-progress', (progressObj) => {
+  win.webContents.send('incoming',progressObj.percent);
+});
 
 autoUpdater.on('update-downloaded', () => {
+  update = '1';
   win.webContents.send('update_downloaded');
 });
 
