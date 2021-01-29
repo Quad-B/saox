@@ -151,7 +151,7 @@ autoUpdater.on('download-progress', (progressObj) => {
 });
 
 autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall();
+  autoUpdater.quitAndInstall(false,true);
   update = '1';
   win.webContents.send('update_downloaded');
 });
