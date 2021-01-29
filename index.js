@@ -97,7 +97,11 @@ app.on('ready', function()  {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    app.quit();
+    if (update == '1'){
+      autoUpdater.quitAndInstall();
+    }else{
+      app.quit();
+    }
   }
 });
 
@@ -107,8 +111,8 @@ app.on('before-quit', () => {
   //if (update == '1'){
     //autoUpdater.quitAndInstall();
   //}else{
-    win.removeAllListeners('close');
-    win.close();
+    //win.removeAllListeners('close');
+    //win.close();
   //}
   //win.removeAllListeners('close');
   //win.close();
