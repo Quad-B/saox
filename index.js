@@ -29,6 +29,8 @@ function createWindow () {
     win = null;
   });
 
+  autoUpdater.autoInstallOnAppQuit = true;
+
   autoUpdater.checkForUpdatesAndNotify();
 
   win.setThumbarButtons([
