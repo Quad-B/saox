@@ -174,6 +174,10 @@ autoUpdater.on('error', (progressObj) => {
   })
 })*/
 
+ipcMain.on('checkdamnupdate', () => {
+  autoUpdater.checkForUpdatesAndNotify();
+});
+
 ipcMain.on('restart_app', () => {
   //update = '1';
   //win.close();

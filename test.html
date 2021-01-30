@@ -75,6 +75,7 @@
             ipcRenderer.removeAllListeners('update_not_available');
             message.innerText = 'คุณติดตั้งเวอร์ชั่นล่าสุดแล้ว';
             notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         ipcRenderer.on('update_available', () => {
@@ -96,6 +97,7 @@
             message.innerText = 'โปรแกรมจะทำการปิดโปรแกรมเพื่ออัพเดตในอีก 5 วินาที'
             //restartButton.classList.remove('hidden');
             notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         function closeNotification() {
@@ -185,6 +187,12 @@
                     await shell.openExternal('https://quad-b.github.io/saox/')
                     }
                 },
+                {type: 'separator'},
+                {label: 'ตรวจหาการอัปเดต',
+                click: async () => {
+                    ipcRenderer.send('checkdamnupdate');
+                    }
+                },
                 {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion()}
             ]
         }));
@@ -267,7 +275,13 @@
                                 await shell.openExternal('https://quad-b.github.io/saox/')
                             }
                         },
-                        {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                        {type: 'separator'},
+                        {label: 'ตรวจหาการอัปเดต',
+                        click: async () => {
+                            ipcRenderer.send('checkdamnupdate');
+                            }
+                        },
+                        {label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion()}
                     ]
                 }));
 
