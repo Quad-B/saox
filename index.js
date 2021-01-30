@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session, ipcMain} = require('electron');
+const {app, BrowserWindow, session, ipcMain, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
@@ -168,6 +168,7 @@ autoUpdater.on('update-downloaded', () => {
 
 autoUpdater.on('error', (error) => {
   if (error != ""){
+    dialog.showErrorBox("อีหยังนิ", error)
     win.webContents.send('error');
     autoUpdater.checkForUpdatesAndNotify();
   }
