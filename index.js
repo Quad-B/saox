@@ -32,9 +32,9 @@ function createWindow () {
     win = null;
   });
 
-  autoUpdater.checkForUpdatesAndNotify();
-
   autoUpdater.autoInstallOnAppQuit = true;
+
+  autoUpdater.checkForUpdatesAndNotify();
 
   win.setThumbarButtons([
     {
@@ -168,7 +168,7 @@ autoUpdater.on('update-downloaded', () => {
 
 autoUpdater.on('error', (error) => {
   if (error != ''){
-    dialog.showErrorBox("เกิดปัญหา", error)
+    dialog.showErrorBox('เกิดปัญหา', error)
     win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
     utoUpdater.downloadUpdate();
