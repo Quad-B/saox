@@ -159,6 +159,10 @@ autoUpdater.on('update-downloaded', () => {
   win.webContents.send('update_downloaded');
 });
 
+autoUpdater.on('error', (progressObj) => {
+  win.webContents.send('incoming',progressObj.error);
+});
+
 /*autoUpdater.on('update-downloaded', () => {
   dialog.showMessageBox({
     title: 'Install Updates',
