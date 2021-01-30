@@ -32,7 +32,7 @@ function createWindow () {
     win = null;
   });
 
-  autoUpdater.autoInstallOnAppQuit = false;
+  autoUpdater.autoInstallOnAppQuit = true;
 
   autoUpdater.checkForUpdatesAndNotify();
 
