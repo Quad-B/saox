@@ -2,6 +2,9 @@ const {app, BrowserWindow, session, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
+const Nucleus = require('nucleus-nodejs')
+
+Nucleus.init('6015572f67ba105405053ce4')
 
 let win;
 //let update;
@@ -85,6 +88,7 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 app.on('ready', function()  {
   //autoUpdater.checkForUpdatesAndNotify();
+  Nucleus.appStarted()
   createWindow();
 });
 
@@ -122,6 +126,7 @@ app.on('before-quit', () => {
 
 app.on('activate', function () {
   if (win === null) {
+    Nucleus.appStarted()
     createWindow();
   }
 });
