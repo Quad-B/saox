@@ -100,9 +100,9 @@ app.on('ready', function()  {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     //if (update == '1'){
-      autoUpdater.quitAndInstall();
+    //  autoUpdater.quitAndInstall();
     //}else{
-    //  app.quit();
+      app.quit();
     //}
   }
 });
