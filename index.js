@@ -171,7 +171,7 @@ autoUpdater.on('error', (error) => {
     //dialog.showErrorBox('เกิดปัญหา', error)
     win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
-    utoUpdater.downloadUpdate();
+    autoUpdater.downloadUpdate();
   }
 });
 
