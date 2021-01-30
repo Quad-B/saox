@@ -161,9 +161,12 @@ autoUpdater.on('update-downloaded', () => {
   win.webContents.send('update_downloaded');
 });
 
-autoUpdater.on('error', () => {
-  win.webContents.send('error');
-  autoUpdater.checkForUpdatesAndNotify();
+autoUpdater.on('error', (error) => {
+  if (error != ""){
+    win.webContents.send('error');
+    autoUpdater.checkForUpdatesAndNotify();
+  }
+  
 });
 
 /*autoUpdater.on('update-downloaded', () => {
