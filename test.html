@@ -85,10 +85,13 @@
             setTimeout(function(){ notification.classList.add('hidden'); }, 5000);
         });
 
-        ipcRenderer.on('incoming', function (event, data) {
+        ipcRenderer.on('incoming', () => {
+        //ipcRenderer.on('incoming', function (event, data) {
             ipcRenderer.removeAllListeners('incoming');
-            message.innerText = data;
+            //message.innerText = data;
+            message.innerText = 'กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         ipcRenderer.on('error', () => {

@@ -146,9 +146,9 @@ autoUpdater.on('update-available', () => {
   win.webContents.send('update_available');
 });
 
-/*autoUpdater.on('download-progress', (progressObj) => {
-  win.webContents.send('incoming',progressObj.percent);
-});*/
+autoUpdater.on('download-progress', () => {
+  win.webContents.send('incoming');
+});
 
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
