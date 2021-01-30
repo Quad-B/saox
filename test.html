@@ -75,20 +75,28 @@
             ipcRenderer.removeAllListeners('update_not_available');
             message.innerText = 'คุณติดตั้งเวอร์ชั่นล่าสุดแล้ว';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 4000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         ipcRenderer.on('update_available', () => {
             ipcRenderer.removeAllListeners('update_available');
             message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่ <br> กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 4000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 5000);
         });
 
         ipcRenderer.on('incoming', function (event, data) {
             ipcRenderer.removeAllListeners('incoming');
             message.innerText = data;
             notification.classList.remove('hidden');
+        });
+
+        ipcRenderer.on('error', () => {
+            ipcRenderer.removeAllListeners('error');
+            //message.innerText = data;
+            message.innerText = 'มีปัญหาในการอัพเดต กำลังลองใหม่อีกครั้ง';
+            notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         ipcRenderer.on('update_downloaded', () => {

@@ -161,8 +161,9 @@ autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
 });
 
-autoUpdater.on('error', (progressObj) => {
-  win.webContents.send('incoming',progressObj.error);
+autoUpdater.on('error', () => {
+  win.webContents.send('error');
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 /*autoUpdater.on('update-downloaded', () => {
