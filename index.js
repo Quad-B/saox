@@ -167,7 +167,7 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 autoUpdater.on('error', (error) => {
-  if (error !== null || error !== ''){
+  if (error != ''){
     dialog.showErrorBox("เกิดปัญหา", error)
     win.webContents.send('error');
     autoUpdater.checkForUpdatesAndNotify();
