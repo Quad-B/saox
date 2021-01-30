@@ -91,7 +91,7 @@
             //message.innerText = data;
             message.innerText = 'กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
         });
 
         ipcRenderer.on('error', () => {
@@ -100,17 +100,17 @@
             message.innerText = data;*/
             message.innerHTML = 'มีปัญหาในการอัพเดต <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
             //notification.classList.add('hidden');
         });
 
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
             //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
-            message.innerText = 'โปรแกรมจะทำการปิดโปรแกรมเพื่ออัพเดตในอีก 5 วินาที'
+            message.innerHTML = 'ถ้าคุณเห็นข้อความนี้ <br> แสดงว่าการอัพเดตไม่สำเร็จ <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป'
             //restartButton.classList.remove('hidden');
             notification.classList.remove('hidden');
-            //setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 10000);
         });
 
         function closeNotification() {

@@ -32,7 +32,7 @@ function createWindow () {
     win = null;
   });
 
-  autoUpdater.autoInstallOnAppQuit = true;
+  autoUpdater.autoInstallOnAppQuit = false;
 
   autoUpdater.checkForUpdatesAndNotify();
 
@@ -158,10 +158,10 @@ autoUpdater.on('download-progress', () => {
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
   //setTimeout(function(){ 
-  //  autoUpdater.quitAndInstall(false,true);
+    autoUpdater.quitAndInstall(false,true);
   //}, 5000)
   //update = '1';
-  autoUpdater.quitAndInstall();
+  //autoUpdater.quitAndInstall();
   //update = '1';
   win.webContents.send('update_downloaded');
 });
@@ -192,7 +192,7 @@ ipcMain.on('checkdamnupdate', () => {
 ipcMain.on('restart_app', () => {
   //update = '1';
   //win.close();
-  autoUpdater.quitAndInstall();
+  autoUpdater.quitAndInstall(false,true);
 });
 
 ipcMain.on('pause', () => {
