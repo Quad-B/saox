@@ -47,7 +47,7 @@
 
     <div id="notification" class="hidden">
         <p id="message" style="font-family: 'Mitr', sans-serif;"></p>
-        <button id="close-button" onClick="closeNotification()" style="font-family: 'Mitr', sans-serif;">
+        <button id="close-button" onClick="closeNotification()" class="hidden" style="font-family: 'Mitr', sans-serif;">
           ปิด
         </button>
         <button id="restart-button" onClick="restartApp()" class="hidden" style="font-family: 'Mitr', sans-serif;">
@@ -75,14 +75,14 @@
             ipcRenderer.removeAllListeners('update_not_available');
             message.innerText = 'คุณติดตั้งเวอร์ชั่นล่าสุดแล้ว';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 4000);
         });
 
         ipcRenderer.on('update_available', () => {
             ipcRenderer.removeAllListeners('update_available');
             message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่ <br> กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            setTimeout(function(){ notification.classList.add('hidden'); }, 4000);
         });
 
         ipcRenderer.on('incoming', function (event, data) {
