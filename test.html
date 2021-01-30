@@ -98,10 +98,10 @@
             ipcRenderer.removeAllListeners('error');
             /*restartButton.classList.add('hidden');
             message.innerText = data;*/
-            message.innerText = 'มีปัญหาในการอัพเดต กำลังลองใหม่อีกครั้ง';
+            message.innerHTML = 'มีปัญหาในการอัพเดต <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป';
             notification.classList.remove('hidden');
-            /*setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
-            notification.classList.add('hidden');*/
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
+            //notification.classList.add('hidden');
         });
 
         ipcRenderer.on('update_downloaded', () => {
