@@ -29,9 +29,9 @@ function createWindow () {
     win = null;
   });
 
-  autoUpdater.autoInstallOnAppQuit = true;
-
   autoUpdater.checkForUpdatesAndNotify();
+
+  autoUpdater.autoInstallOnAppQuit = true;
 
   win.setThumbarButtons([
     {
@@ -152,7 +152,9 @@ autoUpdater.on('download-progress', (progressObj) => {
 
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
-  //setTimeout(function(){ autoUpdater.quitAndInstall(false,true); }, 5000);
+  //setTimeout(function(){ 
+  //  autoUpdater.quitAndInstall(false,true);
+  //}, 5000)
   //update = '1';
   autoUpdater.quitAndInstall();
   update = '1';
