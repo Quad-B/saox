@@ -81,6 +81,7 @@
             ipcRenderer.removeAllListeners('update_available');
             message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่ <br> กำลังดาว์นโหลด';
             notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 6000);
         });
 
         ipcRenderer.on('incoming', function (event, data) {

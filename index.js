@@ -146,9 +146,9 @@ autoUpdater.on('update-available', () => {
   win.webContents.send('update_available');
 });
 
-autoUpdater.on('download-progress', (progressObj) => {
+/*autoUpdater.on('download-progress', (progressObj) => {
   win.webContents.send('incoming',progressObj.percent);
-});
+});*/
 
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
@@ -158,7 +158,7 @@ autoUpdater.on('update-downloaded', () => {
   //update = '1';
   autoUpdater.quitAndInstall();
   //update = '1';
-  win.webContents.send('update_downloaded');
+  //win.webContents.send('update_downloaded');
 });
 
 autoUpdater.on('error', (progressObj) => {
