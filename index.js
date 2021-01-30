@@ -185,7 +185,8 @@ autoUpdater.on('error', (error) => {
 })*/
 
 ipcMain.on('checkdamnupdate', () => {
-  autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.downloadUpdate();
 });
 
 ipcMain.on('restart_app', () => {
