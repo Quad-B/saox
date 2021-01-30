@@ -167,12 +167,12 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 autoUpdater.on('error', (error) => {
-  if (error != ''){
-    //dialog.showErrorBox('เกิดปัญหา', error)
+  //if (error != ''){
+    dialog.showErrorBox('เกิดปัญหา', error)
     win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
     autoUpdater.downloadUpdate();
-  }
+  //}
 });
 
 /*autoUpdater.on('update-downloaded', () => {
