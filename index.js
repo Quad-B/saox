@@ -161,7 +161,7 @@ autoUpdater.on('update-downloaded', () => {
   //  autoUpdater.quitAndInstall(false,true);
   //}, 5000)
   //update = '1';
-  //autoUpdater.quitAndInstall();
+  autoUpdater.quitAndInstall();
   //update = '1';
   win.webContents.send('update_downloaded');
 });
@@ -170,7 +170,8 @@ autoUpdater.on('error', (error) => {
   if (error != ''){
     dialog.showErrorBox("เกิดปัญหา", error)
     win.webContents.send('error');
-    autoUpdater.checkForUpdatesAndNotify();
+    //autoUpdater.checkForUpdatesAndNotify();
+    utoUpdater.downloadUpdate();
   }
 });
 
