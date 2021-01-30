@@ -82,8 +82,9 @@
 
         ipcRenderer.on('update_downloaded', () => {
             ipcRenderer.removeAllListeners('update_downloaded');
-            message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
-            restartButton.classList.remove('hidden');
+            //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
+            message.innerText = 'โปรแกรมจะทำการปิดโปรแกรมเพื่ออัพเดตในอีก 5 วินาที'
+            //restartButton.classList.remove('hidden');
             notification.classList.remove('hidden');
         });
 

@@ -151,9 +151,9 @@ autoUpdater.on('download-progress', (progressObj) => {
 });
 
 autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall(false,true);
-  update = '1';
   win.webContents.send('update_downloaded');
+  setTimeout(function(){ autoUpdater.quitAndInstall(false,true); }, 5000);
+  update = '1';
 });
 
 /*autoUpdater.on('update-downloaded', () => {
