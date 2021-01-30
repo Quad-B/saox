@@ -99,11 +99,11 @@ app.on('ready', function()  {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    if (update == '1'){
+    //if (update == '1'){
       autoUpdater.quitAndInstall();
-    }else{
-      app.quit();
-    }
+    //}else{
+    //  app.quit();
+    //}
   }
 });
 
@@ -157,7 +157,7 @@ autoUpdater.on('update-downloaded', () => {
   //}, 5000)
   //update = '1';
   autoUpdater.quitAndInstall();
-  update = '1';
+  //update = '1';
   win.webContents.send('update_downloaded');
 });
 
@@ -175,7 +175,7 @@ autoUpdater.on('error', (progressObj) => {
 })*/
 
 ipcMain.on('restart_app', () => {
-  update = '1';
+  //update = '1';
   //win.close();
   autoUpdater.quitAndInstall();
 });

@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
