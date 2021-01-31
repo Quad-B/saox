@@ -77,9 +77,10 @@
         const updateButton = document.getElementById('update-button');
 
         ipcRenderer.on('update_not_available', () => {
+            setTimeout(function(){ notification.classList.remove('hidden'); }, 10000);
             ipcRenderer.removeAllListeners('update_not_available');
             message.innerHTML = 'ไม่มีการอัพเดต<br>คุณติดตั้งเวอร์ชั่นล่าสุดแล้ว';
-            notification.classList.remove('hidden');
+            //notification.classList.remove('hidden');
             setTimeout(function(){ notification.classList.add('hidden'); }, 10000);
         });
 
@@ -93,36 +94,39 @@
         });
 
         ipcRenderer.on('incoming', () => {
+            setTimeout(function(){ notification.classList.remove('hidden'); }, 7500);
             closeButton.classList.add('hidden');
             updateButton.classList.add('hidden');
         //ipcRenderer.on('incoming', function (event, data) {
             ipcRenderer.removeAllListeners('incoming');
             //message.innerText = data;
             message.innerText = 'กำลังดาว์นโหลด';
-            notification.classList.remove('hidden');
+            //notification.classList.remove('hidden');
             setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
         });
 
         ipcRenderer.on('error', () => {
+            setTimeout(function(){ notification.classList.remove('hidden'); }, 7500);
             closeButton.classList.add('hidden');
             updateButton.classList.add('hidden');
             ipcRenderer.removeAllListeners('error');
             /*restartButton.classList.add('hidden');
             message.innerText = data;*/
             message.innerHTML = 'มีปัญหาในการอัพเดต <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป';
-            notification.classList.remove('hidden');
+            //notification.classList.remove('hidden');
             setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
             //notification.classList.add('hidden');
         });
 
         ipcRenderer.on('update_downloaded', () => {
+            setTimeout(function(){ notification.classList.remove('hidden'); }, 10000);
             closeButton.classList.add('hidden');
             updateButton.classList.add('hidden');
             ipcRenderer.removeAllListeners('update_downloaded');
             //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
             message.innerHTML = 'ถ้าคุณเห็นข้อความนี้ <br> แสดงว่าการอัพเดตไม่สำเร็จ <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป'
             //restartButton.classList.remove('hidden');
-            notification.classList.remove('hidden');
+            //notification.classList.remove('hidden');
             setTimeout(function(){ notification.classList.add('hidden'); }, 10000);
         });
 
