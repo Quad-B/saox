@@ -147,7 +147,7 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
-  autoUpdater.downloadUpdate();
+  //autoUpdater.downloadUpdate();
   win.webContents.send('update_available');
 });
 
@@ -158,7 +158,7 @@ autoUpdater.on('download-progress', () => {
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
   //setTimeout(function(){ 
-    autoUpdater.quitAndInstall(false,true);
+    setTimeout(function(){autoUpdater.quitAndInstall(false,true);},5000);
   //}, 5000)
   //update = '1';
   //autoUpdater.quitAndInstall();
