@@ -75,7 +75,7 @@
     "nucleus-nodejs": "^3.0.8"
   },
   "devDependencies": {
-    "electron": "^7.3.3",
+    "electron": "^11.2.1",
     "electron-builder": "^22.9.1"
   }
 }
