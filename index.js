@@ -72,65 +72,6 @@ function createWindow () {
 
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-//app.on('ready', createWindow);
-
-//autoUpdater.on('update-downloaded', (ev, info) => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 5 seconds.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  //setTimeout(function() {
-    //autoUpdater.quitAndInstall();  
-  //}, 5000)
-//})
-
-app.on('ready', function()  {
-  //autoUpdater.checkForUpdatesAndNotify();
-  Nucleus.appStarted()
-  createWindow();
-});
-
-// Quit when all windows are closed.
-/*app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})*/
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    //if (update == '1'){
-    //  autoUpdater.quitAndInstall();
-    //}else{
-      app.quit();
-    //}
-  }
-});
-
-//app.on('window-all-closed', app.quit);
-app.on('before-quit', () => {
-  //globalShortcut.unregisterAll()
-  //if (update == '1'){
-    //autoUpdater.quitAndInstall();
-  //}else{
-    //win.removeAllListeners('close');
-    //win.close();
-  //}
-  //win.removeAllListeners('close');
-  //win.close();
-});
-
-app.on('activate', function () {
-  if (win === null) {
-    Nucleus.appStarted()
-    createWindow();
-  }
-});
-
 //app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
@@ -235,4 +176,63 @@ ipcMain.on('play', () => {
     }
     
   ])
+});
+
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+//app.on('ready', createWindow);
+
+//autoUpdater.on('update-downloaded', (ev, info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  //setTimeout(function() {
+    //autoUpdater.quitAndInstall();  
+  //}, 5000)
+//})
+
+app.on('ready', function()  {
+  //autoUpdater.checkForUpdatesAndNotify();
+  Nucleus.appStarted()
+  createWindow();
+});
+
+// Quit when all windows are closed.
+/*app.on('window-all-closed', () => {
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})*/
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    //if (update == '1'){
+    //  autoUpdater.quitAndInstall();
+    //}else{
+      app.quit();
+    //}
+  }
+});
+
+//app.on('window-all-closed', app.quit);
+app.on('before-quit', () => {
+  //globalShortcut.unregisterAll()
+  //if (update == '1'){
+    //autoUpdater.quitAndInstall();
+  //}else{
+    //win.removeAllListeners('close');
+    //win.close();
+  //}
+  //win.removeAllListeners('close');
+  //win.close();
+});
+
+app.on('activate', function () {
+  if (win === null) {
+    Nucleus.appStarted()
+    createWindow();
+  }
 });
