@@ -49,6 +49,7 @@ install:
   # - npm update
   - yarn global add electron-builder
 script:
+  - npm i -D electron@latest
   # - npm uninstall async --save
   # - npm uninstall run-async --save
   # - cat package.json
