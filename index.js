@@ -88,7 +88,7 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
-  //autoUpdater.downloadUpdate();
+  autoUpdater.downloadUpdate();
   win.webContents.send('update_available');
 });
 
