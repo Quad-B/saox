@@ -48,10 +48,13 @@
     <div id="notification" class="hidden">
         <p id="message" style="font-family: 'Mitr', sans-serif;"></p>
         <button id="close-button" onClick="closeNotification()" class="hidden" style="font-family: 'Mitr', sans-serif;">
-          ปิด
+            ปิด
+        </button>
+        <button id="update-button" onClick="updateApp()" class="hidden" style="font-family: 'Mitr', sans-serif;">
+            อัพเดต
         </button>
         <button id="restart-button" onClick="restartApp()" class="hidden" style="font-family: 'Mitr', sans-serif;">
-          อัพเดต
+            รีสตาร์
         </button>
     </div>
 
@@ -69,7 +72,9 @@
         const customTitlebar = require('custom-electron-titlebar');
         const notification = document.getElementById('notification');
         const message = document.getElementById('message');
+        const closeButton = document.getElementById('close-button')
         const restartButton = document.getElementById('restart-button');
+        const updateButton = document.getElementById('update-button');
 
         ipcRenderer.on('update_not_available', () => {
             ipcRenderer.removeAllListeners('update_not_available');
@@ -80,12 +85,16 @@
 
         ipcRenderer.on('update_available', () => {
             ipcRenderer.removeAllListeners('update_available');
-            message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่<br>กำลังดาว์นโหลด';
+            message.innerHTML = 'มีอัพเดตเวอร์ชั่นใหม่<br>ต้องการที่จะอัพเดตไหม?';
+            closeButton.classList.remove('hidden');
+            updateButton.classList.remove('hidden');
             notification.classList.remove('hidden');
-            setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
+            //setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
         });
 
         ipcRenderer.on('incoming', () => {
+            closeButton.classList.add('hidden');
+            updateButton.classList.add('hidden');
         //ipcRenderer.on('incoming', function (event, data) {
             ipcRenderer.removeAllListeners('incoming');
             //message.innerText = data;
@@ -95,6 +104,8 @@
         });
 
         ipcRenderer.on('error', () => {
+            closeButton.classList.add('hidden');
+            updateButton.classList.add('hidden');
             ipcRenderer.removeAllListeners('error');
             /*restartButton.classList.add('hidden');
             message.innerText = data;*/
@@ -105,6 +116,8 @@
         });
 
         ipcRenderer.on('update_downloaded', () => {
+            closeButton.classList.add('hidden');
+            updateButton.classList.add('hidden');
             ipcRenderer.removeAllListeners('update_downloaded');
             //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
             message.innerHTML = 'ถ้าคุณเห็นข้อความนี้ <br> แสดงว่าการอัพเดตไม่สำเร็จ <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป'
@@ -119,6 +132,10 @@
     
         function restartApp() {
             ipcRenderer.send('restart_app');
+        }
+
+        function updateApp() {
+            ipcRenderer.send('update_app');
         }
 
         let MyTitleBar = new customTitlebar.Titlebar({
