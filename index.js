@@ -99,7 +99,7 @@ autoUpdater.on('download-progress', () => {
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
   //setTimeout(function(){ 
-    setTimeout(function(){autoUpdater.quitAndInstall(false,true);},5000);
+    setTimeout(function(){autoUpdater.quitAndInstall(false,true);},15000);
   //}, 5000)
   //update = '1';
   //autoUpdater.quitAndInstall();

@@ -1,10 +1,11 @@
 {
   "name": "saox",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
+    "oldstart": "electron .",
+    "start": "electron-builder -wl --publish always || npm install http-server --save-dev || http-server dist -p 8080",
     "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=\"Quad B Software\" --version-string.FileDescription=SAOX --version-string.ProductName=\"SAOX\"",
     "pack": "electron-builder --dir",
     "dist-all": "electron-builder -mwl",
