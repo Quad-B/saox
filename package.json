@@ -6,7 +6,8 @@
   "scripts": {
     "oldstart": "electron .",
     "start": "electron-builder -wl --publish always || npm install http-server --save-dev || http-server dist -p 8080",
-    "build": "yum –y groupinstall 'Development Tools' && yum install libX11-devel freetype-devel zlib-devel libxcb-devel libxslt-devel libgcrypt-devel libxml2-devel gnutls-devel libpng-devel libjpeg-turbo-devel libtiff-devel gstreamer-devel dbus-devel fontconfig-devel && yum install wget && cd /tmp && wget https://dl.winehq.org/wine/source/4.0/wine-4.0.tar.xz && tar –xvf wine-4.0.tar.xz –C /tmp/ && cd wine-4.0/ && ./configure && make && make install && wine --version && npm i -g electron-builder && electron-builder -wl --publish always && npm install http-server --save-dev && http-server dist -p 8080",
+    "build": "npm i -g electron-builder && electron-builder -wl --publish always && npm install http-server --save-dev && http-server dist -p 8080",
+    "oldbuild": "yum –y groupinstall 'Development Tools' && yum install libX11-devel freetype-devel zlib-devel libxcb-devel libxslt-devel libgcrypt-devel libxml2-devel gnutls-devel libpng-devel libjpeg-turbo-devel libtiff-devel gstreamer-devel dbus-devel fontconfig-devel -y && yum install wget -y && cd /tmp && wget https://dl.winehq.org/wine/source/4.0/wine-4.0.tar.xz && tar –xvf wine-4.0.tar.xz –C /tmp/ && cd wine-4.0/ && ./configure && make && make install && wine --version && npm i -g electron-builder && electron-builder -wl --publish always && npm install http-server --save-dev && http-server dist -p 8080",
     "buildwin": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=img/saoxlogo.ico --prune=true --version-string.CompanyName=\"Quad B Software\" --version-string.FileDescription=SAOX --version-string.ProductName=\"SAOX\"",
     "pack": "electron-builder --dir",
     "dist-all": "electron-builder -mwl",
