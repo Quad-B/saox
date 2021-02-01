@@ -222,7 +222,7 @@ app.on('window-all-closed', function () {
 });
 
 //app.on('window-all-closed', app.quit);
-app.on('before-quit', () => {
+//app.on('before-quit', () => {
   //globalShortcut.unregisterAll()
   //if (update == '1'){
     //autoUpdater.quitAndInstall();
@@ -232,7 +232,7 @@ app.on('before-quit', () => {
   //}
   //win.removeAllListeners('close');
   //win.close();
-});
+//});
 
 app.on('activate', function () {
   if (win === null) {
