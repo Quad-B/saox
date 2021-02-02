@@ -44,10 +44,10 @@ before_install:
   # - openssl version -a
 install:
   # - npm install --global release-it
-  - npm install --global yarn
+  # - npm install --global yarn
   # - npm uninstall electron-builder --save-dev
   # - npm update
-  - yarn global add electron-builder
+  # - yarn global add electron-builder
 script:
   - npm i -D electron@latest
   # - npm uninstall async --save
