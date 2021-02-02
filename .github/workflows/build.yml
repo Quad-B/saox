@@ -40,6 +40,8 @@ jobs:
 
       - run: npm install electron-builder --save-dev
       
+      - run: electron-builder install-app-deps
+      
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
