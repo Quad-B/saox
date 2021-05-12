@@ -76,7 +76,7 @@
   "homepage": "https://github.com/boyphongsakorn/saox#readme",
   "dependencies": {
     "custom-electron-titlebar": "^3.2.6",
-    "electron-updater": "^4.3.7",
+    "electron-updater": "^4.3.8",
     "nucleus-nodejs": "^3.0.8"
   },
   "devDependencies": {
