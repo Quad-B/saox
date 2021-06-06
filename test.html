@@ -143,6 +143,19 @@
             ipcRenderer.send('update_app');
         }
 
+        function hexToRgbA(hex){
+            var c;
+            if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+                c= hex.substring(1).split('');
+                if(c.length== 3){
+                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+                }
+                c= '0x'+c.join('');
+                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+            }
+            throw new Error('Bad Hex');
+        }
+
         let MyTitleBar = new customTitlebar.Titlebar({
           backgroundColor: customTitlebar.Color.fromHex('#444'),
           shadow: true,
@@ -252,8 +265,10 @@
 
             var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
 
-            if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
-
+            console.log(image.search("default-album@300.png"))
+            //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
+            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText || image.search("default-album@300.png") != "")) {
+                
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
                 menu.append(new MenuItem({
@@ -326,8 +341,12 @@
                     function (data, textStatus, jqXHR) {  // success callback
                         MyTitleBar.updateTitle('SAOX : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
-                        iframe.contentWindow.document.getElementsByClassName('jsx-3495596807 jsx-759130597 MainHeader')[0].style.backgroundColor = data
-                        iframe.contentWindow.document.getElementsByClassName('jsx-2761629659 sidebar')[0].style.backgroundColor = data
+                        iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
+                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
+                        let test = hexToRgbA(data)
+                        let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
+                        iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                        //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(15%)'
                         if(iframe.contentWindow.document.getElementById('menuzero') && iframe.contentWindow.document.getElementById('menuone')){
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
