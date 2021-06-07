@@ -84,33 +84,33 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
 // code. You can also put them in separate files and require them here.
 
 autoUpdater.on('update-not-available', () => {
-  win.webContents.send('update_not_available');
+  //win.webContents.send('update_not_available');
 });
 
 autoUpdater.on('update-available', () => {
   autoUpdater.downloadUpdate();
-  win.webContents.send('update_available');
+  //win.webContents.send('update_available');
 });
 
 autoUpdater.on('download-progress', () => {
-  win.webContents.send('incoming');
+  //win.webContents.send('incoming');
 });
 
 autoUpdater.on('update-downloaded', () => {
   //win.webContents.send('update_downloaded');
   //setTimeout(function(){ 
-    setTimeout(function(){autoUpdater.quitAndInstall(false,true);},15000);
+    //setTimeout(function(){autoUpdater.quitAndInstall(false,true);},15000);
   //}, 5000)
   //update = '1';
   //autoUpdater.quitAndInstall();
   //update = '1';
-  win.webContents.send('update_downloaded');
+  //win.webContents.send('update_downloaded');
 });
 
 autoUpdater.on('error', (error) => {
   //if (error != ''){
     dialog.showErrorBox('เกิดปัญหา', error)
-    win.webContents.send('error');
+    //win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
     autoUpdater.downloadUpdate();
   //}
@@ -125,7 +125,7 @@ autoUpdater.on('error', (error) => {
   })
 })*/
 
-ipcMain.on('checkdamnupdate', () => {
+/*ipcMain.on('checkdamnupdate', () => {
   //autoUpdater.checkForUpdatesAndNotify();
   //autoUpdater.downloadUpdate();
 });
@@ -138,7 +138,7 @@ ipcMain.on('restart_app', () => {
   //update = '1';
   //win.close();
   autoUpdater.quitAndInstall(false,true);
-});
+});*/
 
 ipcMain.on('pause', () => {
   win.setThumbarButtons([

@@ -70,7 +70,7 @@
         const { app, remote, ipcRenderer } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
-        const notification = document.getElementById('notification');
+        /*const notification = document.getElementById('notification');
         const message = document.getElementById('message');
         const closeButton = document.getElementById('close-button')
         const restartButton = document.getElementById('restart-button');
@@ -113,7 +113,7 @@
             ipcRenderer.removeAllListeners('error');
             /*restartButton.classList.add('hidden');
             message.innerText = data;*/
-            message.innerHTML = 'มีปัญหาในการอัพเดต <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป';
+            /*message.innerHTML = 'มีปัญหาในการอัพเดต <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป';
             //notification.classList.remove('hidden');
             setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
             //notification.classList.add('hidden');
@@ -141,7 +141,7 @@
 
         function updateApp() {
             ipcRenderer.send('update_app');
-        }
+        }*/
 
         function hexToRgbA(hex){
             var c;
