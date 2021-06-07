@@ -255,3 +255,9 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+app.on("web-contents-created", (webContentsCreatedEvent, contents)=>{
+  contents.on("will-navigate", function(e, reqUrl) {
+      console.log(`Popup is navigating to: ${reqUrl}`);
+  });
+});
