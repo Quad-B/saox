@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -58,15 +58,7 @@
       ],
       "category": "Network",
       "compression": "maximum"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "quad-b",
-        "repo": "saox",
-        "vPrefixedTagName": false
-      }
-    ]
+    }
   },
   "snap": {
     "confinement": "strict",

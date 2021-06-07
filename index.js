@@ -142,12 +142,12 @@ autoUpdater.on('error', (error) => {
   })
 })*/
 
-/*ipcMain.on('checkdamnupdate', () => {
-  //autoUpdater.checkForUpdatesAndNotify();
+ipcMain.on('checkdamnupdate', () => {
+  autoUpdater.checkForUpdatesAndNotify();
   //autoUpdater.downloadUpdate();
 });
 
-ipcMain.on('update_app', () => {
+/*ipcMain.on('update_app', () => {
   autoUpdater.downloadUpdate();
 });
 

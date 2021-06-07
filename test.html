@@ -267,7 +267,7 @@
 
             console.log(image.search("default-album@300.png"))
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
-            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText || image.search("default-album@300.png") != "")) {
+            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) {
                 
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
