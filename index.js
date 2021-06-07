@@ -81,6 +81,8 @@ function createWindow () {
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
+    shell.openExternal(url)
+    win.close()
   })
 
 }
