@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session, ipcMain, dialog} = require('electron');
+const {app, BrowserWindow, session, ipcMain, dialog, shell} = require('electron');
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
@@ -31,6 +31,8 @@ function createWindow () {
   win.on('closed', function () {
     win = null;
   });
+
+  autoUpdater.autoDownload = true;
 
   autoUpdater.autoInstallOnAppQuit = true;
 
@@ -67,6 +69,19 @@ function createWindow () {
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
   // });
+
+  win.webContents.on('new-window', (event, url) => {
+    event.preventDefault()
+    const win = new BrowserWindow({show: false,webPreferences: {
+      nodeIntegration: true,
+      webviewTag: true,
+      nativeWindowOpen: true,
+      enableRemoteModule: true
+    }})
+    win.once('ready-to-show', () => win.show())
+    win.loadURL(url)
+    event.newGuest = win
+  })
 
 }
 

@@ -45,7 +45,7 @@
     <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onLoad="updatedl()" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
 
-    <div id="notification" class="hidden">
+    <!--div id="notification" class="hidden">
         <p id="message" style="font-family: 'Mitr', sans-serif;"></p>
         <button id="close-button" onClick="closeNotification()" class="hidden" style="font-family: 'Mitr', sans-serif;">
             ปิด
@@ -56,7 +56,7 @@
         <button id="restart-button" onClick="restartApp()" class="hidden" style="font-family: 'Mitr', sans-serif;">
             รีสตาร์
         </button>
-    </div>
+    </div-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 
@@ -347,7 +347,7 @@
                         let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
                         iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
                         //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(15%)'
-                        if(iframe.contentWindow.document.getElementById('menuzero') && iframe.contentWindow.document.getElementById('menuone')){
+                        if(iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')){
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
                             iframe.contentWindow.document.getElementById('menuzero').style.borderRadius = '6px'
