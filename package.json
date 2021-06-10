@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -15,8 +15,8 @@
     "distandpuhall": "electron-builder -wl --publish \"always\" -c.snap.publish=github",
     "distandpuhwin": "electron-builder --win --publish \"always\" -c.snap.publish=github",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --windows",
-    "release": "electron-builder --windows --publish always"
+		"build": "electron-builder --windows --linux",
+		"release": "electron-builder --windows --linux --publish always"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "url": "https://github.com/boyphongsakorn/saox/issues"
   },
   "build": {
+    "name": "SAOX",
     "appId": "com.boyphongsakorn.saox",
     "artifactName": "${productName}.${ext}",
     "copyright": "copyright © 2019 Quad B Software",

@@ -42,7 +42,7 @@
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden">
 
-    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onLoad="updatedl()" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
+    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onload="updatedl()" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%">
     </iframe>
 
     <!--div id="notification" class="hidden">
@@ -67,7 +67,7 @@
     <script>
 
         let musicname
-        const { app, remote, ipcRenderer } = require('electron')
+        const { app, remote, ipcRenderer, shell } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
         /*const notification = document.getElementById('notification');
@@ -255,6 +255,18 @@
 
         },5000);
 
+        window.onload = function() {
+            var oFrame = document.getElementById("iframe");
+            oFrame.contentWindow.document.onclick = function() {
+                //alert("frame contents clicked");
+                //alert(oFrame.contentWindow.location.href)
+                if(oFrame.contentWindow.location.href.includes('vip')){
+                    shell.openExternal(oFrame.contentWindow.location.href)
+                    oFrame.contentWindow.history.back()
+                }
+            };
+        };
+
         function updatedl() {
 
             checkplay()
@@ -265,7 +277,6 @@
 
             var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
 
-            console.log(image.search("default-album@300.png"))
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
             if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) {
                 

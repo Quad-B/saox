@@ -81,10 +81,11 @@ function createWindow () {
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
-    shell.openExternal(url)
-    win.close()
+    if(!url.includes(facebook)){
+      shell.openExternal(url)
+      win.close()
+    }
   })
-
 }
 
 app.commandLine.appendSwitch('disable-site-isolation-trials')
@@ -214,7 +215,7 @@ ipcMain.on('play', () => {
 //})
 
 app.on('ready', function()  {
-  //autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify();
   Nucleus.appStarted()
   createWindow();
 });
