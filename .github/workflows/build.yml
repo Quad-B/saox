@@ -8,8 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        #os: [windows-latest]
-        os: [ubuntu-18.04, windows-2016]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -18,25 +17,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 14
-
-      - run: sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
-        if: matrix.os == 'ubuntu-18.04'
-
-      - run: sudo dpkg --add-architecture i386
-        if: matrix.os == 'ubuntu-18.04'
-
-      - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-        if: matrix.os == 'ubuntu-18.04'
-
-      - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-        if: matrix.os == 'ubuntu-18.04'
-
-      - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-        if: matrix.os == 'ubuntu-18.04'
-
-      - run: sudo apt install --install-recommends winehq-stable
-        if: matrix.os == 'ubuntu-18.04'
+          node-version: 14.x
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
