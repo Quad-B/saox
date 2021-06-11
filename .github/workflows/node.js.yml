@@ -44,6 +44,10 @@ jobs:
     - run: sudo apt-get install -y aptitude
     - run: sudo aptitude install -y winehq-stable
     - run: bash <(curl http://getvcn.codenotary.io -L)
-    - run: npm i -D electron@latest
+    - run: npm install --global release-it
+    - run: npm install --global yarn
+    - run: npm uninstall electron-builder --save-dev
+    - run: npm update
+    - run: yarn global add electron-builder
     - run: electron-builder -l --publish "always" -c.snap.publish=github
     - run: electron-builder install-app-deps
