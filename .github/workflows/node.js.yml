@@ -25,6 +25,11 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - run: sudo dpkg --add-architecture i386
+    - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+    - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
+    - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
+    - run: sudo apt install --install-recommends winehq-stable
     - run: npm ci
     - run: npm run dist-win
     - run: npm test
