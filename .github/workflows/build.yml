@@ -38,12 +38,6 @@ jobs:
       - run: sudo apt install --install-recommends winehq-stable
         if: matrix.os == 'ubuntu-18.04'
 
-      - run: npm install electron-builder --save-dev
-
-      - run: npm install --global yarn
-
-      - run: yarn global add electron-builder
-
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
