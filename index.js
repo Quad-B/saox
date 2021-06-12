@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session, ipcMain, dialog, shell} = require('electron');
+const {app, BrowserWindow, session, ipcMain, dialog, shell, Notification} = require('electron');
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
@@ -34,7 +34,7 @@ function createWindow () {
 
   autoUpdater.autoInstallOnAppQuit = true;
 
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
 
   win.setThumbarButtons([
     {
@@ -96,6 +96,10 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
   //}
 //})
 
+function showNotification() {
+  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
+}
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
@@ -104,6 +108,7 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
+  showNotification()
   autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
