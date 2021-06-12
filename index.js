@@ -86,6 +86,10 @@ function createWindow () {
   })
 }
 
+function showNotification() {
+  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
+}
+
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 //app.on('activate', () => {
@@ -95,10 +99,6 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
     //createWindow()
   //}
 //})
-
-function showNotification() {
-  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
-}
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
