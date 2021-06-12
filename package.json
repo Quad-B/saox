@@ -31,7 +31,7 @@
     "url": "https://github.com/boyphongsakorn/saox/issues"
   },
   "build": {
-    "productName": "SAOX",
+    "productName": "saox",
     "appId": "com.boyphongsakorn.saox",
     "artifactName": "${productName}.${ext}",
     "copyright": "copyright © 2019 Quad B Software",
