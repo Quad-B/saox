@@ -30,6 +30,8 @@ jobs:
       - run: sudo apt install --install-recommends winehq-stable
         if: matrix.os == 'ubuntu-latest'
         
+      - run: npm update
+      
       - run: npm i -g electron-builder
 
       - name: Build/release Electron app
