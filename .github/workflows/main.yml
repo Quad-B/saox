@@ -31,4 +31,4 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
 
       - name: Build/release Electron app
-        run: npm run distandpuhall
+        run: npm run distandpuhall --if-present
