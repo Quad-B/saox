@@ -32,8 +32,6 @@ function createWindow () {
     win = null;
   });
 
-  autoUpdater.autoDownload = true;
-
   autoUpdater.autoInstallOnAppQuit = true;
 
   autoUpdater.checkForUpdatesAndNotify();
@@ -215,7 +213,6 @@ ipcMain.on('play', () => {
 //})
 
 app.on('ready', function()  {
-  autoUpdater.checkForUpdatesAndNotify();
   Nucleus.appStarted()
   createWindow();
 });
