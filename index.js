@@ -34,7 +34,7 @@ function createWindow () {
 
   autoUpdater.autoInstallOnAppQuit = true;
 
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdatesAndNotify();
 
   win.setThumbarButtons([
     {
