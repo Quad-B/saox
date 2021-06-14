@@ -55,7 +55,8 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ],
       "category": "Network",
       "compression": "maximum"
