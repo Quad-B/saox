@@ -86,10 +86,6 @@ function createWindow () {
   })
 }
 
-function showNotification() {
-  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
-}
-
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 //app.on('activate', () => {
@@ -108,7 +104,7 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
-  showNotification()
+  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
   autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
