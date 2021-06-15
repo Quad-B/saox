@@ -32,15 +32,15 @@ jobs:
           node-version: 14.x
           
       - run: sudo dpkg --add-architecture i386
-        if: matrix.os == 'ubuntu-18.04'
+        if: runs-on == 'ubuntu-18.04'
       - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-        if: matrix.os == 'ubuntu-18.04'
+        if: runs-on == 'ubuntu-18.04'
       - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-        if: matrix.os == 'ubuntu-18.04'
+        if: runs-on == 'ubuntu-18.04'
       - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-        if: matrix.os == 'ubuntu-18.04'
+        if: runs-on == 'ubuntu-18.04'
       - run: sudo apt install --install-recommends winehq-stable
-        if: matrix.os == 'ubuntu-18.04'
+        if: runs-on == 'ubuntu-18.04'
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
