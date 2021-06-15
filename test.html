@@ -185,10 +185,13 @@
             console.log(menuItem.label)
             if (menuItem.label == 'English' || menuItem.label == 'อังกฤษ') {
                 language = 'en'
+                console.log('ok')
             } else {
                 language = 'th'
+                console.log('ok')
             }
-            updatedl()
+            updatedl('ok')
+            console.log('ok')
         }
 
         function hexToRgbA(hex) {
@@ -423,7 +426,7 @@
             };
         };
 
-        function updatedl() {
+        function updatedl(ok) {
 
             checkplay()
 
@@ -434,13 +437,13 @@
             var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
 
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
-            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) {
+            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png")) || ok == "ok") {
 
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
                 if (language == 'en') {
                     menu.append(new MenuItem({
-                        label: 'เมนูหลัก',
+                        label: 'Main',
                         submenu: [
                             {
                                 label: 'Watch This Music Video on YouTube',
@@ -484,7 +487,7 @@
                     }));
 
                     menu.append(new MenuItem({
-                        label: 'ช่วยเหลือ',
+                        label: 'Help',
                         submenu: [
                             {
                                 label: 'Follow Us',
