@@ -30,24 +30,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-          
-      - run: sudo dpkg --add-architecture i386
-      - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-      - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-      - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-      - run: sudo apt install --install-recommends winehq-stable
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
-        # Only install Snapcraft on Ubuntu
-        if: startsWith(matrix.os, 'ubuntu')
         with:
           # Log in to Snap Store
           snapcraft_token: ${{ secrets.snapcraft_token }}
-          
-      - uses: docker/setup-qemu-action@v1
-        with:
-          image: tonistiigi/binfmt@sha256:df15403e06a03c2f461c1f7938b171fda34a5849eb63a70e2a2109ed5a778bde
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
