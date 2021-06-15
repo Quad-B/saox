@@ -9,6 +9,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest,windows-latest]
+        platform:
+        - i386
+        - amd64
+        - armhf
+        - arm64
+        - ppc64el
+        - s390x
 
     steps:
       - name: Check out Git repository
