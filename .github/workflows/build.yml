@@ -51,11 +51,10 @@ jobs:
           
           skip_build: true
   onlysnap:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
         platform:
         - i386
         - amd64
@@ -91,6 +90,14 @@ jobs:
         with:
           # Log in to Snap Store
           snapcraft_token: ${{ secrets.snapcraft_token }}
+          
+      - uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt@sha256:df15403e06a03c2f461c1f7938b171fda34a5849eb63a70e2a2109ed5a778bde
+          
+      - uses: diddlesnaps/snapcraft-multiarch-action@v1
+        with:
+          architecture: ${{ matrix.platform }}
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
