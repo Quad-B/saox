@@ -53,15 +53,6 @@ jobs:
   onlysnap:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        platform:
-        - i386
-        - amd64
-        - arm64
-        - ppc64el
-        - s390x
-
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
