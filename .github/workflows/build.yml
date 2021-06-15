@@ -90,4 +90,4 @@ jobs:
           
           skip_build: true
 
-          args: '--linux snap'
+          args: '--linux snap --armv7l --arm64'
