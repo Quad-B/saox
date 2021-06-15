@@ -91,4 +91,4 @@ jobs:
           
           skip_build: true
 
-          args: '--linux snap --${{ matrix.platform }}'
+          args: '--linux snap --$matrix.platform'
