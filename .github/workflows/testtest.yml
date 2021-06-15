@@ -6,16 +6,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Build on ubuntu-18.04 armv7
     steps:
-      - uses: actions/checkout@v2.1.0
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+        
       - uses: uraimo/run-on-arch-action@v2.0.5
         name: Run commands
         id: runcmd
         with:
           arch: armv7
-          distro: ubuntu20.04
-      
-      - name: Check out Git repository
-        uses: actions/checkout@v1
+          distro: ubuntu18.04
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
