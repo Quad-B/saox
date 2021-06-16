@@ -70,16 +70,11 @@ function createWindow () {
 
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    const win = new BrowserWindow({show: false,webPreferences: {
-      nodeIntegration: true,
-      webviewTag: true,
-      nativeWindowOpen: true,
-      enableRemoteModule: true
-    }})
+    const win = new BrowserWindow({show: false,autoHideMenuBar: true})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
-    if(!url.includes(facebook)){
+    if(!url.includes('facebook')){
       shell.openExternal(url)
       win.close()
     }
@@ -257,8 +252,8 @@ app.on('activate', function () {
   }
 });
 
-app.on("web-contents-created", (webContentsCreatedEvent, contents)=>{
+/*app.on("web-contents-created", (webContentsCreatedEvent, contents)=>{
   contents.on("will-navigate", function(e, reqUrl) {
       console.log(`Popup is navigating to: ${reqUrl}`);
   });
-});
+});*/
