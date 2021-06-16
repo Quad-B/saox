@@ -190,7 +190,11 @@
                 language = 'th'
                 console.log('ok')
             }
-            updatedl('ok')
+            if(document.title == 'SAOX'){
+                updatedl()
+            }else{
+                updatedl('ok')
+            }
             console.log('ok')
         }
 
@@ -437,7 +441,7 @@
             var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
 
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
-            if (elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png")) || ok == "ok") {
+            if ((elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png")) || ok == "ok") {
 
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
