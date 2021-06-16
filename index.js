@@ -99,9 +99,9 @@ autoUpdater.on('update-not-available', () => {
   (async () => {
     console.log(await osLocale());
     if (await osLocale() != 'th-TH') {
-      new Notification({ title: 'Update Available', body: 'Downloading...' }).show()
+      new Notification({ title: 'You are use last version of SAOX' }).show()
     }else{
-      new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'กำลังทำการอัพเดท' }).show()
+      new Notification({ title: 'โปรแกรมไม่มีอัพเดท' }).show()
     }
   })();
   //win.webContents.send('update_not_available');
@@ -114,25 +114,6 @@ autoUpdater.on('update-available', () => {
 
 autoUpdater.on('download-progress', () => {
   //win.webContents.send('incoming');
-});
-
-autoUpdater.on('update-downloaded', () => {
-  (async () => {
-    console.log(await osLocale());
-    if (await osLocale() != 'th-TH') {
-      new Notification({ title: 'Update Not Available' }).show()
-    }else{
-      new Notification({ title: 'โปรแกรมไม่มีอัพเดท' }).show()
-    }
-  })();
-  //win.webContents.send('update_downloaded');
-  //setTimeout(function(){ 
-    //setTimeout(function(){autoUpdater.quitAndInstall(false,true);},15000);
-  //}, 5000)
-  //update = '1';
-  //autoUpdater.quitAndInstall();
-  //update = '1';
-  //win.webContents.send('update_downloaded');
 });
 
 autoUpdater.on('error', (error) => {
@@ -154,9 +135,7 @@ autoUpdater.on('error', (error) => {
 autoUpdater.on('update-downloaded', () => {
   (async () => {
     console.log(await osLocale());
-    if (await osLocale() != 'th-TH') {
-      new Notification({ title: 'Update download finished'}).show()
-    }else{
+    if (await osLocale() == 'th-TH') {
       new Notification({ title: 'ดาวน์โหลดอัพเดทสำเร็จ'}).show()
     }
   })();
