@@ -71,13 +71,13 @@ function createWindow () {
 
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    const win = new BrowserWindow({show: false,autoHideMenuBar: true})
+    const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
     if(!url.includes('facebook')){
-      shell.openExternal(url)
-      win.close()
+        shell.openExternal(url)
+        win.close()
     }
   })
 }
@@ -117,6 +117,14 @@ autoUpdater.on('download-progress', () => {
 });
 
 autoUpdater.on('update-downloaded', () => {
+  (async () => {
+    console.log(await osLocale());
+    if (await osLocale() != 'th-TH') {
+      new Notification({ title: 'Update Not Available' }).show()
+    }else{
+      new Notification({ title: 'โปรแกรมไม่มีอัพเดท' }).show()
+    }
+  })();
   //win.webContents.send('update_downloaded');
   //setTimeout(function(){ 
     //setTimeout(function(){autoUpdater.quitAndInstall(false,true);},15000);
