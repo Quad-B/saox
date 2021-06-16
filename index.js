@@ -101,7 +101,7 @@ autoUpdater.on('update-not-available', () => {
     if (await osLocale() != 'th-TH') {
       new Notification({ title: 'Update Available', body: 'Downloading...' }).show()
     }else{
-      new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
+      new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'กำลังทำการอัพเดท' }).show()
     }
   })();
   //win.webContents.send('update_not_available');
@@ -137,12 +137,13 @@ autoUpdater.on('update-downloaded', () => {
 
 autoUpdater.on('error', (error) => {
   //if (error != ''){
+    let errortext = error
     (async () => {
       console.log(await osLocale());
       if (await osLocale() != 'th-TH') {
-        new Notification({ title: 'Update Error', body: error }).show()
+        new Notification({ title: 'Update Error', body: errortext }).show()
       }else{
-        new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
+        new Notification({ title: 'อัพเดทมีปัญหา', body: errortext }).show()
       }
     })();    //win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
@@ -150,14 +151,22 @@ autoUpdater.on('error', (error) => {
   //}
 });
 
-/*autoUpdater.on('update-downloaded', () => {
-  dialog.showMessageBox({
+autoUpdater.on('update-downloaded', () => {
+  (async () => {
+    console.log(await osLocale());
+    if (await osLocale() != 'th-TH') {
+      new Notification({ title: 'Update download finished'}).show()
+    }else{
+      new Notification({ title: 'ดาวน์โหลดอัพเดทสำเร็จ'}).show()
+    }
+  })();
+  /*dialog.showMessageBox({
     title: 'Install Updates',
     message: 'Updates downloaded, application will be quit for update...'
   }, () => {
     setImmediate(() => autoUpdater.quitAndInstall())
-  })
-})*/
+  })*/
+})
 
 ipcMain.on('checkdamnupdate', () => {
   autoUpdater.checkForUpdatesAndNotify();
