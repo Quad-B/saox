@@ -81,7 +81,7 @@ jobs:
           
           skip_build: true
 
-          args: '--linux snap'
+          args: 'snap'
   onlysnaparmv7:
     runs-on: ubuntu-latest
 
@@ -113,4 +113,4 @@ jobs:
           
           skip_build: true
 
-          args: '--linux snap --armv7l'
+          args: 'snap --armv7l'
