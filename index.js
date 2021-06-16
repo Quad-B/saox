@@ -96,10 +96,6 @@ app.commandLine.appendSwitch('disable-site-isolation-trials')
 // code. You can also put them in separate files and require them here.
 
 autoUpdater.on('update-not-available', () => {
-  //win.webContents.send('update_not_available');
-});
-
-autoUpdater.on('update-available', () => {
   (async () => {
     console.log(await osLocale());
     if (await osLocale() != 'th-TH') {
@@ -108,7 +104,11 @@ autoUpdater.on('update-available', () => {
       new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
     }
   })();
-  autoUpdater.downloadUpdate();
+  //win.webContents.send('update_not_available');
+});
+
+autoUpdater.on('update-available', () => {
+  //autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
 
