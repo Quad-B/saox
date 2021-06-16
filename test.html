@@ -93,20 +93,22 @@
             $.getJSON("https://api.longdo.com/map/services/address?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude + "&noelevation=1&key=dd60afa68aa84ff6eb5e4da05044eea4", function (json) {
 
                 if(json.country == "ประเทศไทย"){
-                    language = 'th'
+                    (async () => {
+                        console.log(await osLocale());
+                        if (await osLocale() == 'en-US') {
+                            language = 'th'
+                            if(document.title == 'SAOX'){
+                                updatedl()
+                            }else{
+                                updatedl('ok')
+                            }
+                        }
+                    })();
                 }
-                updatedl()
 
             });
 
         }
-
-        (async () => {
-            console.log(await osLocale());
-            if (await osLocale() != 'th-TH') {
-                language = 'en'
-            }
-        })();
 
         /*const notification = document.getElementById('notification');
         const message = document.getElementById('message');
@@ -636,7 +638,6 @@
                         let test = hexToRgbA(data)
                         let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
                         iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
-                        //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.filter = 'brightness(15%)'
                         if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
