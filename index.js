@@ -2,7 +2,8 @@ const {app, BrowserWindow, session, ipcMain, dialog, shell, Notification} = requ
 const path = require('path');
 const url = require('url');
 const {autoUpdater} = require("electron-updater");
-const Nucleus = require('nucleus-nodejs')
+const Nucleus = require('nucleus-nodejs');
+const osLocale = require('os-locale');
 
 Nucleus.init('6015572f67ba105405053ce4')
 
@@ -99,7 +100,14 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
-  new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
+  (async () => {
+    console.log(await osLocale());
+    if (await osLocale() != 'th-TH') {
+      new Notification({ title: 'Update Available', body: 'Downloading...' }).show()
+    }else{
+      new Notification({ title: 'โปรแกรมมีอัพเดท', body: 'โอ้ว ไม่ต้องตกใจไป เราไม่ปิดโปรแกรมตอนนี้หรอกนะ เมื่อเราพร้อมเมื่อไร ก็จะอัพเดทเองแหละ' }).show()
+    }
+  })();
   autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
@@ -121,8 +129,14 @@ autoUpdater.on('update-downloaded', () => {
 
 autoUpdater.on('error', (error) => {
   //if (error != ''){
-    dialog.showErrorBox('เกิดปัญหา', error)
-    //win.webContents.send('error');
+    (async () => {
+      console.log(await osLocale());
+      if (await osLocale() != 'th-TH') {
+        new Notification({ title: 'Update Error', body: error }).show()
+      }else{
+        new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
+      }
+    })();    //win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
     autoUpdater.downloadUpdate();
   //}
