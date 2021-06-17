@@ -633,12 +633,18 @@
                     function (data, textStatus, jqXHR) {  // success callback
                         MyTitleBar.updateTitle('SAOX : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
-                        iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
+                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         let test = hexToRgbA(data)
                         let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
-                        iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
-                        if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
+                        //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                        var frm = frames['iframe'].contentWindow.document;
+                        var otherhead = frm.getElementsByTagName("head")[0];
+                        var link = frm.createElement("style");
+                        link.setAttribute("type", "text/css");
+                        link.innerHTML = '.ScrollbarsCustom-Thumb{background: '+data+' !important;} .sidebar{background-color: '+okithing+') !important;} .MainHeader{background-color: '+data+' !important;}';
+                        otherhead.appendChild(link);
+                        /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
                             iframe.contentWindow.document.getElementById('menuzero').style.borderRadius = '6px'
@@ -650,7 +656,7 @@
                             iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
                             iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuone'
                             iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
-                        }
+                        }*/
                         //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                         //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
