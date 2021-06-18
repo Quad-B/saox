@@ -92,14 +92,14 @@
 
             $.getJSON("https://api.longdo.com/map/services/address?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude + "&noelevation=1&key=dd60afa68aa84ff6eb5e4da05044eea4", function (json) {
 
-                if(json.country == "ประเทศไทย"){
+                if (json.country == "ประเทศไทย") {
                     (async () => {
                         console.log(await osLocale());
                         if (await osLocale() == 'en-US') {
                             language = 'th'
-                            if(document.title == 'SAOX'){
+                            if (document.title == 'SAOX') {
                                 updatedl()
-                            }else{
+                            } else {
                                 updatedl('ok')
                             }
                         }
@@ -192,9 +192,9 @@
                 language = 'th'
                 console.log('ok')
             }
-            if(document.title == 'SAOX'){
+            if (document.title == 'SAOX') {
                 updatedl()
-            }else{
+            } else {
                 updatedl('ok')
             }
             console.log('ok')
@@ -442,12 +442,31 @@
 
             var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
 
+            var art = iframe.contentWindow.document.getElementsByClassName("sc-hSdWYo")[0].innerHTML;
+
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
             if ((elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) || ok == "ok") {
 
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
+                let nearart = art.replaceAll("</a><a>", ",")
+                nearart = nearart.replaceAll("<a>", "")
+                nearart = nearart.replaceAll("</a>", "")
+
                 if (language == 'en') {
+                    try {
+                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML="";
+                    } catch (error) {
+                        
+                    }
+                    var div = document.createElement('div');
+                    div.id = 'watchonyoutube';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=" + nearart + elmnt+"" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.className = 'sc-cvbbAY jRxSQj';
+
+                    iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
+                    //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+
                     menu.append(new MenuItem({
                         label: 'Main',
                         submenu: [
@@ -455,7 +474,7 @@
                                 label: 'Watch This Music Video on YouTube',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt)
                                 }
                             },
                             {
@@ -535,6 +554,19 @@
                         ]
                     }));
                 } else {
+                    try {
+                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML="";
+                    } catch (error) {
+                        
+                    }
+                    var div = document.createElement('div');
+                    div.id = 'watchonyoutube';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt+'" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.className = 'sc-cvbbAY jRxSQj';
+
+                    iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
+                    //iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+
                     menu.append(new MenuItem({
                         label: 'เมนูหลัก',
                         submenu: [
@@ -542,14 +574,14 @@
                                 label: 'ดู เอ็มวี เพลงนี้',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + elmnt)
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt)
                                 }
                             },
                             {
                                 label: 'ดาว์นโหลด เพลงนี้',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://mp3freefree.com/' + elmnt + '.html')
+                                    await shell.openExternal('https://mp3freefree.com/' + nearart + elmnt + '.html')
                                 }
                             },
                             {
@@ -631,7 +663,7 @@
 
                 $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
                     function (data, textStatus, jqXHR) {  // success callback
-                        MyTitleBar.updateTitle('SAOX : ' + elmnt);
+                        MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
                         MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
@@ -642,7 +674,7 @@
                         var otherhead = frm.getElementsByTagName("head")[0];
                         var link = frm.createElement("style");
                         link.setAttribute("type", "text/css");
-                        link.innerHTML = '.ScrollbarsCustom-Thumb{background: '+data+' !important;} .sidebar{background-color: '+okithing+') !important;} .MainHeader{background-color: '+data+' !important;}';
+                        link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
                         otherhead.appendChild(link);
                         /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
