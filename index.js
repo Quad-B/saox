@@ -124,9 +124,10 @@ autoUpdater.on('download-progress', () => {
   //win.webContents.send('incoming');
 });
 
-autoUpdater.on('error', error => {
+autoUpdater.on('error', (error) => {
+  new Notification({ title: 'Update Error', body: error }).show()
   //if (error != ''){
-    (async () => {
+    /*(async () => {
       console.log(await osLocale());
       if (await osLocale() != 'th-TH') {
         new Notification({ title: 'Update Error', body: error }).show()
@@ -135,8 +136,8 @@ autoUpdater.on('error', error => {
       }
     })();    //win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
-    autoUpdater.downloadUpdate();
-  //}
+    //autoUpdater.downloadUpdate();
+  //}*/
 });
 
 autoUpdater.on('update-downloaded', () => {
