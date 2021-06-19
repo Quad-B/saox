@@ -125,13 +125,13 @@ autoUpdater.on('download-progress', () => {
   //win.webContents.send('incoming');
 });
 
-autoUpdater.on('error', (error) => {
+autoUpdater.on('error', (err) => {
   (async () => {
     console.log(await osLocale());
     if (await osLocale() != 'th-TH') {
-      new Notification({ title: 'Update Error', body: error }).show()
+      new Notification({ title: 'Update Error', body: err }).show()
     } else {
-      new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
+      new Notification({ title: 'อัพเดทมีปัญหา', body: err }).show()
     }
   })();    //win.webContents.send('error');
   //autoUpdater.checkForUpdatesAndNotify();
