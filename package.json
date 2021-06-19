@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.7.11",
+  "version": "2.7.12",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -43,6 +43,7 @@
       ],
       "compression": "maximum",
       "publisherName": "Quad B Software",
+      "verifyUpdateCodeSignature": false,
       "signingHashAlgorithms": [
         "sha1"
       ]

@@ -34,6 +34,8 @@ function createWindow() {
     win = null;
   });
 
+  autoUpdater.autoDownload = false;
+
   autoUpdater.autoInstallOnAppQuit = true;
 
   autoUpdater.checkForUpdatesAndNotify();
