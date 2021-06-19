@@ -166,7 +166,14 @@ ipcMain.on('tryquitandupdate', () => {
   if (update == 1) {
     autoUpdater.quitAndInstall(false, true);
   } else {
-    new Notification({ title: 'Please Check For Updates Before use this method' }).show()
+    (async () => {
+      console.log(await osLocale());
+      if (await osLocale() == 'th-TH') {
+        new Notification({ title: 'โปรดตรวจหาการอัปเดตก่อนจะใช้คำสั่งนี้' }).show()
+      }else{
+        new Notification({ title: 'Please Check For Updates Before use this method' }).show()
+      }
+    })();
   }
   //autoUpdater.downloadUpdate();
 });
