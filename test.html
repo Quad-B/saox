@@ -193,7 +193,7 @@
                 console.log('ok')
             }
             if (document.title == 'SAOX') {
-                updatedl()
+                updatedl('notok')
             } else {
                 updatedl('ok')
             }
@@ -434,7 +434,7 @@
 
         window.onload = function () {
             var oFrame = document.getElementById("iframe");
-            oFrame.contentWindow.document.onclick = function () {
+            oFrame.contentWindow.document.onmouseup = function () {
                 //alert("frame contents clicked");
                 //alert(oFrame.contentWindow.location.href)
                 if (oFrame.contentWindow.location.href.includes('vip')) {
@@ -713,7 +713,7 @@
                     });
 
             } else {
-                if (document.title == 'SAOX') {
+                if (document.title == 'SAOX' && ok == 'notok') {
                     const menu = new Menu();
 
                     if (language == 'en') {
