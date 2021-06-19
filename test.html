@@ -253,7 +253,7 @@
 
         if (language == 'en') {
             menu.append(new MenuItem({
-                label: 'Main',
+                label: 'File',
                 submenu: [
                     {
                         label: 'Exit/Close',
@@ -437,10 +437,19 @@
             oFrame.contentWindow.document.onmouseup = function () {
                 //alert("frame contents clicked");
                 //alert(oFrame.contentWindow.location.href)
-                if (oFrame.contentWindow.location.href.includes('vip')) {
+                setTimeout(
+                    function () {
+                        //document.getElementById('div1').style.display='none';
+                        //document.getElementById('div2').style.display='none';
+                        if (oFrame.contentWindow.location.href.includes('vip')) {
+                            shell.openExternal(oFrame.contentWindow.location.href)
+                            oFrame.contentWindow.history.back()
+                        }
+                    }, 1000);
+                /*if (oFrame.contentWindow.location.href.includes('vip')) {
                     shell.openExternal(oFrame.contentWindow.location.href)
                     oFrame.contentWindow.history.back()
-                }
+                }*/
             };
         };
 
@@ -480,7 +489,7 @@
                     //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
 
                     menu.append(new MenuItem({
-                        label: 'Main',
+                        label: 'File',
                         submenu: [
                             {
                                 label: 'Watch This Music Video on YouTube',
@@ -718,7 +727,7 @@
 
                     if (language == 'en') {
                         menu.append(new MenuItem({
-                            label: 'Main',
+                            label: 'File',
                             submenu: [
                                 {
                                     label: 'Exit/Close',
@@ -780,13 +789,19 @@
                                     }
                                 },
                                 {
+                                label: 'Discord Support/Report',
+                                click: async () => {
+                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                }
+                            },
+                            { type: 'separator' },
+                                {
                                     label: 'About SAOX',
                                     click: async () => {
                                         const { shell } = require('electron')
                                         await shell.openExternal('https://quad-b.github.io/saox/')
                                     }
                                 },
-                                { type: 'separator' },
                                 {
                                     label: 'Check for update...',
                                     click: async () => {
@@ -857,13 +872,19 @@
                                     }
                                 },
                                 {
+                                label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                click: async () => {
+                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                }
+                            },
+                            { type: 'separator' },
+                                {
                                     label: 'เกี่ยวกับ SAOX',
                                     click: async () => {
                                         const { shell } = require('electron')
                                         await shell.openExternal('https://quad-b.github.io/saox/')
                                     }
                                 },
-                                { type: 'separator' },
                                 {
                                     label: 'ตรวจหาการอัปเดต',
                                     click: async () => {
