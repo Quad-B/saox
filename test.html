@@ -423,6 +423,12 @@
                             ipcRenderer.send('checkdamnupdate');
                         }
                     },
+                    {
+                        label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                        click: async () => {
+                            ipcRenderer.send('tryquitandupdate');
+                        }
+                    },
                     { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
                 ]
             }));
@@ -488,7 +494,7 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt+'" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
@@ -581,6 +587,12 @@
                                 label: 'Check for update....',
                                 click: async () => {
                                     ipcRenderer.send('checkdamnupdate');
+                                }
+                            },
+                            {
+                                label: 'Try to update (Not recommend to use)',
+                                click: async () => {
+                                    ipcRenderer.send('tryquitandupdate');
                                 }
                             },
                             { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
@@ -685,6 +697,12 @@
                                 label: 'ตรวจหาการอัปเดต',
                                 click: async () => {
                                     ipcRenderer.send('checkdamnupdate');
+                                }
+                            },
+                            {
+                                label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                                click: async () => {
+                                    ipcRenderer.send('tryquitandupdate');
                                 }
                             },
                             { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
@@ -795,12 +813,12 @@
                                     }
                                 },
                                 {
-                                label: 'Discord Support/Report',
-                                click: async () => {
-                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                }
-                            },
-                            { type: 'separator' },
+                                    label: 'Discord Support/Report',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
                                 {
                                     label: 'About SAOX',
                                     click: async () => {
@@ -878,12 +896,12 @@
                                     }
                                 },
                                 {
-                                label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                                click: async () => {
-                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                }
-                            },
-                            { type: 'separator' },
+                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
                                 {
                                     label: 'เกี่ยวกับ SAOX',
                                     click: async () => {
