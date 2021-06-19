@@ -8,7 +8,7 @@ const osLocale = require('os-locale');
 Nucleus.init('6015572f67ba105405053ce4')
 
 let win;
-//let update;
+let update = 0;
 
 function createWindow () {
   // Create the browser window.
@@ -126,7 +126,7 @@ autoUpdater.on('download-progress', () => {
 });
 
 autoUpdater.on('error', (error) => {
-  if (error != ''){
+  if (error != NULL) {
     (async () => {
       console.log(await osLocale());
       if (await osLocale() != 'th-TH') {
@@ -138,6 +138,7 @@ autoUpdater.on('error', (error) => {
     //autoUpdater.checkForUpdatesAndNotify();
     //autoUpdater.downloadUpdate();
   }
+  update = 1
 });
 
 autoUpdater.on('update-downloaded', () => {
@@ -157,6 +158,15 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('checkdamnupdate', () => {
   autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.downloadUpdate();
+});
+
+ipcMain.on('tryquitandupdate', () => {
+  if(update == 1){
+    autoUpdater.quitAndInstall(false,true);
+  }else{
+    new Notification({ title: 'Please Check For Updates Before use this method'}).show()
+  }
   //autoUpdater.downloadUpdate();
 });
 

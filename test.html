@@ -334,6 +334,12 @@
                             ipcRenderer.send('checkdamnupdate');
                         }
                     },
+                    {
+                        label: 'Try to update (Not recommend to use)',
+                        click: async () => {
+                            ipcRenderer.send('tryquitandupdate');
+                        }
+                    },
                     { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
                 ]
             }));
