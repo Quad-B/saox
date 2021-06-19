@@ -1,7 +1,7 @@
-const {app, BrowserWindow, session, ipcMain, dialog, shell, Notification} = require('electron');
+const { app, BrowserWindow, session, ipcMain, dialog, shell, Notification } = require('electron');
 const path = require('path');
 const url = require('url');
-const {autoUpdater} = require("electron-updater");
+const { autoUpdater } = require("electron-updater");
 const Nucleus = require('nucleus-nodejs');
 const osLocale = require('os-locale');
 
@@ -10,7 +10,7 @@ Nucleus.init('6015572f67ba105405053ce4')
 let win;
 let update = 0;
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     icon: __dirname + '/img/saoxlogo.png',
@@ -42,19 +42,19 @@ function createWindow () {
     {
       tooltip: 'Prev',
       icon: path.join(__dirname, '/img/previous.png'),
-      click () { win.webContents.send('media-key', 'Prev') }
+      click() { win.webContents.send('media-key', 'Prev') }
     },
     {
       tooltip: 'Play',
       icon: path.join(__dirname, '/img/play.png'),
-      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+      click() { win.webContents.send('media-key', 'MediaPlayPause') }
     },
     {
       tooltip: 'Next',
       icon: path.join(__dirname, '/img/next.png'),
-      click () { win.webContents.send('media-key', 'Next') }
+      click() { win.webContents.send('media-key', 'Next') }
     }
-    
+
   ])
 
   win.maximize();
@@ -72,13 +72,13 @@ function createWindow () {
 
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true})
+    const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
-    if(!url.includes('facebook')){
-        shell.openExternal(url)
-        win.close()
+    if (!url.includes('facebook')) {
+      shell.openExternal(url)
+      win.close()
     }
   })
 }
@@ -86,11 +86,11 @@ function createWindow () {
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 //app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  //if (BrowserWindow.getAllWindows().length === 0) {
-    //createWindow()
-  //}
+// On macOS it's common to re-create a window in the app when the
+// dock icon is clicked and there are no other windows open.
+//if (BrowserWindow.getAllWindows().length === 0) {
+//createWindow()
+//}
 //})
 
 // In this file you can include the rest of your app's specific main process
@@ -101,7 +101,7 @@ autoUpdater.on('update-not-available', () => {
     console.log(await osLocale());
     if (await osLocale() != 'th-TH') {
       new Notification({ title: 'You are use last version of SAOX' }).show()
-    }else{
+    } else {
       new Notification({ title: 'โปรแกรมไม่มีอัพเดท' }).show()
     }
   })();
@@ -113,7 +113,7 @@ autoUpdater.on('update-available', () => {
     console.log(await osLocale());
     if (await osLocale() != 'th-TH') {
       new Notification({ title: 'SAOX has a updated' }).show()
-    }else{
+    } else {
       new Notification({ title: 'โปรแกรมมีการอัพเดท' }).show()
     }
   })();
@@ -126,18 +126,16 @@ autoUpdater.on('download-progress', () => {
 });
 
 autoUpdater.on('error', (error) => {
-  if (error != NULL) {
-    (async () => {
-      console.log(await osLocale());
-      if (await osLocale() != 'th-TH') {
-        new Notification({ title: 'Update Error', body: error }).show()
-      }else{
-        new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
-      }
-    })();    //win.webContents.send('error');
-    //autoUpdater.checkForUpdatesAndNotify();
-    //autoUpdater.downloadUpdate();
-  }
+  (async () => {
+    console.log(await osLocale());
+    if (await osLocale() != 'th-TH') {
+      new Notification({ title: 'Update Error', body: error }).show()
+    } else {
+      new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
+    }
+  })();    //win.webContents.send('error');
+  //autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.downloadUpdate();
   update = 1
 });
 
@@ -145,9 +143,10 @@ autoUpdater.on('update-downloaded', () => {
   (async () => {
     console.log(await osLocale());
     if (await osLocale() == 'th-TH') {
-      new Notification({ title: 'ดาวน์โหลดอัพเดทสำเร็จ'}).show()
+      new Notification({ title: 'ดาวน์โหลดอัพเดทสำเร็จ' }).show()
     }
   })();
+  update = 1
   /*dialog.showMessageBox({
     title: 'Install Updates',
     message: 'Updates downloaded, application will be quit for update...'
@@ -162,10 +161,10 @@ ipcMain.on('checkdamnupdate', () => {
 });
 
 ipcMain.on('tryquitandupdate', () => {
-  if(update == 1){
-    autoUpdater.quitAndInstall(false,true);
-  }else{
-    new Notification({ title: 'Please Check For Updates Before use this method'}).show()
+  if (update == 1) {
+    autoUpdater.quitAndInstall(false, true);
+  } else {
+    new Notification({ title: 'Please Check For Updates Before use this method' }).show()
   }
   //autoUpdater.downloadUpdate();
 });
@@ -185,19 +184,19 @@ ipcMain.on('pause', () => {
     {
       tooltip: 'Prev',
       icon: path.join(__dirname, '/img/previous.png'),
-      click () { win.webContents.send('media-key', 'Prev') }
+      click() { win.webContents.send('media-key', 'Prev') }
     },
     {
       tooltip: 'Play',
       icon: path.join(__dirname, '/img/play.png'),
-      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+      click() { win.webContents.send('media-key', 'MediaPlayPause') }
     },
     {
       tooltip: 'Next',
       icon: path.join(__dirname, '/img/next.png'),
-      click () { win.webContents.send('media-key', 'Next') }
+      click() { win.webContents.send('media-key', 'Next') }
     }
-    
+
   ])
 });
 
@@ -206,19 +205,19 @@ ipcMain.on('play', () => {
     {
       tooltip: 'Prev',
       icon: path.join(__dirname, '/img/previous.png'),
-      click () { win.webContents.send('media-key', 'Prev') }
+      click() { win.webContents.send('media-key', 'Prev') }
     },
     {
       tooltip: 'Pause',
       icon: path.join(__dirname, '/img/pause.png'),
-      click () { win.webContents.send('media-key', 'MediaPlayPause') }
+      click() { win.webContents.send('media-key', 'MediaPlayPause') }
     },
     {
       tooltip: 'Next',
       icon: path.join(__dirname, '/img/next.png'),
-      click () { win.webContents.send('media-key', 'Next') }
+      click() { win.webContents.send('media-key', 'Next') }
     }
-    
+
   ])
 });
 
@@ -228,15 +227,15 @@ ipcMain.on('play', () => {
 //app.on('ready', createWindow);
 
 //autoUpdater.on('update-downloaded', (ev, info) => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 5 seconds.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  //setTimeout(function() {
-    //autoUpdater.quitAndInstall();  
-  //}, 5000)
+// Wait 5 seconds, then quit and install
+// In your application, you don't need to wait 5 seconds.
+// You could call autoUpdater.quitAndInstall(); immediately
+//setTimeout(function() {
+//autoUpdater.quitAndInstall();  
+//}, 5000)
 //})
 
-app.on('ready', function()  {
+app.on('ready', function () {
   Nucleus.appStarted()
   createWindow();
 });
@@ -255,22 +254,22 @@ app.on('window-all-closed', function () {
     //if (update == '1'){
     //  autoUpdater.quitAndInstall();
     //}else{
-      app.quit();
+    app.quit();
     //}
   }
 });
 
 //app.on('window-all-closed', app.quit);
 //app.on('before-quit', () => {
-  //globalShortcut.unregisterAll()
-  //if (update == '1'){
-    //autoUpdater.quitAndInstall();
-  //}else{
-    //win.removeAllListeners('close');
-    //win.close();
-  //}
-  //win.removeAllListeners('close');
-  //win.close();
+//globalShortcut.unregisterAll()
+//if (update == '1'){
+//autoUpdater.quitAndInstall();
+//}else{
+//win.removeAllListeners('close');
+//win.close();
+//}
+//win.removeAllListeners('close');
+//win.close();
 //});
 
 app.on('activate', function () {
