@@ -108,6 +108,14 @@ autoUpdater.on('update-not-available', () => {
 });
 
 autoUpdater.on('update-available', () => {
+  (async () => {
+    console.log(await osLocale());
+    if (await osLocale() != 'th-TH') {
+      new Notification({ title: 'SAOX has a updated' }).show()
+    }else{
+      new Notification({ title: 'โปรแกรมมีการอัพเดท' }).show()
+    }
+  })();
   //autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
@@ -116,15 +124,14 @@ autoUpdater.on('download-progress', () => {
   //win.webContents.send('incoming');
 });
 
-autoUpdater.on('error', (error) => {
+autoUpdater.on('error', error => {
   //if (error != ''){
-    let errortext = error
     (async () => {
       console.log(await osLocale());
       if (await osLocale() != 'th-TH') {
-        new Notification({ title: 'Update Error', body: errortext }).show()
+        new Notification({ title: 'Update Error', body: error }).show()
       }else{
-        new Notification({ title: 'อัพเดทมีปัญหา', body: errortext }).show()
+        new Notification({ title: 'อัพเดทมีปัญหา', body: error }).show()
       }
     })();    //win.webContents.send('error');
     //autoUpdater.checkForUpdatesAndNotify();
