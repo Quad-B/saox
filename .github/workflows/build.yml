@@ -32,8 +32,6 @@ jobs:
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
@@ -44,6 +42,8 @@ jobs:
           release: ${{ startsWith(github.ref, 'refs/tags/') }}
           
           skip_build: true
+
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
   onlysnap:
     runs-on: ubuntu-latest
 
@@ -64,8 +64,6 @@ jobs:
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
@@ -78,6 +76,8 @@ jobs:
           skip_build: true
 
           args: '--linux snap'
+
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
   onlysnaparmv7:
     runs-on: ubuntu-latest
 
@@ -98,8 +98,6 @@ jobs:
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
@@ -112,3 +110,5 @@ jobs:
           skip_build: true
 
           args: '--linux snap --armv7l'
+
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
