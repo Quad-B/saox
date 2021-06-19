@@ -22,7 +22,8 @@ function createWindow () {
       nodeIntegration: true,
       webviewTag: true,
       nativeWindowOpen: true,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      contextIsolation: false
     }
   })
 
