@@ -315,13 +315,19 @@
                         }
                     },
                     {
+                        label: 'Discord Support/Report',
+                        click: async () => {
+                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                        }
+                    },
+                    { type: 'separator' },
+                    {
                         label: 'About SAOX',
                         click: async () => {
                             const { shell } = require('electron')
                             await shell.openExternal('https://quad-b.github.io/saox/')
                         }
                     },
-                    { type: 'separator' },
                     {
                         label: 'Check for update...',
                         click: async () => {
@@ -392,13 +398,19 @@
                         }
                     },
                     {
+                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                        click: async () => {
+                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                        }
+                    },
+                    { type: 'separator' },
+                    {
                         label: 'เกี่ยวกับ SAOX',
                         click: async () => {
                             const { shell } = require('electron')
                             await shell.openExternal('https://quad-b.github.io/saox/')
                         }
                     },
-                    { type: 'separator' },
                     {
                         label: 'ตรวจหาการอัปเดต',
                         click: async () => {
@@ -455,9 +467,9 @@
 
                 if (language == 'en') {
                     try {
-                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML="";
+                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
                     } catch (error) {
-                        
+
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
@@ -537,13 +549,19 @@
                                 }
                             },
                             {
+                                label: 'Discord Support/Report',
+                                click: async () => {
+                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                }
+                            },
+                            { type: 'separator' },
+                            {
                                 label: 'About SAOX',
                                 click: async () => {
                                     const { shell } = require('electron')
                                     await shell.openExternal('https://quad-b.github.io/saox/')
                                 }
                             },
-                            { type: 'separator' },
                             {
                                 label: 'Check for update....',
                                 click: async () => {
@@ -555,13 +573,13 @@
                     }));
                 } else {
                     try {
-                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML="";
+                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
                     } catch (error) {
-                        
+
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt+'" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
@@ -573,14 +591,12 @@
                             {
                                 label: 'ดู เอ็มวี เพลงนี้',
                                 click: async () => {
-                                    const { shell } = require('electron')
                                     await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt)
                                 }
                             },
                             {
                                 label: 'ดาว์นโหลด เพลงนี้',
                                 click: async () => {
-                                    const { shell } = require('electron')
                                     await shell.openExternal('https://mp3freefree.com/' + nearart + elmnt + '.html')
                                 }
                             },
@@ -621,14 +637,12 @@
                             {
                                 label: 'ติดตาม เฟสบุ๊ค',
                                 click: async () => {
-                                    const { shell } = require('electron')
                                     await shell.openExternal('https://www.facebook.com/QuadBCoder/')
                                 }
                             },
                             {
                                 label: 'สนับสนุน',
                                 click: async () => {
-                                    const { shell } = require('electron')
                                     await shell.openExternal('https://ko-fi.com/boyphongsakorn')
                                 }
                             },
@@ -636,18 +650,22 @@
                             {
                                 label: 'แจ้ง Bug',
                                 click: async () => {
-                                    const { shell } = require('electron')
                                     await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
                                 }
                             },
                             {
-                                label: 'เกี่ยวกับ SAOX',
+                                label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
                                 click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://quad-b.github.io/saox/')
+                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
                                 }
                             },
                             { type: 'separator' },
+                            {
+                                label: 'เกี่ยวกับ SAOX',
+                                click: async () => {
+                                    await shell.openExternal('https://quad-b.github.io/saox/')
+                                }
+                            },
                             {
                                 label: 'ตรวจหาการอัปเดต',
                                 click: async () => {
