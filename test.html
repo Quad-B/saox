@@ -832,6 +832,12 @@
                                         ipcRenderer.send('checkdamnupdate');
                                     }
                                 },
+                                {
+                                    label: 'Try to update (Not recommend to use)',
+                                    click: async () => {
+                                        ipcRenderer.send('tryquitandupdate');
+                                    }
+                                },
                                 { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
                             ]
                         }));
@@ -913,6 +919,12 @@
                                     label: 'ตรวจหาการอัปเดต',
                                     click: async () => {
                                         ipcRenderer.send('checkdamnupdate');
+                                    }
+                                },
+                                {
+                                    label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                                    click: async () => {
+                                        ipcRenderer.send('tryquitandupdate');
                                     }
                                 },
                                 { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
