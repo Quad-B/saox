@@ -119,7 +119,7 @@ autoUpdater.on('update-available', () => {
       new Notification({ title: 'โปรแกรมมีการอัพเดท' }).show()
     }
   })();
-  //autoUpdater.downloadUpdate();
+  autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
 });
 
