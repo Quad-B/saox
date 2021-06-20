@@ -75,12 +75,13 @@
 
     <script>
 
-        let language = 'en'
-        let musicname
         const { app, remote, ipcRenderer, shell } = require('electron')
         const { Menu, MenuItem } = remote
         const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
+        let language = 'en'
+        let musicname
+        let areyouok = remote.app.getAppPath()
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -296,7 +297,7 @@
                 ]
             }));
 
-            if (remote.app.isPackaged == true) {
+            if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                 menu.append(new MenuItem({
                     label: 'Help',
                     submenu: [
@@ -430,7 +431,7 @@
                 ]
             }));
 
-            if (remote.app.isPackaged == true) {
+            if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                 menu.append(new MenuItem({
                     label: 'ช่วยเหลือ',
                     submenu: [
@@ -641,7 +642,7 @@
                         ]
                     }));
 
-                    if (remote.app.isPackaged == true) {
+                    if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                         menu.append(new MenuItem({
                             label: 'Help',
                             submenu: [
@@ -800,7 +801,7 @@
                         ]
                     }));
 
-                    if (remote.app.isPackaged == true) {
+                    if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                         menu.append(new MenuItem({
                             label: 'ช่วยเหลือ',
                             submenu: [
@@ -970,7 +971,7 @@
                             ]
                         }));
 
-                        if (remote.app.isPackaged == true) {
+                        if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                             menu.append(new MenuItem({
                                 label: 'Help',
                                 submenu: [
@@ -1104,7 +1105,7 @@
                             ]
                         }));
 
-                        if (remote.app.isPackaged == true) {
+                        if (remote.app.isPackaged == true || areyouok.includes('temp') == true) {
                             menu.append(new MenuItem({
                                 label: 'ช่วยเหลือ',
                                 submenu: [
