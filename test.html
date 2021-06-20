@@ -96,9 +96,16 @@
                     (async () => {
                         console.log(await osLocale());
                         if (await osLocale() == 'en-US') {
+                            language = 'en'
+                            if (document.title == 'SAOX') {
+                                updatedl('notok')
+                            } else {
+                                updatedl('ok')
+                            }
+                        }else{
                             language = 'th'
                             if (document.title == 'SAOX') {
-                                updatedl()
+                                updatedl('notok')
                             } else {
                                 updatedl('ok')
                             }
