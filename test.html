@@ -102,7 +102,7 @@
                             } else {
                                 updatedl('ok')
                             }
-                        }else{
+                        } else {
                             language = 'th'
                             if (document.title == 'SAOX') {
                                 updatedl('notok')
@@ -296,60 +296,105 @@
                 ]
             }));
 
-            menu.append(new MenuItem({
-                label: 'Help',
-                submenu: [
-                    {
-                        label: 'Follow Us',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                        }
-                    },
-                    {
-                        label: 'Buy me a ko-fi',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                        }
-                    },
-                    { type: 'separator' },
-                    {
-                        label: 'Report Bug/Issue',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                        }
-                    },
-                    {
-                        label: 'Discord Support/Report',
-                        click: async () => {
-                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                        }
-                    },
-                    { type: 'separator' },
-                    {
-                        label: 'About SAOX',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://quad-b.github.io/saox/')
-                        }
-                    },
-                    {
-                        label: 'Check for update...',
-                        click: async () => {
-                            ipcRenderer.send('checkdamnupdate');
-                        }
-                    },
-                    {
-                        label: 'Try to update (Not recommend to use)',
-                        click: async () => {
-                            ipcRenderer.send('tryquitandupdate');
-                        }
-                    },
-                    { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
-                ]
-            }));
+            if (remote.app.isPackaged == true) {
+                menu.append(new MenuItem({
+                    label: 'Help',
+                    submenu: [
+                        {
+                            label: 'Follow Us',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                            }
+                        },
+                        {
+                            label: 'Buy me a ko-fi',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'Report Bug/Issue',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                            }
+                        },
+                        {
+                            label: 'Discord Support/Report',
+                            click: async () => {
+                                await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'About SAOX',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://quad-b.github.io/saox/')
+                            }
+                        },
+                        {
+                            label: 'Check for update...',
+                            click: async () => {
+                                ipcRenderer.send('checkdamnupdate');
+                            }
+                        },
+                        {
+                            label: 'Try to update (Not recommend to use)',
+                            click: async () => {
+                                ipcRenderer.send('tryquitandupdate');
+                            }
+                        },
+                        { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                    ]
+                }));
+            } else {
+                menu.append(new MenuItem({
+                    label: 'Help',
+                    submenu: [
+                        {
+                            label: 'Follow Us',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                            }
+                        },
+                        {
+                            label: 'Buy me a ko-fi',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'Report Bug/Issue',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                            }
+                        },
+                        {
+                            label: 'Discord Support/Report',
+                            click: async () => {
+                                await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'About SAOX',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://quad-b.github.io/saox/')
+                            }
+                        },
+                        { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                    ]
+                }));
+            }
         } else {
             menu.append(new MenuItem({
                 label: 'เมนูหลัก',
@@ -385,60 +430,105 @@
                 ]
             }));
 
-            menu.append(new MenuItem({
-                label: 'ช่วยเหลือ',
-                submenu: [
-                    {
-                        label: 'ติดตาม เฟสบุ๊ค',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                        }
-                    },
-                    {
-                        label: 'สนับสนุน',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                        }
-                    },
-                    { type: 'separator' },
-                    {
-                        label: 'แจ้ง Bug',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                        }
-                    },
-                    {
-                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                        click: async () => {
-                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                        }
-                    },
-                    { type: 'separator' },
-                    {
-                        label: 'เกี่ยวกับ SAOX',
-                        click: async () => {
-                            const { shell } = require('electron')
-                            await shell.openExternal('https://quad-b.github.io/saox/')
-                        }
-                    },
-                    {
-                        label: 'ตรวจหาการอัปเดต',
-                        click: async () => {
-                            ipcRenderer.send('checkdamnupdate');
-                        }
-                    },
-                    {
-                        label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
-                        click: async () => {
-                            ipcRenderer.send('tryquitandupdate');
-                        }
-                    },
-                    { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
-                ]
-            }));
+            if (remote.app.isPackaged == true) {
+                menu.append(new MenuItem({
+                    label: 'ช่วยเหลือ',
+                    submenu: [
+                        {
+                            label: 'ติดตาม เฟสบุ๊ค',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                            }
+                        },
+                        {
+                            label: 'สนับสนุน',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'แจ้ง Bug',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                            }
+                        },
+                        {
+                            label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                            click: async () => {
+                                await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'เกี่ยวกับ SAOX',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://quad-b.github.io/saox/')
+                            }
+                        },
+                        {
+                            label: 'ตรวจหาการอัปเดต',
+                            click: async () => {
+                                ipcRenderer.send('checkdamnupdate');
+                            }
+                        },
+                        {
+                            label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                            click: async () => {
+                                ipcRenderer.send('tryquitandupdate');
+                            }
+                        },
+                        { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                    ]
+                }));
+            } else {
+                menu.append(new MenuItem({
+                    label: 'ช่วยเหลือ',
+                    submenu: [
+                        {
+                            label: 'ติดตาม เฟสบุ๊ค',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                            }
+                        },
+                        {
+                            label: 'สนับสนุน',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'แจ้ง Bug',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                            }
+                        },
+                        {
+                            label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                            click: async () => {
+                                await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                            }
+                        },
+                        { type: 'separator' },
+                        {
+                            label: 'เกี่ยวกับ SAOX',
+                            click: async () => {
+                                const { shell } = require('electron')
+                                await shell.openExternal('https://quad-b.github.io/saox/')
+                            }
+                        },
+                        { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                    ]
+                }));
+            }
         }
 
         MyTitleBar.updateMenu(menu);
@@ -551,60 +641,105 @@
                         ]
                     }));
 
-                    menu.append(new MenuItem({
-                        label: 'Help',
-                        submenu: [
-                            {
-                                label: 'Follow Us',
-                                click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                }
-                            },
-                            {
-                                label: 'Buy me a ko-fi',
-                                click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                }
-                            },
-                            { type: 'separator' },
-                            {
-                                label: 'Report Bug/Issue',
-                                click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                }
-                            },
-                            {
-                                label: 'Discord Support/Report',
-                                click: async () => {
-                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                }
-                            },
-                            { type: 'separator' },
-                            {
-                                label: 'About SAOX',
-                                click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://quad-b.github.io/saox/')
-                                }
-                            },
-                            {
-                                label: 'Check for update....',
-                                click: async () => {
-                                    ipcRenderer.send('checkdamnupdate');
-                                }
-                            },
-                            {
-                                label: 'Try to update (Not recommend to use)',
-                                click: async () => {
-                                    ipcRenderer.send('tryquitandupdate');
-                                }
-                            },
-                            { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
-                        ]
-                    }));
+                    if (remote.app.isPackaged == true) {
+                        menu.append(new MenuItem({
+                            label: 'Help',
+                            submenu: [
+                                {
+                                    label: 'Follow Us',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                    }
+                                },
+                                {
+                                    label: 'Buy me a ko-fi',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'Report Bug/Issue',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                    }
+                                },
+                                {
+                                    label: 'Discord Support/Report',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'About SAOX',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://quad-b.github.io/saox/')
+                                    }
+                                },
+                                {
+                                    label: 'Check for update....',
+                                    click: async () => {
+                                        ipcRenderer.send('checkdamnupdate');
+                                    }
+                                },
+                                {
+                                    label: 'Try to update (Not recommend to use)',
+                                    click: async () => {
+                                        ipcRenderer.send('tryquitandupdate');
+                                    }
+                                },
+                                { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                            ]
+                        }));
+                    } else {
+                        menu.append(new MenuItem({
+                            label: 'Help',
+                            submenu: [
+                                {
+                                    label: 'Follow Us',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                    }
+                                },
+                                {
+                                    label: 'Buy me a ko-fi',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'Report Bug/Issue',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                    }
+                                },
+                                {
+                                    label: 'Discord Support/Report',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'About SAOX',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://quad-b.github.io/saox/')
+                                    }
+                                },
+                                { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                            ]
+                        }));
+                    }
                 } else {
                     try {
                         iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
@@ -665,56 +800,97 @@
                         ]
                     }));
 
-                    menu.append(new MenuItem({
-                        label: 'ช่วยเหลือ',
-                        submenu: [
-                            {
-                                label: 'ติดตาม เฟสบุ๊ค',
-                                click: async () => {
-                                    await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                }
-                            },
-                            {
-                                label: 'สนับสนุน',
-                                click: async () => {
-                                    await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                }
-                            },
-                            { type: 'separator' },
-                            {
-                                label: 'แจ้ง Bug',
-                                click: async () => {
-                                    await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                }
-                            },
-                            {
-                                label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                                click: async () => {
-                                    await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                }
-                            },
-                            { type: 'separator' },
-                            {
-                                label: 'เกี่ยวกับ SAOX',
-                                click: async () => {
-                                    await shell.openExternal('https://quad-b.github.io/saox/')
-                                }
-                            },
-                            {
-                                label: 'ตรวจหาการอัปเดต',
-                                click: async () => {
-                                    ipcRenderer.send('checkdamnupdate');
-                                }
-                            },
-                            {
-                                label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
-                                click: async () => {
-                                    ipcRenderer.send('tryquitandupdate');
-                                }
-                            },
-                            { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
-                        ]
-                    }));
+                    if (remote.app.isPackaged == true) {
+                        menu.append(new MenuItem({
+                            label: 'ช่วยเหลือ',
+                            submenu: [
+                                {
+                                    label: 'ติดตาม เฟสบุ๊ค',
+                                    click: async () => {
+                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                    }
+                                },
+                                {
+                                    label: 'สนับสนุน',
+                                    click: async () => {
+                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'แจ้ง Bug',
+                                    click: async () => {
+                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                    }
+                                },
+                                {
+                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'เกี่ยวกับ SAOX',
+                                    click: async () => {
+                                        await shell.openExternal('https://quad-b.github.io/saox/')
+                                    }
+                                },
+                                {
+                                    label: 'ตรวจหาการอัปเดต',
+                                    click: async () => {
+                                        ipcRenderer.send('checkdamnupdate');
+                                    }
+                                },
+                                {
+                                    label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                                    click: async () => {
+                                        ipcRenderer.send('tryquitandupdate');
+                                    }
+                                },
+                                { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                            ]
+                        }));
+                    } else {
+                        menu.append(new MenuItem({
+                            label: 'ช่วยเหลือ',
+                            submenu: [
+                                {
+                                    label: 'ติดตาม เฟสบุ๊ค',
+                                    click: async () => {
+                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                    }
+                                },
+                                {
+                                    label: 'สนับสนุน',
+                                    click: async () => {
+                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'แจ้ง Bug',
+                                    click: async () => {
+                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                    }
+                                },
+                                {
+                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                    click: async () => {
+                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                    }
+                                },
+                                { type: 'separator' },
+                                {
+                                    label: 'เกี่ยวกับ SAOX',
+                                    click: async () => {
+                                        await shell.openExternal('https://quad-b.github.io/saox/')
+                                    }
+                                },
+                                { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                            ]
+                        }));
+                    }
                 }
 
                 MyTitleBar.updateMenu(menu);
@@ -794,60 +970,105 @@
                             ]
                         }));
 
-                        menu.append(new MenuItem({
-                            label: 'Help',
-                            submenu: [
-                                {
-                                    label: 'Follow Us',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'Buy me a ko-fi',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'Report Bug/Issue',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'Discord Support/Report',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'About SAOX',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                {
-                                    label: 'Check for update...',
-                                    click: async () => {
-                                        ipcRenderer.send('checkdamnupdate');
-                                    }
-                                },
-                                {
-                                    label: 'Try to update (Not recommend to use)',
-                                    click: async () => {
-                                        ipcRenderer.send('tryquitandupdate');
-                                    }
-                                },
-                                { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
-                            ]
-                        }));
+                        if (remote.app.isPackaged == true) {
+                            menu.append(new MenuItem({
+                                label: 'Help',
+                                submenu: [
+                                    {
+                                        label: 'Follow Us',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Buy me a ko-fi',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'Report Bug/Issue',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'Discord Support/Report',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'About SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Check for update...',
+                                        click: async () => {
+                                            ipcRenderer.send('checkdamnupdate');
+                                        }
+                                    },
+                                    {
+                                        label: 'Try to update (Not recommend to use)',
+                                        click: async () => {
+                                            ipcRenderer.send('tryquitandupdate');
+                                        }
+                                    },
+                                    { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                ]
+                            }));
+                        } else {
+                            menu.append(new MenuItem({
+                                label: 'Help',
+                                submenu: [
+                                    {
+                                        label: 'Follow Us',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Buy me a ko-fi',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'Report Bug/Issue',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'Discord Support/Report',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'About SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                ]
+                            }));
+                        }
                     } else {
                         menu.append(new MenuItem({
                             label: 'เมนูหลัก',
@@ -883,60 +1104,105 @@
                             ]
                         }));
 
-                        menu.append(new MenuItem({
-                            label: 'ช่วยเหลือ',
-                            submenu: [
-                                {
-                                    label: 'ติดตาม เฟสบุ๊ค',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'สนับสนุน',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'แจ้ง Bug',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'เกี่ยวกับ SAOX',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                {
-                                    label: 'ตรวจหาการอัปเดต',
-                                    click: async () => {
-                                        ipcRenderer.send('checkdamnupdate');
-                                    }
-                                },
-                                {
-                                    label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
-                                    click: async () => {
-                                        ipcRenderer.send('tryquitandupdate');
-                                    }
-                                },
-                                { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
-                            ]
-                        }));
+                        if (remote.app.isPackaged == true) {
+                            menu.append(new MenuItem({
+                                label: 'ช่วยเหลือ',
+                                submenu: [
+                                    {
+                                        label: 'ติดตาม เฟสบุ๊ค',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'สนับสนุน',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'แจ้ง Bug',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'เกี่ยวกับ SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    {
+                                        label: 'ตรวจหาการอัปเดต',
+                                        click: async () => {
+                                            ipcRenderer.send('checkdamnupdate');
+                                        }
+                                    },
+                                    {
+                                        label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                                        click: async () => {
+                                            ipcRenderer.send('tryquitandupdate');
+                                        }
+                                    },
+                                    { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                ]
+                            }));
+                        } else {
+                            menu.append(new MenuItem({
+                                label: 'ช่วยเหลือ',
+                                submenu: [
+                                    {
+                                        label: 'ติดตาม เฟสบุ๊ค',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'สนับสนุน',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'แจ้ง Bug',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'เกี่ยวกับ SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                ]
+                            }));
+                        }
                     }
 
                     MyTitleBar.updateMenu(menu);
