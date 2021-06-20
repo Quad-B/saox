@@ -82,6 +82,7 @@
         let language = 'en'
         let musicname
         let areyouok = remote.app.getAppPath()
+        alert(areyouok)
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
