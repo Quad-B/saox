@@ -169,9 +169,9 @@ ipcMain.on('tryquitandupdate', () => {
     (async () => {
       console.log(await osLocale());
       if (await osLocale() == 'th-TH') {
-        new Notification({ title: 'โปรดตรวจสอบการอัปเดตก่อนจะใช้คำสั่งนี้' }).show()
+        new Notification({ title: 'ไม่มีการอัพเดตหรือตรวจสอบการอัปเดตก่อนจะใช้คำสั่งนี้' }).show()
       }else{
-        new Notification({ title: 'Please Check For Updates Before use this method' }).show()
+        new Notification({ title: 'You use last version of SAOX or Check For Update Before use this method' }).show()
       }
     })();
   }
