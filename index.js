@@ -38,7 +38,9 @@ function createWindow() {
 
   autoUpdater.autoInstallOnAppQuit = true;
 
-  autoUpdater.checkForUpdatesAndNotify();
+  if(app.isPackaged == true && app.getAppPath().toLowerCase().includes('temp') != true){
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 
   win.setThumbarButtons([
     {
