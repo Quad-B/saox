@@ -7,8 +7,6 @@ const osLocale = require('os-locale');
 
 Nucleus.init('6015572f67ba105405053ce4')
 
-process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
-
 let win;
 let update = 0;
 
@@ -251,6 +249,7 @@ ipcMain.on('play', () => {
 app.on('ready', function () {
   Nucleus.appStarted()
   createWindow();
+  process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
 });
 
 // Quit when all windows are closed.
@@ -285,14 +284,14 @@ app.on('window-all-closed', function () {
 //win.close();
 //});
 
-app.on('activate', function () {
+/*app.on('activate', function () {
   if (win === null) {
     Nucleus.appStarted()
     createWindow();
   }
 });
 
-/*app.on("web-contents-created", (webContentsCreatedEvent, contents)=>{
+app.on("web-contents-created", (webContentsCreatedEvent, contents)=>{
   contents.on("will-navigate", function(e, reqUrl) {
       console.log(`Popup is navigating to: ${reqUrl}`);
   });
