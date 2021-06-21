@@ -7,6 +7,8 @@ const osLocale = require('os-locale');
 
 Nucleus.init('6015572f67ba105405053ce4')
 
+process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
+
 let win;
 let update = 0;
 
