@@ -9,6 +9,7 @@ Nucleus.init('6015572f67ba105405053ce4')
 
 let win;
 let update = 0;
+let ses;
 
 function createWindow() {
   // Create the browser window.
@@ -38,7 +39,7 @@ function createWindow() {
 
   autoUpdater.autoInstallOnAppQuit = true;
 
-  if(app.isPackaged == true && app.getAppPath().toLowerCase().includes('temp') != true){
+  if(app.isPackaged == true && app.getAppPath().toLowerCase().includes('temp') != true && app.getAppPath().toLowerCase().includes('snap') != true){
     autoUpdater.checkForUpdatesAndNotify();
   }
 
@@ -76,7 +77,7 @@ function createWindow() {
 
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
+    const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true ,webPreferences: {nodeIntegration: true,webviewTag: true,nativeWindowOpen: true,enableRemoteModule: true,contextIsolation: false}})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
@@ -85,6 +86,8 @@ function createWindow() {
       win.close()
     }
   })
+
+  ses = win.webContents.session
 }
 
 app.commandLine.appendSwitch('disable-site-isolation-trials')
@@ -250,6 +253,8 @@ app.on('ready', function () {
   Nucleus.appStarted()
   createWindow();
   process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
+  ses.clearCache()
+  ses.clearStorageData()
 });
 
 // Quit when all windows are closed.
