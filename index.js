@@ -76,12 +76,12 @@ function createWindow() {
 
   win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     event.preventDefault()
-    const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
-    //const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
-    win.once('ready-to-show', () => win.show())
-    win.loadURL(url)
+    //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
+    const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
+    //win.once('ready-to-show', () => win.show())
+    //win.loadURL(url)
 
-    /*win.once('ready-to-show', () => win.show())
+    win.once('ready-to-show', () => win.show())
     if (!options.webContents) {
       const loadOptions = {
         httpReferrer: referrer
@@ -93,7 +93,7 @@ function createWindow() {
       }
 
       win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
-    }*/
+    }
     event.newGuest = win
     console.log(url)
     //if (!url.includes('facebook')) {
