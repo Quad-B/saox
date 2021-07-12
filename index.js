@@ -75,7 +75,7 @@ function createWindow() {
   // });
 
   win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
-    event.preventDefault()
+  /*  event.preventDefault()
     //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
     const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
     //win.once('ready-to-show', () => win.show())
@@ -107,7 +107,11 @@ function createWindow() {
         win.close()
       }
       //win.close()
-    //}
+    //}*/
+    if(process.platform != "win32"){
+      event.preventDefault()
+      shell.openExternal(url)
+    }
   })
 }
 
