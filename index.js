@@ -22,7 +22,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInSubFrames: false,
-      nativeWindowOpen: false,
+      nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false
     }
@@ -114,8 +114,12 @@ function createWindow() {
       shell.openExternal(url)
     }
   })*/
+  if(process.platform != "win32"){
+    shell.openExternal(url)
+  }
 }
 
+app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 
 //app.on('activate', () => {
