@@ -21,7 +21,7 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
-      nodeIntegrationInSubFrames: true,
+      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: false,
       enableRemoteModule: true,
       contextIsolation: false
