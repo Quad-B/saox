@@ -22,6 +22,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
+      nodeIntegrationInSubFrames: true,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false
