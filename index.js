@@ -17,8 +17,10 @@ function createWindow() {
     icon: __dirname + '/img/saoxlogo.png',
     width: 800,
     height: 600,
-    autoHideMenuBar: true,
-    frame: false,
+    autoHideMenuBar: false,
+    //autoHideMenuBar: true,
+    //frame: false,
+    frame: true,
     webPreferences: {
       nodeIntegration: true,
       nativeWindowOpen: true,

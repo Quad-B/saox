@@ -77,7 +77,7 @@
 
         const { app, remote, ipcRenderer, shell } = require('electron')
         const { Menu, MenuItem } = remote
-        const customTitlebar = require('custom-electron-titlebar');
+        //const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
         let language = 'en'
         let musicname
@@ -221,11 +221,11 @@
             throw new Error('Bad Hex');
         }
 
-        let MyTitleBar = new customTitlebar.Titlebar({
+        /*let MyTitleBar = new customTitlebar.Titlebar({
             backgroundColor: customTitlebar.Color.fromHex('#444'),
             shadow: true,
             icon: 'img/saoxnew.svg'
-        });
+        });*/
 
         const isMac = process.platform === 'darwin'
 
@@ -532,9 +532,13 @@
             }
         }
 
-        MyTitleBar.updateMenu(menu);
+        /*MyTitleBar.updateMenu(menu);
 
-        MyTitleBar.updateTitle('SAOX');
+        MyTitleBar.updateTitle('SAOX');*/
+
+        Menu.setApplicationMenu(menu)
+
+        document.title = 'SAOX'
 
         setInterval(function () {
 
@@ -894,12 +898,15 @@
                     }
                 }
 
-                MyTitleBar.updateMenu(menu);
+                Menu.setApplicationMenu(menu)
+
+                //MyTitleBar.updateMenu(menu);
 
                 $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
                     function (data, textStatus, jqXHR) {  // success callback
-                        MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
-                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
+                        /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
+                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
+                        document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         let test = hexToRgbA(data)
@@ -1206,9 +1213,13 @@
                         }
                     }
 
-                    MyTitleBar.updateMenu(menu);
+                    /*MyTitleBar.updateMenu(menu);
 
-                    MyTitleBar.updateTitle('SAOX');
+                    MyTitleBar.updateTitle('SAOX');*/
+
+                    Menu.setApplicationMenu(menu)
+
+                    document.title = 'SAOX'
                 }
             }
 
