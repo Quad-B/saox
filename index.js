@@ -129,6 +129,7 @@ function createWindow() {
 app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 app.commandLine.appendSwitch('--disable-web-security')
+app.commandLine.appendSwitch('--allow-cross-origin-auth-prompt')
 
 //app.on('activate', () => {
 // On macOS it's common to re-create a window in the app when the
