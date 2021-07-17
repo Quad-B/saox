@@ -23,6 +23,7 @@ function createWindow() {
     frame: true,
     webPreferences: {
       nodeIntegration: true,
+      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false
@@ -76,7 +77,7 @@ function createWindow() {
   //  console.log(error, cookies)
   // });
 
-  win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
+  //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
     //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
     const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
@@ -114,10 +115,10 @@ function createWindow() {
       event.preventDefault()
       shell.openExternal(url)
     }*/
-    if(process.platform != "win32"){
+  /*  if(process.platform != "win32"){
       shell.openExternal(url)
     }
-  })
+  })*/
 }
 
 app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')
