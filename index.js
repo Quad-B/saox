@@ -23,11 +23,11 @@ function createWindow() {
     frame: true,
     webPreferences: {
       nodeIntegration: true,
+      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      webSecurity: false,
-      plugins: true
+      v8CacheOptions: 'bypassHeatCheck'
     }
   })
 
@@ -78,9 +78,9 @@ function createWindow() {
   //  console.log(error, cookies)
   // });
 
-  win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
+  /*win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
     windowOptions['node-integration'] = false;
-  });
+  });*/
 
   //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
