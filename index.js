@@ -32,7 +32,8 @@ function createWindow() {
   })
 
   // and load the index.html of the app.
-  win.loadFile('test.html')
+  //win.loadFile('test.html')
+  win.loadURL('https://facebook.com')
 
   win.on('closed', function () {
     win = null;
