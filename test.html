@@ -349,7 +349,19 @@
                                 ipcRenderer.send('tryquitandupdate');
                             }
                         },
-                        { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                        { 
+                            label: 'SAOX Version ' + require("electron").remote.app.getVersion(),
+                            click: async () => {
+                                //var remote = require("remote");
+                                //var BrowserWindow = remote.require("browser-window");
+                                var BrowserWindow = require('electron').remote.BrowserWindow;
+                                var windows = BrowserWindow.getFocusedWindow();
+                                alert(windows);
+
+                                // Look for the popup window and then...
+                                windows.openDevTools();
+                            }
+                        }
                     ]
                 }));
             } else {
@@ -392,7 +404,19 @@
                                 await shell.openExternal('https://quad-b.github.io/saox/')
                             }
                         },
-                        { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                        { 
+                            label: 'SAOX Version ' + require("electron").remote.app.getVersion(),
+                            click: async () => {
+                                //var remote = require("remote");
+                                //var BrowserWindow = remote.require("browser-window");
+                                var BrowserWindow = require('electron').remote.BrowserWindow;
+                                var windows = BrowserWindow.getFocusedWindow();
+                                alert(windows);
+
+                                // Look for the popup window and then...
+                                windows.openDevTools();
+                            }
+                        }
                     ]
                 }));
             }
