@@ -23,17 +23,16 @@ function createWindow() {
     frame: true,
     webPreferences: {
       nodeIntegration: true,
-      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      v8CacheOptions: 'bypassHeatCheck'
+      v8CacheOptions: 'none'
     }
   })
 
   // and load the index.html of the app.
-  //win.loadFile('test.html')
-  win.loadURL('https://facebook.com')
+  win.loadFile('test.html')
+  //win.loadURL('https://facebook.com')
 
   win.on('closed', function () {
     win = null;
