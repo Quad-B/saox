@@ -23,7 +23,6 @@ function createWindow() {
     frame: true,
     webPreferences: {
       nodeIntegration: true,
-      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false
@@ -77,7 +76,7 @@ function createWindow() {
   //  console.log(error, cookies)
   // });
 
-  win.webContents.on('new-window', function(event, url, frameName, disposition, windowOptions) {
+  win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
     windowOptions['node-integration'] = false;
   });
 
@@ -127,6 +126,7 @@ function createWindow() {
 
 app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')
 app.commandLine.appendSwitch('disable-site-isolation-trials')
+app.commandLine.appendSwitch('--disable-web-security')
 
 //app.on('activate', () => {
 // On macOS it's common to re-create a window in the app when the
