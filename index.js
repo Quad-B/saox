@@ -77,6 +77,10 @@ function createWindow() {
   //  console.log(error, cookies)
   // });
 
+  win.webContents.on('new-window', function(event, url, frameName, disposition, windowOptions) {
+    windowOptions['node-integration'] = false;
+  });
+
   //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
     //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
