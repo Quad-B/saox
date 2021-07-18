@@ -22,11 +22,13 @@ function createWindow() {
     //frame: false,
     frame: true,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      v8CacheOptions: 'none'
+      v8CacheOptions: 'none',
+      webviewTag: true
     }
   })
 
