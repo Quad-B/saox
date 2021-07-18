@@ -90,7 +90,9 @@ function createWindow() {
       webContents: options.webContents, // use existing webContents if provided
       show: false,
       webPreferences: {
-        nodeIntegration: false
+        nodeIntegration: false,
+        webSecurity: false,
+        plugins: true
       }
     })
     win.once('ready-to-show', () => win.show())
@@ -108,6 +110,31 @@ function createWindow() {
     }
     event.newGuest = win
   })
+
+  /*win.webContents.on('new-window', (event, url) => {
+    event.preventDefault()
+    const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true})
+    win.once('ready-to-show', () => win.show())
+    win.loadURL(url)
+    event.newGuest = win
+    if(!url.includes('facebook')){
+        shell.openExternal(url)
+        win.close()
+    }
+  })
+
+  win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
+    event.preventDefault()
+    const win = new BrowserWindow({
+      show: false,
+      webPreferences: {
+        nodeIntegration: false
+      }
+    })
+    win.once('ready-to-show', () => win.show())
+    win.loadURL(url) // existing webContents will be navigated automatically
+    event.newGuest = win
+  })*/
 
   //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
