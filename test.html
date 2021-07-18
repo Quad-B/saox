@@ -78,13 +78,15 @@
         /*const { app, remote, ipcRenderer, shell } = require('electron')
         const { Menu, MenuItem } = remote*/
         const { app, ipcRenderer, shell } = require('electron')
-        const remote = require('@electron/remote')
+        //const remote = require('@electron/remote')
         const { Menu, MenuItem } = require('@electron/remote')
         //const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
         let language = 'en'
         let musicname
-        let areyouok = remote.app.getAppPath()
+        let areyouok = require('@electron/remote').app.getAppPath()
+
+        console.log(areyouok)
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -300,7 +302,7 @@
                 ]
             }));
 
-            if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+            if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                 menu.append(new MenuItem({
                     label: 'Help',
                     submenu: [
@@ -357,9 +359,8 @@
                             click: async () => {
                                 //var remote = require("remote");
                                 //var BrowserWindow = remote.require("browser-window");
-                                var BrowserWindow = require('electron').remote.BrowserWindow;
+                                var BrowserWindow =  require('@electron/remote').BrowserWindow;
                                 var windows = BrowserWindow.getFocusedWindow();
-                                alert(windows);
 
                                 // Look for the popup window and then...
                                 windows.openDevTools();
@@ -412,9 +413,8 @@
                             click: async () => {
                                 //var remote = require("remote");
                                 //var BrowserWindow = remote.require("browser-window");
-                                var BrowserWindow = require('electron').remote.BrowserWindow;
+                                var BrowserWindow =  require('@electron/remote').BrowserWindow;
                                 var windows = BrowserWindow.getFocusedWindow();
-                                alert(windows);
 
                                 // Look for the popup window and then...
                                 windows.openDevTools();
@@ -458,7 +458,7 @@
                 ]
             }));
 
-            if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+            if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                 menu.append(new MenuItem({
                     label: 'ช่วยเหลือ',
                     submenu: [
@@ -673,7 +673,7 @@
                         ]
                     }));
 
-                    if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+                    if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                         menu.append(new MenuItem({
                             label: 'Help',
                             submenu: [
@@ -832,7 +832,7 @@
                         ]
                     }));
 
-                    if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+                    if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                         menu.append(new MenuItem({
                             label: 'ช่วยเหลือ',
                             submenu: [
@@ -1005,7 +1005,7 @@
                             ]
                         }));
 
-                        if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+                        if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                             menu.append(new MenuItem({
                                 label: 'Help',
                                 submenu: [
@@ -1139,7 +1139,7 @@
                             ]
                         }));
 
-                        if (remote.app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
+                        if (require('@electron/remote').app.isPackaged == true && (areyouok.toLowerCase().includes('temp') != true || areyouok.toLowerCase().includes('snap') != true)) {
                             menu.append(new MenuItem({
                                 label: 'ช่วยเหลือ',
                                 submenu: [
