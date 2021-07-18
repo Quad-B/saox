@@ -22,9 +22,9 @@ function createWindow() {
     //frame: false,
     frame: true,
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       nodeIntegrationInSubFrames: false,
-      nativeWindowOpen: true,
+      nativeWindowOpen: false,
       enableRemoteModule: true,
       contextIsolation: false,
       v8CacheOptions: 'none',
