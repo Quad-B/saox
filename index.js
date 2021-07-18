@@ -110,7 +110,7 @@ function createWindow() {
   })*/
 
   win.webContents.on('new-window', (event, url) => {
-    event.preventDefault()
+    //event.preventDefault()
     const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true,webPreferences: {nodeIntegration: false}})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
