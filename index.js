@@ -84,6 +84,31 @@ function createWindow() {
     windowOptions['node-integration'] = false;
   });*/
 
+  win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
+    event.preventDefault()
+    const win = new BrowserWindow({
+      webContents: options.webContents, // use existing webContents if provided
+      show: false,
+      webPreferences: {
+        nodeIntegration: false
+      }
+    })
+    win.once('ready-to-show', () => win.show())
+    if (!options.webContents) {
+      const loadOptions = {
+        httpReferrer: referrer
+      }
+      if (postBody != null) {
+        const { data, contentType, boundary } = postBody
+        loadOptions.postData = postBody.data
+        loadOptions.extraHeaders = `content-type: ${contentType}; boundary=${boundary}`
+      }
+  
+      win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
+    }
+    event.newGuest = win
+  })
+
   //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
     //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
