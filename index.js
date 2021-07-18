@@ -5,6 +5,8 @@ const { autoUpdater } = require("electron-updater");
 const Nucleus = require('nucleus-nodejs');
 const osLocale = require('os-locale');
 
+require('@electron/remote/main').initialize()
+
 Nucleus.init('6015572f67ba105405053ce4')
 
 let win;
@@ -23,11 +25,9 @@ function createWindow() {
     frame: true,
     webPreferences: {
       nodeIntegration: true,
-      nodeIntegrationInSubFrames: false,
       nativeWindowOpen: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      v8CacheOptions: 'none',
       webviewTag: true
     }
   })
@@ -84,7 +84,7 @@ function createWindow() {
     windowOptions['node-integration'] = false;
   });*/
 
-  win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
+  /*win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
     event.preventDefault()
     const win = new BrowserWindow({
       webContents: options.webContents, // use existing webContents if provided
@@ -107,7 +107,7 @@ function createWindow() {
       win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
     }
     event.newGuest = win
-  })
+  })*/
 
   /*win.webContents.on('new-window', (event, url) => {
     event.preventDefault()

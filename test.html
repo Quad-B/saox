@@ -48,7 +48,7 @@
 
 <body style="margin:0px;padding:0px;overflow:hidden">
 
-    <iframe src="https://www.joox.com/th/login" id="iframe" frameborder="0" onload="updatedl()"
+    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onload="updatedl()"
         style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"
         height="100%" width="100%">
     </iframe>
@@ -75,8 +75,11 @@
 
     <script>
 
-        const { app, remote, ipcRenderer, shell } = require('electron')
-        const { Menu, MenuItem } = remote
+        /*const { app, remote, ipcRenderer, shell } = require('electron')
+        const { Menu, MenuItem } = remote*/
+        const { app, ipcRenderer, shell } = require('electron')
+        const remote = require('@electron/remote')
+        const { Menu, MenuItem } = require('@electron/remote')
         //const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
         let language = 'en'
@@ -350,7 +353,7 @@
                             }
                         },
                         { 
-                            label: 'SAOX Version ' + require("electron").remote.app.getVersion(),
+                            label: 'SAOX Version ' + require('@electron/remote').app.getVersion(),
                             click: async () => {
                                 //var remote = require("remote");
                                 //var BrowserWindow = remote.require("browser-window");
@@ -405,7 +408,7 @@
                             }
                         },
                         { 
-                            label: 'SAOX Version ' + require("electron").remote.app.getVersion(),
+                            label: 'SAOX Version ' + require('@electron/remote').app.getVersion(),
                             click: async () => {
                                 //var remote = require("remote");
                                 //var BrowserWindow = remote.require("browser-window");
@@ -507,7 +510,7 @@
                                 ipcRenderer.send('tryquitandupdate');
                             }
                         },
-                        { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                        { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                     ]
                 }));
             } else {
@@ -550,7 +553,7 @@
                                 await shell.openExternal('https://quad-b.github.io/saox/')
                             }
                         },
-                        { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                        { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                     ]
                 }));
             }
@@ -722,7 +725,7 @@
                                         ipcRenderer.send('tryquitandupdate');
                                     }
                                 },
-                                { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
                             ]
                         }));
                     } else {
@@ -765,7 +768,7 @@
                                         await shell.openExternal('https://quad-b.github.io/saox/')
                                     }
                                 },
-                                { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
                             ]
                         }));
                     }
@@ -877,7 +880,7 @@
                                         ipcRenderer.send('tryquitandupdate');
                                     }
                                 },
-                                { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                             ]
                         }));
                     } else {
@@ -916,7 +919,7 @@
                                         await shell.openExternal('https://quad-b.github.io/saox/')
                                     }
                                 },
-                                { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                             ]
                         }));
                     }
@@ -1054,7 +1057,7 @@
                                             ipcRenderer.send('tryquitandupdate');
                                         }
                                     },
-                                    { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                    { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
                                 ]
                             }));
                         } else {
@@ -1097,7 +1100,7 @@
                                             await shell.openExternal('https://quad-b.github.io/saox/')
                                         }
                                     },
-                                    { label: 'SAOX Version ' + require("electron").remote.app.getVersion() }
+                                    { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
                                 ]
                             }));
                         }
@@ -1188,7 +1191,7 @@
                                             ipcRenderer.send('tryquitandupdate');
                                         }
                                     },
-                                    { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                    { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                                 ]
                             }));
                         } else {
@@ -1231,7 +1234,7 @@
                                             await shell.openExternal('https://quad-b.github.io/saox/')
                                         }
                                     },
-                                    { label: 'SAOX เวอร์ชั่น ' + require("electron").remote.app.getVersion() }
+                                    { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
                                 ]
                             }));
                         }
