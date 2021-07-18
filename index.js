@@ -84,15 +84,13 @@ function createWindow() {
     windowOptions['node-integration'] = false;
   });*/
 
-  win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
+  /*win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
     event.preventDefault()
     const win = new BrowserWindow({
       webContents: options.webContents, // use existing webContents if provided
       show: false,
       webPreferences: {
-        nodeIntegration: false,
-        webSecurity: false,
-        plugins: true
+        nodeIntegration: false
       }
     })
     win.once('ready-to-show', () => win.show())
@@ -109,11 +107,11 @@ function createWindow() {
       win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
     }
     event.newGuest = win
-  })
+  })*/
 
-  /*win.webContents.on('new-window', (event, url) => {
+  win.webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true})
+    const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true,webPreferences: {nodeIntegration: false}})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
     event.newGuest = win
@@ -123,7 +121,7 @@ function createWindow() {
     }
   })
 
-  win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
+  /*win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
     event.preventDefault()
     const win = new BrowserWindow({
       show: false,
