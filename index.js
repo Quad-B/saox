@@ -114,7 +114,7 @@ function createWindow() {
     const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true,webPreferences: {nodeIntegration: false}})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
-    event.newGuest = win
+    //event.newGuest = win
     if(!url.includes('facebook')){
         shell.openExternal(url)
         win.close()
