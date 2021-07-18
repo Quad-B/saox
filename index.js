@@ -28,7 +28,7 @@ function createWindow() {
       enableRemoteModule: true,
       contextIsolation: false,
       v8CacheOptions: 'none',
-      webviewTag: true
+      webviewTag: truehttps://www.joox.com/th/login
     }
   })
 
@@ -109,17 +109,17 @@ function createWindow() {
     event.newGuest = win
   })*/
 
-  win.webContents.on('new-window', (event, url) => {
-    //event.preventDefault()
+  /*win.webContents.on('new-window', (event, url) => {
+    event.preventDefault()
     const win = new BrowserWindow({icon: __dirname + '/img/saoxlogo.png',show: false,autoHideMenuBar: true,webPreferences: {nodeIntegration: false}})
     win.once('ready-to-show', () => win.show())
     win.loadURL(url)
-    //event.newGuest = win
+    event.newGuest = win
     if(!url.includes('facebook')){
         shell.openExternal(url)
         win.close()
     }
-  })
+  })*/
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
     event.preventDefault()
