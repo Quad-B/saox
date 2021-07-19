@@ -134,7 +134,7 @@ function createWindow() {
     event.newGuest = win
   })*/
 
-  //win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
+  win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
     /*event.preventDefault()
     //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
     const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
@@ -154,28 +154,28 @@ function createWindow() {
 
       win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
     }
-    event.newGuest = win
+    event.newGuest = win*/
     console.log(url)
     //if (!url.includes('facebook')) {
       if(url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))){
-        //event.preventDefault()
+        event.preventDefault()
         shell.openExternal(url)
-        win.close()
+        //win.close()
       } else if(!url.includes('facebook')) {
-        //event.preventDefault()
+        event.preventDefault()
         shell.openExternal(url)
-        win.close()
+        //win.close()
       }
       //win.close()
     //}
-    if(process.platform != "win32"){
+    /*if(process.platform != "win32"){
       event.preventDefault()
       shell.openExternal(url)
-    }*/
-  /*  if(process.platform != "win32"){
-      shell.openExternal(url)
     }
-  })*/
+    if(process.platform != "win32"){
+      shell.openExternal(url)
+    }*/
+  })
 }
 
 //app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')

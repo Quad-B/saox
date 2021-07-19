@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.7.59",
+  "version": "2.7.60",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -20,21 +20,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/boyphongsakorn/saox.git"
+    "url": "https://github.com/quad-b/saox.git"
   },
   "keywords": [
     "Music Player App"
   ],
-  "author": "BoyPhongsakorn",
+  "author": "Quad-B",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/boyphongsakorn/saox/issues"
+    "url": "https://github.com/quad-b/saox/issues"
   },
   "build": {
     "productName": "saox",
-    "appId": "com.boyphongsakorn.saox",
+    "appId": "com.quadb.saox",
     "artifactName": "${productName}.${ext}",
-    "copyright": "copyright © 2019 Quad B Software",
+    "copyright": "copyright © 2021 Quad B Software",
     "win": {
       "target": [
         "nsis",
@@ -76,7 +76,7 @@
     "grade": "stable",
     "summary": "Unofficial JOOX Web App"
   },
-  "homepage": "https://github.com/boyphongsakorn/saox#readme",
+  "homepage": "https://github.com/quad-b/saox#readme",
   "dependencies": {
     "@electron/remote": "^1.2.0",
     "electron-updater": "^4.4.1",

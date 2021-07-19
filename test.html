@@ -623,11 +623,11 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
-                    //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+                    //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
 
                     menu.append(new MenuItem({
                         label: 'File',
@@ -636,7 +636,7 @@
                                 label: 'Watch This Music Video on YouTube',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt)
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D')
                                 }
                             },
                             {
@@ -780,11 +780,11 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
-                    //iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+                    //iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
 
                     menu.append(new MenuItem({
                         label: 'เมนูหลัก',
@@ -792,13 +792,13 @@
                             {
                                 label: 'ดู เอ็มวี เพลงนี้',
                                 click: async () => {
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt)
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D')
                                 }
                             },
                             {
                                 label: 'ดาว์นโหลด เพลงนี้',
                                 click: async () => {
-                                    await shell.openExternal('https://mp3freefree.com/' + nearart + elmnt + '.html')
+                                    await shell.openExternal('https://mp3freefree.com/' + encodeURI(nearart.replace("?", "")) + encodeURI(elmnt.replace("?", "")) + '.html')
                                 }
                             },
                             {
