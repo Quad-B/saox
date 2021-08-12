@@ -103,21 +103,6 @@
             console.log(data.foo);
         });*/
 
-        storage.get('customcolor', function(error, data) {
-            if (error) throw error;
-
-            //console.log(data.foo);
-
-            colorcustom = data.color
-
-            if (document.title == 'SAOX') {
-                updatedl('notok')
-            } else {
-                updatedl('ok')
-            }
-
-        });
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -318,6 +303,27 @@
                 ipcRenderer.send('play');
             }
         }
+
+        var data = storage.getSync('customcolor');
+        if(data != undefined) {
+            colorcustom = data.color;
+        }
+        //alert(data.color);
+
+        /*storage.get('customcolor', function(error, data) {
+            if (error) throw error;
+
+            //console.log(data.foo);
+
+            colorcustom = data.color
+
+            if (document.title == 'SAOX') {
+                updatedl('notok')
+            } else {
+                updatedl('ok')
+            }
+
+        });*/
 
         const menu = new Menu();
 
@@ -797,7 +803,7 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
@@ -810,7 +816,7 @@
                                 label: 'Watch This Music Video on YouTube',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D')
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D')
                                 }
                             },
                             {
