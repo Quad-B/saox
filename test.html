@@ -89,6 +89,35 @@
 
         console.log(areyouok)
 
+        const os = require('os');
+        const storage = require('electron-json-storage');
+        storage.setDataPath(os.tmpdir());
+
+        /*storage.set('foobar', { foo: 'bar' }, function(error) {
+            if (error) throw error;
+        });
+
+        storage.get('foobar', function(error, data) {
+            if (error) throw error;
+
+            console.log(data.foo);
+        });*/
+
+        storage.get('customcolor', function(error, data) {
+            if (error) throw error;
+
+            //console.log(data.foo);
+
+            colorcustom = data.color
+
+            if (document.title == 'SAOX') {
+                updatedl('notok')
+            } else {
+                updatedl('ok')
+            }
+
+        });
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -201,9 +230,19 @@
             console.log(menuItem.label)
             if (menuItem.label == 'Sync by Music thumbnail' || menuItem.label == 'ซิงค์ตามภาพขนาดย่อของเพลง') {
                 colorcustom = 'sync'
+
+                storage.set('customcolor', { color: 'sync' }, function(error) {
+                    if (error) throw error;
+                });
+
                 console.log('ok')
             } else {
                 colorcustom = 'dark'
+
+                storage.set('customcolor', { color: 'dark' }, function(error) {
+                    if (error) throw error;
+                });
+
                 console.log('ok')
             }
             if (document.title == 'SAOX') {
@@ -295,46 +334,91 @@
                 ]
             }));
 
-            menu.append(new MenuItem({
-                label: 'Settings',
-                submenu: [
-                    {
-                        label: 'Select Languages',
-                        submenu: [
-                            {
-                                label: 'Thai',
-                                type: 'radio',
-                                click: handleClick
-                            },
-                            {
-                                label: 'English',
-                                type: 'radio',
-                                checked: true,
-                                click: handleClick
-                            },
-                            {
-                                label: 'More Soon...'
-                            }
-                        ]
-                    },
-                    {//#111111
-                        label: 'UI/Menu Color',
-                        submenu: [
-                            {
-                                label: 'Sync by Music thumbnail',
-                                type: 'radio',
-                                checked: true,
-                                click: changecolorhandleClick
-                            },
-                            {
-                                label: 'Dark / Default',
-                                type: 'radio',
-                                click: changecolorhandleClick
-                            }
-                        ]
-                    }
-                ]
-            }));
+            if(colorcustom == 'sync'){
+                menu.append(new MenuItem({
+                    label: 'Settings',
+                    submenu: [
+                        {
+                            label: 'Select Languages',
+                            submenu: [
+                                {
+                                    label: 'Thai',
+                                    type: 'radio',
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'English',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'More Soon...'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'UI/Menu Color',
+                            submenu: [
+                                {
+                                    label: 'Sync by Music thumbnail',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: changecolorhandleClick
+                                },
+                                {
+                                    label: 'Dark / Default',
+                                    type: 'radio',
+                                    click: changecolorhandleClick
+                                }
+                            ]
+                        }
+                    ]
+                }));
+            }else{
+                menu.append(new MenuItem({
+                    label: 'Settings',
+                    submenu: [
+                        {
+                            label: 'Select Languages',
+                            submenu: [
+                                {
+                                    label: 'Thai',
+                                    type: 'radio',
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'English',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'More Soon...'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'UI/Menu Color',
+                            submenu: [
+                                {
+                                    label: 'Sync by Music thumbnail',
+                                    type: 'radio',
+                                    click: changecolorhandleClick
+                                },
+                                {
+                                    label: 'Dark / Default',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: changecolorhandleClick
+                                }
+                            ]
+                        }
+                    ]
+                }));
+            }
+
+            
 
             if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                 menu.append(new MenuItem({
@@ -470,43 +554,83 @@
                 ]
             }));
 
-            menu.append(new MenuItem({
-                label: 'ตั้งค่า',
-                submenu: [
-                    {
-                        label: 'ภาษา',
-                        submenu: [
-                            {
-                                label: 'ไทย',
-                                type: 'radio',
-                                checked: true,
-                                click: handleClick
-                            },
-                            {
-                                label: 'อังกฤษ',
-                                type: 'radio',
-                                click: handleClick
-                            }
-                        ]
-                    },
-                    {//#111111
-                        label: 'สีของเมนู',
-                        submenu: [
-                            {
-                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
-                                type: 'radio',
-                                checked: true,
-                                click: changecolorhandleClick
-                            },
-                            {
-                                label: 'สีดำ',
-                                type: 'radio',
-                                click: changecolorhandleClick
-                            }
-                        ]
-                    }
-                ]
-            }));
+            if(colorcustom == 'sync'){
+                menu.append(new MenuItem({
+                    label: 'ตั้งค่า',
+                    submenu: [
+                        {
+                            label: 'ภาษา',
+                            submenu: [
+                                {
+                                    label: 'ไทย',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'อังกฤษ',
+                                    type: 'radio',
+                                    click: handleClick
+                                }
+                            ]
+                        },
+                        {//#111111
+                            label: 'สีของเมนู',
+                            submenu: [
+                                {
+                                    label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: changecolorhandleClick
+                                },
+                                {
+                                    label: 'สีดำ',
+                                    type: 'radio',
+                                    click: changecolorhandleClick
+                                }
+                            ]
+                        }
+                    ]
+                }));
+            }else{
+                menu.append(new MenuItem({
+                    label: 'ตั้งค่า',
+                    submenu: [
+                        {
+                            label: 'ภาษา',
+                            submenu: [
+                                {
+                                    label: 'ไทย',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: handleClick
+                                },
+                                {
+                                    label: 'อังกฤษ',
+                                    type: 'radio',
+                                    click: handleClick
+                                }
+                            ]
+                        },
+                        {//#111111
+                            label: 'สีของเมนู',
+                            submenu: [
+                                {
+                                    label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                    type: 'radio',
+                                    click: changecolorhandleClick
+                                },
+                                {
+                                    label: 'สีดำ',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: changecolorhandleClick
+                                }
+                            ]
+                        }
+                    ]
+                }));
+            }
 
             if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                 menu.append(new MenuItem({
@@ -698,46 +822,89 @@
                         ]
                     }));
 
-                    menu.append(new MenuItem({
-                        label: 'Settings',
-                        submenu: [
-                            {
-                                label: 'Select Languages',
-                                submenu: [
-                                    {
-                                        label: 'Thai',
-                                        type: 'radio',
-                                        click: handleClick
-                                    },
-                                    {
-                                        label: 'English',
-                                        type: 'radio',
-                                        checked: true,
-                                        click: handleClick
-                                    },
-                                    {
-                                        label: 'More Soon...'
-                                    }
-                                ]
-                            },
-                            {//#111111
-                                label: 'UI/Menu Color',
-                                submenu: [
-                                    {
-                                        label: 'Sync by Music thumbnail',
-                                        type: 'radio',
-                                        checked: true,
-                                        click: changecolorhandleClick
-                                    },
-                                    {
-                                        label: 'Dark / Default',
-                                        type: 'radio',
-                                        click: changecolorhandleClick
-                                    }
-                                ]
-                            }
-                        ]
-                    }));
+                    if(colorcustom == 'sync'){
+                        menu.append(new MenuItem({
+                            label: 'Settings',
+                            submenu: [
+                                {
+                                    label: 'Select Languages',
+                                    submenu: [
+                                        {
+                                            label: 'Thai',
+                                            type: 'radio',
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'English',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'More Soon...'
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: 'UI/Menu Color',
+                                    submenu: [
+                                        {
+                                            label: 'Sync by Music thumbnail',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'Dark / Default',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
+                                        }
+                                    ]
+                                }
+                            ]
+                        }));
+                    }else{
+                        menu.append(new MenuItem({
+                            label: 'Settings',
+                            submenu: [
+                                {
+                                    label: 'Select Languages',
+                                    submenu: [
+                                        {
+                                            label: 'Thai',
+                                            type: 'radio',
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'English',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'More Soon...'
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: 'UI/Menu Color',
+                                    submenu: [
+                                        {
+                                            label: 'Sync by Music thumbnail',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'Dark / Default',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        }
+                                    ]
+                                }
+                            ]
+                        }));
+                    }
 
                     if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                         menu.append(new MenuItem({
@@ -876,43 +1043,83 @@
                         ]
                     }));
 
-                    menu.append(new MenuItem({
-                        label: 'ตั้งค่า',
-                        submenu: [
-                            {
-                                label: 'ภาษา',
-                                submenu: [
-                                    {
-                                        label: 'ไทย',
-                                        type: 'radio',
-                                        checked: true,
-                                        click: handleClick
-                                    },
-                                    {
-                                        label: 'อังกฤษ',
-                                        type: 'radio',
-                                        click: handleClick
-                                    }
-                                ]
-                            },
-                            {//#111111
-                                label: 'สีของเมนู',
-                                submenu: [
-                                    {
-                                        label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
-                                        type: 'radio',
-                                        checked: true,
-                                        click: changecolorhandleClick
-                                    },
-                                    {
-                                        label: 'สีดำ',
-                                        type: 'radio',
-                                        click: changecolorhandleClick
-                                    }
-                                ]
-                            }
-                        ]
-                    }));
+                    if(colorcustom == 'sync'){
+                        menu.append(new MenuItem({
+                            label: 'ตั้งค่า',
+                            submenu: [
+                                {
+                                    label: 'ภาษา',
+                                    submenu: [
+                                        {
+                                            label: 'ไทย',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'อังกฤษ',
+                                            type: 'radio',
+                                            click: handleClick
+                                        }
+                                    ]
+                                },
+                                {//#111111
+                                    label: 'สีของเมนู',
+                                    submenu: [
+                                        {
+                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'สีดำ',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
+                                        }
+                                    ]
+                                }
+                            ]
+                        }));
+                    }else{
+                        menu.append(new MenuItem({
+                            label: 'ตั้งค่า',
+                            submenu: [
+                                {
+                                    label: 'ภาษา',
+                                    submenu: [
+                                        {
+                                            label: 'ไทย',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: handleClick
+                                        },
+                                        {
+                                            label: 'อังกฤษ',
+                                            type: 'radio',
+                                            click: handleClick
+                                        }
+                                    ]
+                                },
+                                {//#111111
+                                    label: 'สีของเมนู',
+                                    submenu: [
+                                        {
+                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'สีดำ',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        }
+                                    ]
+                                }
+                            ]
+                        }));
+                    }
 
                     if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                         menu.append(new MenuItem({
@@ -1074,46 +1281,89 @@
                             ]
                         }));
 
-                        menu.append(new MenuItem({
-                            label: 'Settings',
-                            submenu: [
-                                {
-                                    label: 'Select Languages',
-                                    submenu: [
-                                        {
-                                            label: 'Thai',
-                                            type: 'radio',
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'English',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'More Soon...'
-                                        }
-                                    ]
-                                },
-                                {//#111111
-                                    label: 'UI/Menu Color',
-                                    submenu: [
-                                        {
-                                            label: 'Sync by Music thumbnail',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'Dark / Default',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
+                        if(colorcustom == 'sync'){
+                            menu.append(new MenuItem({
+                                label: 'Settings',
+                                submenu: [
+                                    {
+                                        label: 'Select Languages',
+                                        submenu: [
+                                            {
+                                                label: 'Thai',
+                                                type: 'radio',
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'English',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'More Soon...'
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'UI/Menu Color',
+                                        submenu: [
+                                            {
+                                                label: 'Sync by Music thumbnail',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'Dark / Default',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }else{
+                            menu.append(new MenuItem({
+                                label: 'Settings',
+                                submenu: [
+                                    {
+                                        label: 'Select Languages',
+                                        submenu: [
+                                            {
+                                                label: 'Thai',
+                                                type: 'radio',
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'English',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'More Soon...'
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'UI/Menu Color',
+                                        submenu: [
+                                            {
+                                                label: 'Sync by Music thumbnail',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'Dark / Default',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }
 
                         if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                             menu.append(new MenuItem({
@@ -1227,43 +1477,83 @@
                             ]
                         }));
 
-                        menu.append(new MenuItem({
-                            label: 'ตั้งค่า',
-                            submenu: [
-                                {
-                                    label: 'ภาษา',
-                                    submenu: [
-                                        {
-                                            label: 'ไทย',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'อังกฤษ',
-                                            type: 'radio',
-                                            click: handleClick
-                                        }
-                                    ]
-                                },
-                                {//#111111
-                                    label: 'สีของเมนู',
-                                    submenu: [
-                                        {
-                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'สีดำ',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
+                        if(colorcustom == 'sync'){
+                            menu.append(new MenuItem({
+                                label: 'ตั้งค่า',
+                                submenu: [
+                                    {
+                                        label: 'ภาษา',
+                                        submenu: [
+                                            {
+                                                label: 'ไทย',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'อังกฤษ',
+                                                type: 'radio',
+                                                click: handleClick
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'สีของเมนู',
+                                        submenu: [
+                                            {
+                                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'สีดำ',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }else{
+                            menu.append(new MenuItem({
+                                label: 'ตั้งค่า',
+                                submenu: [
+                                    {
+                                        label: 'ภาษา',
+                                        submenu: [
+                                            {
+                                                label: 'ไทย',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'อังกฤษ',
+                                                type: 'radio',
+                                                click: handleClick
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'สีของเมนู',
+                                        submenu: [
+                                            {
+                                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'สีดำ',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }
 
                         if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                             menu.append(new MenuItem({
