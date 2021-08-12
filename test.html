@@ -82,6 +82,7 @@
         const { Menu, MenuItem } = require('@electron/remote')
         //const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
+        let colorcustom = 'sync'
         let language = 'en'
         let musicname
         let areyouok = require('@electron/remote').app.getAppPath()
@@ -170,31 +171,48 @@
         //notification.classList.remove('hidden');
         setTimeout(function(){ notification.classList.add('hidden'); }, 7500);
         //notification.classList.add('hidden');
-    });
+        });
 
-    ipcRenderer.on('update_downloaded', () => {
-        setTimeout(function(){ notification.classList.remove('hidden'); }, 10000);
-        //closeButton.classList.add('hidden');
-        //updateButton.classList.add('hidden');
-        ipcRenderer.removeAllListeners('update_downloaded');
-        //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
-        message.innerHTML = 'ถ้าคุณเห็นข้อความนี้ <br> แสดงว่าการอัพเดตไม่สำเร็จ <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป'
-        //restartButton.classList.remove('hidden');
-        //notification.classList.remove('hidden');
-        setTimeout(function(){ notification.classList.add('hidden'); }, 10000);
-    });
+        ipcRenderer.on('update_downloaded', () => {
+            setTimeout(function(){ notification.classList.remove('hidden'); }, 10000);
+            //closeButton.classList.add('hidden');
+            //updateButton.classList.add('hidden');
+            ipcRenderer.removeAllListeners('update_downloaded');
+            //message.innerText = 'อัพเดตเสร็จแล้ว. ถ้าต้องการอัพเดตจำเป็นต้องปิดโปรแกรม อัพเดตตอนนี้เลยไหม?';
+            message.innerHTML = 'ถ้าคุณเห็นข้อความนี้ <br> แสดงว่าการอัพเดตไม่สำเร็จ <br> โปรแกรมจะทำการอัพเดตในครั้งถัดไป'
+            //restartButton.classList.remove('hidden');
+            //notification.classList.remove('hidden');
+            setTimeout(function(){ notification.classList.add('hidden'); }, 10000);
+        });
 
-    function closeNotification() {
-        notification.classList.add('hidden');
-    }
- 
-    function restartApp() {
-        ipcRenderer.send('restart_app');
-    }
+        function closeNotification() {
+            notification.classList.add('hidden');
+        }
+    
+        function restartApp() {
+            ipcRenderer.send('restart_app');
+        }
 
-    function updateApp() {
-        ipcRenderer.send('update_app');
-    }*/
+        function updateApp() {
+            ipcRenderer.send('update_app');
+        }*/
+
+        const changecolorhandleClick = (menuItem, browserWindow, event) => {
+            console.log(menuItem.label)
+            if (menuItem.label == 'Sync by Music thumbnail' || menuItem.label == 'ซิงค์ตามภาพขนาดย่อของเพลง') {
+                colorcustom = 'sync'
+                console.log('ok')
+            } else {
+                colorcustom = 'dark'
+                console.log('ok')
+            }
+            if (document.title == 'SAOX') {
+                updatedl('notok')
+            } else {
+                updatedl('ok')
+            }
+            console.log('ok')
+        }
 
         const handleClick = (menuItem, browserWindow, event) => {
             console.log(menuItem.label)
@@ -296,6 +314,22 @@
                             },
                             {
                                 label: 'More Soon...'
+                            }
+                        ]
+                    },
+                    {//#111111
+                        label: 'UI/Menu Color',
+                        submenu: [
+                            {
+                                label: 'Sync by Music thumbnail',
+                                type: 'radio',
+                                checked: true,
+                                click: changecolorhandleClick
+                            },
+                            {
+                                label: 'Dark / Default',
+                                type: 'radio',
+                                click: changecolorhandleClick
                             }
                         ]
                     }
@@ -452,6 +486,22 @@
                                 label: 'อังกฤษ',
                                 type: 'radio',
                                 click: handleClick
+                            }
+                        ]
+                    },
+                    {//#111111
+                        label: 'สีของเมนู',
+                        submenu: [
+                            {
+                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                type: 'radio',
+                                checked: true,
+                                click: changecolorhandleClick
+                            },
+                            {
+                                label: 'สีดำ',
+                                type: 'radio',
+                                click: changecolorhandleClick
                             }
                         ]
                     }
@@ -669,6 +719,22 @@
                                         label: 'More Soon...'
                                     }
                                 ]
+                            },
+                            {//#111111
+                                label: 'UI/Menu Color',
+                                submenu: [
+                                    {
+                                        label: 'Sync by Music thumbnail',
+                                        type: 'radio',
+                                        checked: true,
+                                        click: changecolorhandleClick
+                                    },
+                                    {
+                                        label: 'Dark / Default',
+                                        type: 'radio',
+                                        click: changecolorhandleClick
+                                    }
+                                ]
                             }
                         ]
                     }));
@@ -828,6 +894,22 @@
                                         click: handleClick
                                     }
                                 ]
+                            },
+                            {//#111111
+                                label: 'สีของเมนู',
+                                submenu: [
+                                    {
+                                        label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                        type: 'radio',
+                                        checked: true,
+                                        click: changecolorhandleClick
+                                    },
+                                    {
+                                        label: 'สีดำ',
+                                        type: 'radio',
+                                        click: changecolorhandleClick
+                                    }
+                                ]
                             }
                         ]
                     }));
@@ -936,15 +1018,27 @@
                         document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
-                        let test = hexToRgbA(data)
-                        let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
-                        //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
-                        var frm = frames['iframe'].contentWindow.document;
-                        var otherhead = frm.getElementsByTagName("head")[0];
-                        var link = frm.createElement("style");
-                        link.setAttribute("type", "text/css");
-                        link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
-                        otherhead.appendChild(link);
+                        if(colorcustom == 'sync'){
+                            let test = hexToRgbA(data)
+                            let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
+                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                            var frm = frames['iframe'].contentWindow.document;
+                            var otherhead = frm.getElementsByTagName("head")[0];
+                            var link = frm.createElement("style");
+                            link.setAttribute("type", "text/css");
+                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
+                            otherhead.appendChild(link);
+                        }else{
+                            let test = hexToRgbA('#111111')
+                            let okithing = test.replace(/[\d\.]+\)$/g, "1")
+                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                            var frm = frames['iframe'].contentWindow.document;
+                            var otherhead = frm.getElementsByTagName("head")[0];
+                            var link = frm.createElement("style");
+                            link.setAttribute("type", "text/css");
+                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
+                            otherhead.appendChild(link);
+                        }
                         /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
@@ -999,6 +1093,22 @@
                                         },
                                         {
                                             label: 'More Soon...'
+                                        }
+                                    ]
+                                },
+                                {//#111111
+                                    label: 'UI/Menu Color',
+                                    submenu: [
+                                        {
+                                            label: 'Sync by Music thumbnail',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'Dark / Default',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
                                         }
                                     ]
                                 }
@@ -1133,6 +1243,22 @@
                                             label: 'อังกฤษ',
                                             type: 'radio',
                                             click: handleClick
+                                        }
+                                    ]
+                                },
+                                {//#111111
+                                    label: 'สีของเมนู',
+                                    submenu: [
+                                        {
+                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                            type: 'radio',
+                                            checked: true,
+                                            click: changecolorhandleClick
+                                        },
+                                        {
+                                            label: 'สีดำ',
+                                            type: 'radio',
+                                            click: changecolorhandleClick
                                         }
                                     ]
                                 }

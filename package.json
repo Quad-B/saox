@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.7.61",
+  "version": "2.8.0",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -79,12 +79,12 @@
   "homepage": "https://github.com/quad-b/saox#readme",
   "dependencies": {
     "@electron/remote": "^1.2.1",
-    "electron-updater": "^4.4.3",
+    "electron-updater": "^4.4.5",
     "nucleus-nodejs": "^3.0.8",
     "os-locale": "^5.0.0"
   },
   "devDependencies": {
-    "electron": "^14.0.0-beta.17",
+    "electron": "^14.0.0-beta.20",
     "electron-builder": "^22.9.1"
   }
 }
