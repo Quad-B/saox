@@ -103,41 +103,6 @@
             console.log(data.foo);
         });*/
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            console.log('Geolocation is not supported by this browser.')
-        }
-
-        function showPosition(position) {
-
-            $.getJSON("https://api.longdo.com/map/services/address?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude + "&noelevation=1&key=dd60afa68aa84ff6eb5e4da05044eea4", function (json) {
-
-                if (json.country == "ประเทศไทย") {
-                    (async () => {
-                        console.log(await osLocale());
-                        if (await osLocale() == 'th-TH') {
-                            language = 'th'
-                            if (document.title == 'SAOX') {
-                                updatedl('notok')
-                            } else {
-                                updatedl('ok')
-                            }
-                        } else {
-                            language = 'en'
-                            if (document.title == 'SAOX') {
-                                updatedl('notok')
-                            } else {
-                                updatedl('ok')
-                            }
-                        }
-                    })();
-                }
-
-            });
-
-        }
-
         /*const notification = document.getElementById('notification');
         const message = document.getElementById('message');
         const closeButton = document.getElementById('close-button')
@@ -297,10 +262,14 @@
         })
 
         function checkplay() {
-            if (iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0) {
+            try {
+                if (iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0) {
+                    ipcRenderer.send('pause');
+                } else {
+                    ipcRenderer.send('play');
+                }
+            } catch (error) {
                 ipcRenderer.send('pause');
-            } else {
-                ipcRenderer.send('play');
             }
         }
 
@@ -749,7 +718,8 @@
 
         setInterval(function () {
 
-            updatedl()
+            updatedl('notok')
+            console.log('test')
 
         }, 5000);
 
@@ -774,502 +744,553 @@
             };
         };
 
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log('Geolocation is not supported by this browser.')
+        }
+
+        function showPosition(position) {
+
+            $.getJSON("https://api.longdo.com/map/services/address?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude + "&noelevation=1&key=dd60afa68aa84ff6eb5e4da05044eea4", function (json) {
+
+                if (json.country == "ประเทศไทย") {
+                    (async () => {
+                        console.log(await osLocale());
+                        if (await osLocale() == 'th-TH' || await osLocale() == 'th' ) {
+                            language = 'th'
+                            if (document.title == 'SAOX') {
+                                updatedl('notok')
+                            } else {
+                                updatedl('ok')
+                            }
+                        } else {
+                            language = 'en'
+                            if (document.title == 'SAOX') {
+                                updatedl('notok')
+                            } else {
+                                updatedl('ok')
+                            }
+                        }
+                    })();
+                }
+
+            });
+
+        }
+
         function updatedl(ok) {
 
             checkplay()
 
             const menu = new Menu();
+            var elmnt
+            var image
+            var art
 
-            var elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText;
+            if(iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0] != null){
+                elmnt = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText;
+            }
+                
+            if(iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0] != null){
+                image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
+            }
 
-            var image = iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0].src;
+            if(iframe.contentWindow.document.getElementsByClassName("sc-hSdWYo")[0] != null){
+                art = iframe.contentWindow.document.getElementsByClassName("sc-hSdWYo")[0].innerHTML;
+            }
 
-            var art = iframe.contentWindow.document.getElementsByClassName("sc-hSdWYo")[0].innerHTML;
+            if(ok == "notok" && image != null){
+                if(!image.includes("default-album@300.png")){
+                    ok = "ok"
+                }
+            }
 
             //if (elmnt != "" && musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && image.search("default-album@300.png") != "https://cdn2-joox.isanook.com/static/di/default/default-album@300.png") {
-            if ((elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) || ok == "ok") {
+            //if ((elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) || ok == "ok") {
+            if (ok == "ok") {
+                if(elmnt != "" && (musicname != iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText && !image.includes("default-album@300.png"))) {
+                    musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
 
-                musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
+                    let nearart = art.replaceAll("</a><a>", ",")
+                    nearart = nearart.replaceAll("<a>", "")
+                    nearart = nearart.replaceAll("</a>", "")
 
-                let nearart = art.replaceAll("</a><a>", ",")
-                nearart = nearart.replaceAll("<a>", "")
-                nearart = nearart.replaceAll("</a>", "")
+                    if (language == 'en') {
+                        try {
+                            iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
+                        } catch (error) {
 
-                if (language == 'en') {
-                    try {
-                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
-                    } catch (error) {
-
-                    }
-                    var div = document.createElement('div');
-                    div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
-                    div.className = 'sc-cvbbAY jRxSQj';
-
-                    iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
-                    //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
-
-                    menu.append(new MenuItem({
-                        label: 'File',
-                        submenu: [
-                            {
-                                label: 'Watch This Music Video on YouTube',
-                                click: async () => {
-                                    const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D')
-                                }
-                            },
-                            {
-                                label: 'Exit/Close',
-                                click: async () => {
-                                    window.close();
-                                }
-                            }
-                        ]
-                    }));
-
-                    if(colorcustom == 'sync'){
-                        menu.append(new MenuItem({
-                            label: 'Settings',
-                            submenu: [
-                                {
-                                    label: 'Select Languages',
-                                    submenu: [
-                                        {
-                                            label: 'Thai',
-                                            type: 'radio',
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'English',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'More Soon...'
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: 'UI/Menu Color',
-                                    submenu: [
-                                        {
-                                            label: 'Sync by Music thumbnail',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'Dark / Default',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
-                    }else{
-                        menu.append(new MenuItem({
-                            label: 'Settings',
-                            submenu: [
-                                {
-                                    label: 'Select Languages',
-                                    submenu: [
-                                        {
-                                            label: 'Thai',
-                                            type: 'radio',
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'English',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'More Soon...'
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: 'UI/Menu Color',
-                                    submenu: [
-                                        {
-                                            label: 'Sync by Music thumbnail',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'Dark / Default',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
-                    }
-
-                    if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
-                        menu.append(new MenuItem({
-                            label: 'Help',
-                            submenu: [
-                                {
-                                    label: 'Follow Us',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'Buy me a ko-fi',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'Report Bug/Issue',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'Discord Support/Report',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'About SAOX',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                {
-                                    label: 'Check for update....',
-                                    click: async () => {
-                                        ipcRenderer.send('checkdamnupdate');
-                                    }
-                                },
-                                {
-                                    label: 'Try to update (Not recommend to use)',
-                                    click: async () => {
-                                        ipcRenderer.send('tryquitandupdate');
-                                    }
-                                },
-                                { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
-                            ]
-                        }));
-                    } else {
-                        menu.append(new MenuItem({
-                            label: 'Help',
-                            submenu: [
-                                {
-                                    label: 'Follow Us',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'Buy me a ko-fi',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'Report Bug/Issue',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'Discord Support/Report',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'About SAOX',
-                                    click: async () => {
-                                        const { shell } = require('electron')
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
-                            ]
-                        }));
-                    }
-                } else {
-                    try {
-                        iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
-                    } catch (error) {
-
-                    }
-                    var div = document.createElement('div');
-                    div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
-                    div.className = 'sc-cvbbAY jRxSQj';
-
-                    iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
-                    //iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
-
-                    menu.append(new MenuItem({
-                        label: 'เมนูหลัก',
-                        submenu: [
-                            {
-                                label: 'ดู เอ็มวี เพลงนี้',
-                                click: async () => {
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D')
-                                }
-                            },
-                            {
-                                label: 'ดาว์นโหลด เพลงนี้',
-                                click: async () => {
-                                    await shell.openExternal('https://mp3freefree.com/' + encodeURI(nearart.replace("?", "")) + encodeURI(elmnt.replace("?", "")) + '.html')
-                                }
-                            },
-                            {
-                                label: 'ปิดโปรแกรม',
-                                click: async () => {
-                                    window.close();
-                                }
-                            }
-                        ]
-                    }));
-
-                    if(colorcustom == 'sync'){
-                        menu.append(new MenuItem({
-                            label: 'ตั้งค่า',
-                            submenu: [
-                                {
-                                    label: 'ภาษา',
-                                    submenu: [
-                                        {
-                                            label: 'ไทย',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'อังกฤษ',
-                                            type: 'radio',
-                                            click: handleClick
-                                        }
-                                    ]
-                                },
-                                {//#111111
-                                    label: 'สีของเมนู',
-                                    submenu: [
-                                        {
-                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'สีดำ',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
-                    }else{
-                        menu.append(new MenuItem({
-                            label: 'ตั้งค่า',
-                            submenu: [
-                                {
-                                    label: 'ภาษา',
-                                    submenu: [
-                                        {
-                                            label: 'ไทย',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: handleClick
-                                        },
-                                        {
-                                            label: 'อังกฤษ',
-                                            type: 'radio',
-                                            click: handleClick
-                                        }
-                                    ]
-                                },
-                                {//#111111
-                                    label: 'สีของเมนู',
-                                    submenu: [
-                                        {
-                                            label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
-                                            type: 'radio',
-                                            click: changecolorhandleClick
-                                        },
-                                        {
-                                            label: 'สีดำ',
-                                            type: 'radio',
-                                            checked: true,
-                                            click: changecolorhandleClick
-                                        }
-                                    ]
-                                }
-                            ]
-                        }));
-                    }
-
-                    if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
-                        menu.append(new MenuItem({
-                            label: 'ช่วยเหลือ',
-                            submenu: [
-                                {
-                                    label: 'ติดตาม เฟสบุ๊ค',
-                                    click: async () => {
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'สนับสนุน',
-                                    click: async () => {
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'แจ้ง Bug',
-                                    click: async () => {
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'เกี่ยวกับ SAOX',
-                                    click: async () => {
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                {
-                                    label: 'ตรวจหาการอัปเดต',
-                                    click: async () => {
-                                        ipcRenderer.send('checkdamnupdate');
-                                    }
-                                },
-                                {
-                                    label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
-                                    click: async () => {
-                                        ipcRenderer.send('tryquitandupdate');
-                                    }
-                                },
-                                { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
-                            ]
-                        }));
-                    } else {
-                        menu.append(new MenuItem({
-                            label: 'ช่วยเหลือ',
-                            submenu: [
-                                {
-                                    label: 'ติดตาม เฟสบุ๊ค',
-                                    click: async () => {
-                                        await shell.openExternal('https://www.facebook.com/QuadBCoder/')
-                                    }
-                                },
-                                {
-                                    label: 'สนับสนุน',
-                                    click: async () => {
-                                        await shell.openExternal('https://ko-fi.com/boyphongsakorn')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'แจ้ง Bug',
-                                    click: async () => {
-                                        await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
-                                    }
-                                },
-                                {
-                                    label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
-                                    click: async () => {
-                                        await shell.openExternal('https://discord.gg/j7xce5hxUf')
-                                    }
-                                },
-                                { type: 'separator' },
-                                {
-                                    label: 'เกี่ยวกับ SAOX',
-                                    click: async () => {
-                                        await shell.openExternal('https://quad-b.github.io/saox/')
-                                    }
-                                },
-                                { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
-                            ]
-                        }));
-                    }
-                }
-
-                Menu.setApplicationMenu(menu)
-
-                //MyTitleBar.updateMenu(menu);
-
-                $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
-                    function (data, textStatus, jqXHR) {  // success callback
-                        /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
-                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
-                        document.title = nearart + ' : ' + elmnt
-                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
-                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
-                        if(colorcustom == 'sync'){
-                            let test = hexToRgbA(data)
-                            let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
-                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
-                            var frm = frames['iframe'].contentWindow.document;
-                            var otherhead = frm.getElementsByTagName("head")[0];
-                            var link = frm.createElement("style");
-                            link.setAttribute("type", "text/css");
-                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
-                            otherhead.appendChild(link);
-                        }else{
-                            let test = hexToRgbA('#111111')
-                            let okithing = test.replace(/[\d\.]+\)$/g, "1")
-                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
-                            var frm = frames['iframe'].contentWindow.document;
-                            var otherhead = frm.getElementsByTagName("head")[0];
-                            var link = frm.createElement("style");
-                            link.setAttribute("type", "text/css");
-                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
-                            otherhead.appendChild(link);
                         }
-                        /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
-                            iframe.contentWindow.document.getElementById('menuzero').style.background = data
-                            iframe.contentWindow.document.getElementById('menuone').style.background = data
-                            iframe.contentWindow.document.getElementById('menuzero').style.borderRadius = '6px'
-                            iframe.contentWindow.document.getElementById('menuone').style.borderRadius = '6px'
-                        } else {
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuzero'
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuone'
-                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
-                        }*/
-                        //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
-                        //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
-                        // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
-                    });
+                        var div = document.createElement('div');
+                        div.id = 'watchonyoutube';
+                        div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                        div.className = 'sc-cvbbAY jRxSQj';
 
+                        iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
+                        //iframe.contentWindow.document.getElementsByClassName("sc-kEYyzF")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>Watch This Music Video On Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+
+                        menu.append(new MenuItem({
+                            label: 'File',
+                            submenu: [
+                                {
+                                    label: 'Watch This Music Video on YouTube',
+                                    click: async () => {
+                                        const { shell } = require('electron')
+                                        await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart +' '+ elmnt + '&sp=CAM%253D')
+                                    }
+                                },
+                                {
+                                    label: 'Exit/Close',
+                                    click: async () => {
+                                        window.close();
+                                    }
+                                }
+                            ]
+                        }));
+
+                        if(colorcustom == 'sync'){
+                            menu.append(new MenuItem({
+                                label: 'Settings',
+                                submenu: [
+                                    {
+                                        label: 'Select Languages',
+                                        submenu: [
+                                            {
+                                                label: 'Thai',
+                                                type: 'radio',
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'English',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'More Soon...'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'UI/Menu Color',
+                                        submenu: [
+                                            {
+                                                label: 'Sync by Music thumbnail',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'Dark / Default',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }else{
+                            menu.append(new MenuItem({
+                                label: 'Settings',
+                                submenu: [
+                                    {
+                                        label: 'Select Languages',
+                                        submenu: [
+                                            {
+                                                label: 'Thai',
+                                                type: 'radio',
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'English',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'More Soon...'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'UI/Menu Color',
+                                        submenu: [
+                                            {
+                                                label: 'Sync by Music thumbnail',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'Dark / Default',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }
+
+                        if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
+                            menu.append(new MenuItem({
+                                label: 'Help',
+                                submenu: [
+                                    {
+                                        label: 'Follow Us',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Buy me a ko-fi',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'Report Bug/Issue',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'Discord Support/Report',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'About SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Check for update....',
+                                        click: async () => {
+                                            ipcRenderer.send('checkdamnupdate');
+                                        }
+                                    },
+                                    {
+                                        label: 'Try to update (Not recommend to use)',
+                                        click: async () => {
+                                            ipcRenderer.send('tryquitandupdate');
+                                        }
+                                    },
+                                    { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
+                                ]
+                            }));
+                        } else {
+                            menu.append(new MenuItem({
+                                label: 'Help',
+                                submenu: [
+                                    {
+                                        label: 'Follow Us',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'Buy me a ko-fi',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'Report Bug/Issue',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'Discord Support/Report',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'About SAOX',
+                                        click: async () => {
+                                            const { shell } = require('electron')
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    { label: 'SAOX Version ' + require('@electron/remote').app.getVersion() }
+                                ]
+                            }));
+                        }
+                    } else {
+                        try {
+                            iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
+                        } catch (error) {
+
+                        }
+                        var div = document.createElement('div');
+                        div.id = 'watchonyoutube';
+                        div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                        div.className = 'sc-cvbbAY jRxSQj';
+
+                        iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
+                        //iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].innerHTML += "<div class=\"sc-cvbbAY jRxSQj\" id=\"watchonyoutube\"><div type=\"mini\" class=\"sc-ckVGcZ fYXjSb\"><a href=\"https://www.youtube.com/results?search_query=" + nearart + elmnt + '&sp=CAM%253D'+"\" target=\"_blank\"><button font-size=\"1.3em\" class=\"jHhvsM\"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src=\"https://boyphongsakorn.github.io/img/output-onlinepngtools.png\"></button></a></div></div>"
+
+                        menu.append(new MenuItem({
+                            label: 'เมนูหลัก',
+                            submenu: [
+                                {
+                                    label: 'ดู เอ็มวี เพลงนี้',
+                                    click: async () => {
+                                        await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + elmnt + '&sp=CAM%253D')
+                                    }
+                                },
+                                {
+                                    label: 'ดาว์นโหลด เพลงนี้',
+                                    click: async () => {
+                                        await shell.openExternal('https://mp3freefree.com/' + encodeURI(nearart.replace("?", "")) + encodeURI(elmnt.replace("?", "")) + '.html')
+                                    }
+                                },
+                                {
+                                    label: 'ปิดโปรแกรม',
+                                    click: async () => {
+                                        window.close();
+                                    }
+                                }
+                            ]
+                        }));
+
+                        if(colorcustom == 'sync'){
+                            menu.append(new MenuItem({
+                                label: 'ตั้งค่า',
+                                submenu: [
+                                    {
+                                        label: 'ภาษา',
+                                        submenu: [
+                                            {
+                                                label: 'ไทย',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'อังกฤษ',
+                                                type: 'radio',
+                                                click: handleClick
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'สีของเมนู',
+                                        submenu: [
+                                            {
+                                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'สีดำ',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }else{
+                            menu.append(new MenuItem({
+                                label: 'ตั้งค่า',
+                                submenu: [
+                                    {
+                                        label: 'ภาษา',
+                                        submenu: [
+                                            {
+                                                label: 'ไทย',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: handleClick
+                                            },
+                                            {
+                                                label: 'อังกฤษ',
+                                                type: 'radio',
+                                                click: handleClick
+                                            }
+                                        ]
+                                    },
+                                    {//#111111
+                                        label: 'สีของเมนู',
+                                        submenu: [
+                                            {
+                                                label: 'ซิงค์ตามภาพขนาดย่อของเพลง',
+                                                type: 'radio',
+                                                click: changecolorhandleClick
+                                            },
+                                            {
+                                                label: 'สีดำ',
+                                                type: 'radio',
+                                                checked: true,
+                                                click: changecolorhandleClick
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }));
+                        }
+
+                        if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
+                            menu.append(new MenuItem({
+                                label: 'ช่วยเหลือ',
+                                submenu: [
+                                    {
+                                        label: 'ติดตาม เฟสบุ๊ค',
+                                        click: async () => {
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'สนับสนุน',
+                                        click: async () => {
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'แจ้ง Bug',
+                                        click: async () => {
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'เกี่ยวกับ SAOX',
+                                        click: async () => {
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    {
+                                        label: 'ตรวจหาการอัปเดต',
+                                        click: async () => {
+                                            ipcRenderer.send('checkdamnupdate');
+                                        }
+                                    },
+                                    {
+                                        label: 'ลองปิดโปรแกรมแล้วอัพเดต (ไม่แนะนำให้ใช้)',
+                                        click: async () => {
+                                            ipcRenderer.send('tryquitandupdate');
+                                        }
+                                    },
+                                    { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
+                                ]
+                            }));
+                        } else {
+                            menu.append(new MenuItem({
+                                label: 'ช่วยเหลือ',
+                                submenu: [
+                                    {
+                                        label: 'ติดตาม เฟสบุ๊ค',
+                                        click: async () => {
+                                            await shell.openExternal('https://www.facebook.com/QuadBCoder/')
+                                        }
+                                    },
+                                    {
+                                        label: 'สนับสนุน',
+                                        click: async () => {
+                                            await shell.openExternal('https://ko-fi.com/boyphongsakorn')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'แจ้ง Bug',
+                                        click: async () => {
+                                            await shell.openExternal('https://github.com/boyphongsakorn/saox/issues')
+                                        }
+                                    },
+                                    {
+                                        label: 'ดิสคอร์ดสำหรับแจ้งปัญหา',
+                                        click: async () => {
+                                            await shell.openExternal('https://discord.gg/j7xce5hxUf')
+                                        }
+                                    },
+                                    { type: 'separator' },
+                                    {
+                                        label: 'เกี่ยวกับ SAOX',
+                                        click: async () => {
+                                            await shell.openExternal('https://quad-b.github.io/saox/')
+                                        }
+                                    },
+                                    { label: 'SAOX เวอร์ชั่น ' + require('@electron/remote').app.getVersion() }
+                                ]
+                            }));
+                        }
+                    }
+
+                    Menu.setApplicationMenu(menu)
+
+                    //MyTitleBar.updateMenu(menu);
+
+                    $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
+                        function (data, textStatus, jqXHR) {  // success callback
+                            /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
+                            MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
+                            document.title = nearart + ' : ' + elmnt
+                            //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
+                            //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
+                            if(colorcustom == 'sync'){
+                                let test = hexToRgbA(data)
+                                let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
+                                //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                                var frm = frames['iframe'].contentWindow.document;
+                                var otherhead = frm.getElementsByTagName("head")[0];
+                                var link = frm.createElement("style");
+                                link.setAttribute("type", "text/css");
+                                link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
+                                otherhead.appendChild(link);
+                            }else{
+                                let test = hexToRgbA('#111111')
+                                let okithing = test.replace(/[\d\.]+\)$/g, "1")
+                                //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                                var frm = frames['iframe'].contentWindow.document;
+                                var otherhead = frm.getElementsByTagName("head")[0];
+                                var link = frm.createElement("style");
+                                link.setAttribute("type", "text/css");
+                                link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
+                                otherhead.appendChild(link);
+                            }
+                            /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
+                                iframe.contentWindow.document.getElementById('menuzero').style.background = data
+                                iframe.contentWindow.document.getElementById('menuone').style.background = data
+                                iframe.contentWindow.document.getElementById('menuzero').style.borderRadius = '6px'
+                                iframe.contentWindow.document.getElementById('menuone').style.borderRadius = '6px'
+                            } else {
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuzero'
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuone'
+                                iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                            }*/
+                            //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                            //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                            // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                        });
+                }
             } else {
                 if (document.title == 'SAOX' && ok == 'notok') {
                     const menu = new Menu();

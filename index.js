@@ -74,7 +74,7 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
@@ -217,10 +217,6 @@ autoUpdater.on('update-available', () => {
   })();
   autoUpdater.downloadUpdate();
   //win.webContents.send('update_available');
-});
-
-autoUpdater.on('download-progress', () => {
-  //win.webContents.send('incoming');
 });
 
 autoUpdater.on('error', (err) => {
