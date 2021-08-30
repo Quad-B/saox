@@ -1061,7 +1061,7 @@
                             {
                                 label: 'ดาว์นโหลด เพลงนี้',
                                 click: async () => {
-                                    await shell.openExternal('https://mp3freefree.com/' + encodeURI(nearart.replace("?", "")) + encodeURI(elmnt.replace("?", "")) + '.html')
+                                    await shell.openExternal('https://mp3freefree.com/' + encodeURIComponent(nearart.replace("?", "")) + encodeURIComponent(elmnt.replace("?", "")) + '.html')
                                 }
                             },
                             {
