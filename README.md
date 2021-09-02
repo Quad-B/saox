@@ -9,4 +9,4 @@ Login ผ่าน Facebook, Wechat และ E-mail ได้
 การอัดเดต ใน software.thaiware.com จะช้ากว่าใน github ประมาณ 1 ถึง 2 วัน (ไม่นับเสาร์-อาทิตย์)
 
 # อื่นๆ
-[แจ้งปัญหา!](https://github.com/boyphongsakorn/saox/issues) , [ต้องการให้เพิ่มอะไร!](https://github.com/boyphongsakorn/saox/pulls)
+[แจ้งปัญหา!](https://github.com/boyphongsakorn/saox/issues)
