@@ -196,11 +196,12 @@
 
                 console.log('ok')
             }
-            if (document.title == 'SAOX') {
+            /*if (document.title == 'SAOX') {
                 updatedl('notok')
             } else {
                 updatedl('ok')
-            }
+            }*/
+            updatedl('changecolor')
             console.log('ok')
         }
 
@@ -807,6 +808,57 @@
                 if (!image.includes("default-album@300.png")) {
                     ok = "ok"
                 }
+            }
+
+            if (ok == "changecolor" && iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0] != null) {
+                $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
+                    function (data, textStatus, jqXHR) {  // success callback
+                        let nearart = art.replaceAll("</a><a>", ",")
+                        nearart = nearart.replaceAll("<a>", "")
+                        nearart = nearart.replaceAll("</a>", "")
+                        /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
+                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
+                        document.title = nearart + ' : ' + elmnt
+                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
+                        //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
+                        if (colorcustom == 'sync') {
+                            let test = hexToRgbA(data)
+                            let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
+                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                            var frm = frames['iframe'].contentWindow.document;
+                            var otherhead = frm.getElementsByTagName("head")[0];
+                            var link = frm.createElement("style");
+                            link.setAttribute("type", "text/css");
+                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
+                            otherhead.appendChild(link);
+                        } else {
+                            let test = hexToRgbA('#111111')
+                            let okithing = test.replace(/[\d\.]+\)$/g, "1")
+                            //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
+                            var frm = frames['iframe'].contentWindow.document;
+                            var otherhead = frm.getElementsByTagName("head")[0];
+                            var link = frm.createElement("style");
+                            link.setAttribute("type", "text/css");
+                            link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
+                            otherhead.appendChild(link);
+                        }
+                        /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
+                            iframe.contentWindow.document.getElementById('menuzero').style.background = data
+                            iframe.contentWindow.document.getElementById('menuone').style.background = data
+                            iframe.contentWindow.document.getElementById('menuzero').style.borderRadius = '6px'
+                            iframe.contentWindow.document.getElementById('menuone').style.borderRadius = '6px'
+                        } else {
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuzero'
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].style.background = data
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].id = 'menuone'
+                            iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                        }*/
+                        //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                        //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
+                        // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                    });
             }
 
             if (ok == "ok" && (musicname != elmnt || changelag == true)) {

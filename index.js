@@ -176,6 +176,8 @@ function createWindow() {
       shell.openExternal(url)
     }*/
   })
+
+  require("@electron/remote/main").enable(win.webContents)
 }
 
 //app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy')
