@@ -804,6 +804,14 @@
                 art = iframe.contentWindow.document.getElementsByClassName("sc-hSdWYo")[0].innerHTML;
             }
 
+            if (iframe.contentWindow.document.querySelector(".lang.current") != null){
+                if(iframe.contentWindow.document.querySelector(".lang.current").innerText == "English"){
+                    language = "en";
+                }else{
+                    language = "th";
+                }
+            }
+
             if (ok == "notok" && image != null) {
                 if (!image.includes("default-album@300.png")) {
                     ok = "ok"
@@ -879,7 +887,7 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + ' ' + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + '%20' + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>Watch This Music Video On Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
@@ -892,7 +900,7 @@
                                 label: 'Watch This Music Video on YouTube',
                                 click: async () => {
                                     const { shell } = require('electron')
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + ' ' + elmnt + '&sp=CAM%253D')
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + '%20' + elmnt + '&sp=CAM%253D')
                                 }
                             },
                             {
@@ -1095,7 +1103,7 @@
                     }
                     var div = document.createElement('div');
                     div.id = 'watchonyoutube';
-                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + '' + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
+                    div.innerHTML = '<div type="mini" class="sc-ckVGcZ fYXjSb"><a href="https://www.youtube.com/results?search_query=' + nearart + '%20' + elmnt + '&sp=CAM%253D' + '" target="_blank"><button font-size="1.3em" class="jHhvsM"><small>ดูวิดีโอเพลงนี้ใน Youtube</small><img src="https://boyphongsakorn.github.io/img/output-onlinepngtools.png"></button></a></div>';
                     div.className = 'sc-cvbbAY jRxSQj';
 
                     iframe.contentWindow.document.getElementsByClassName("sc-eHgmQL")[0].appendChild(div);
@@ -1107,7 +1115,7 @@
                             {
                                 label: 'ดู เอ็มวี เพลงนี้',
                                 click: async () => {
-                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + ' ' + elmnt + '&sp=CAM%253D')
+                                    await shell.openExternal('https://www.youtube.com/results?search_query=' + nearart + '%20' + elmnt + '&sp=CAM%253D')
                                 }
                             },
                             {

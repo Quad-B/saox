@@ -1,6 +1,6 @@
 {
   "name": "saox",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "description": "Sanook Music (Or JOOX) Web App",
   "main": "index.js",
   "scripts": {
@@ -80,12 +80,12 @@
   "dependencies": {
     "@electron/remote": "^2.0.1",
     "electron-json-storage": "^4.5.0",
-    "electron-updater": "^4.6.0",
+    "electron-updater": "^4.6.1",
     "nucleus-nodejs": "^3.0.8",
     "os-locale": "^5.0.0"
   },
   "devDependencies": {
-    "electron": "^14.0.1",
-    "electron-builder": "^22.9.1"
+    "electron": "^14.2.0",
+    "electron-builder": "^22.13.1"
   }
 }
