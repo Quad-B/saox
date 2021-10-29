@@ -827,6 +827,64 @@
             if (ok == "notok" && image != null) {
                 if (!image.includes("default-album@300.png")) {
                     ok = "ok"
+
+                    let nearart = art.replaceAll("</a><a>", ",")
+                    nearart = nearart.replaceAll("<a>", "")
+                    nearart = nearart.replaceAll("</a>", "")
+                
+                    const arr = iframe.contentWindow.document.getElementsByClassName("sc-dnqmqq")[0].innerText.split(":"); // splitting the string by colon
+                    let seconds
+                    if(arr.length == 2) {
+                        seconds = parseInt((arr[0]*60))+parseInt(arr[1]);
+                    }
+
+                    const arrtwo = iframe.contentWindow.document.getElementsByClassName("sc-htoDjs")[0].innerText.split(":"); // splitting the string by colon
+                    let secondstwo
+                    if(arrtwo.length == 2) {
+                        secondstwo = parseInt((arrtwo[0]*60))+parseInt(arrtwo[1]);
+                    }
+
+                    seconds = seconds - secondstwo;
+
+                    /*let milliseconds= seconds * 1000; // 10 seconds = 10000 milliseconds
+                    let timeObject = new Date(timeObject.getTime() + milliseconds);*/
+
+                    d = new Date();
+                    //alert(d.getMinutes() + ':' + d.getSeconds()); //11:55
+                    d.setSeconds(d.getSeconds() + parseInt(seconds));
+                    //alert(d.getMinutes() + ':' + padLeadingZeros(d.getSeconds(),2)); //12:05
+
+                    if (language == 'en') {
+                        try {
+                            rpc.setActivity({
+                                details: "Listening "+elmnt,
+                                state: nearart,
+                                startTimestamp: new Date(),
+                                endTimestamp: d,
+                                largeImageKey: "joox",
+                                largeImageText: ""+elmnt,
+                                smallImageKey: "joox",
+                                smallImageText: ""+nearart
+                            });
+                        } catch (error) {
+                                
+                        }
+                    }else{
+                        try {
+                            rpc.setActivity({
+                                details: "กำลังฟัง "+elmnt,
+                                state: nearart,
+                                startTimestamp: new Date(),
+                                endTimestamp: d,
+                                largeImageKey: "joox",
+                                largeImageText: ""+elmnt,
+                                smallImageKey: "joox",
+                                smallImageText: ""+nearart
+                            });
+                        } catch (error) {
+                                
+                        }
+                    }
                 }
             }
 
@@ -896,33 +954,9 @@
                     return s;
                 }
 
-                const arr = iframe.contentWindow.document.getElementsByClassName("sc-dnqmqq")[0].innerText.split(":"); // splitting the string by colon
-                let seconds
-                if(arr.length == 2) {
-                    seconds = parseInt((arr[0]*60))+parseInt(arr[1]);
-                }
-
-                /*let milliseconds= seconds * 1000; // 10 seconds = 10000 milliseconds
-                let timeObject = new Date(timeObject.getTime() + milliseconds);*/
-
-                d = new Date();
-                alert(d.getMinutes() + ':' + d.getSeconds()); //11:55
-                d.setSeconds(d.getSeconds() + parseInt(seconds));
-                alert(d.getMinutes() + ':' + padLeadingZeros(d.getSeconds(),2)); //12:05
-
-                rpc.setActivity({
-                    details: "กำลังฟังเพลง "+elmnt,
-                    state: nearart,
-                    startTimestamp: new Date(),
-                    endTimestamp: d,
-                    largeImageKey: "joox",
-                    largeImageText: ""+elmnt,
-                    smallImageKey: "joox",
-                    smallImageText: ""+nearart
-                });
-
                 console.log(language)
                 if (language == 'en') {
+
                     try {
                         iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
                     } catch (error) {
@@ -1139,6 +1173,7 @@
                         }));
                     }
                 } else {
+
                     try {
                         iframe.contentWindow.document.getElementById("watchonyoutube").outerHTML = "";
                     } catch (error) {
