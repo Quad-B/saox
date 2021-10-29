@@ -17,6 +17,9 @@
         gtag('config', 'UA-40172537-11');
     </script-->
     <style>
+        body {
+            background-color: black;
+        }
         #notification {
             position: fixed;
             bottom: 20px;
@@ -80,7 +83,7 @@
         const { app, ipcRenderer, shell } = require('electron')
         //const remote = require('@electron/remote')
         const { Menu, MenuItem } = require('@electron/remote')
-        //const customTitlebar = require('custom-electron-titlebar');
+        const customTitlebar = require('@treverix/custom-electron-titlebar');
         const osLocale = require('os-locale');
         let colorcustom = 'sync'
         let language = 'en'
@@ -249,11 +252,11 @@
             throw new Error('Bad Hex');
         }
 
-        /*let MyTitleBar = new customTitlebar.Titlebar({
+        let MyTitleBar = new customTitlebar.Titlebar({
             backgroundColor: customTitlebar.Color.fromHex('#444'),
             shadow: true,
             icon: 'img/saoxnew.svg'
-        });*/
+        });
 
         const isMac = process.platform === 'darwin'
 
@@ -724,11 +727,11 @@
             }
         }
 
-        /*MyTitleBar.updateMenu(menu);
+        MyTitleBar.updateMenu(menu);
 
-        MyTitleBar.updateTitle('SAOX');*/
+        MyTitleBar.updateTitle('SAOX');
 
-        Menu.setApplicationMenu(menu)
+        //Menu.setApplicationMenu(menu)
 
         document.title = 'SAOX'
 
@@ -894,12 +897,11 @@
                         let nearart = art.replaceAll("</a><a>", ",")
                         nearart = nearart.replaceAll("<a>", "")
                         nearart = nearart.replaceAll("</a>", "")
-                        /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
-                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
                         document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         if (colorcustom == 'sync') {
+                            MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
                             //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
@@ -910,6 +912,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
                             otherhead.appendChild(link);
                         } else {
+                            MyTitleBar.updateBackground(customTitlebar.Color.fromHex('#111111'));
                             let test = hexToRgbA('#111111')
                             let okithing = test.replace(/[\d\.]+\)$/g, "1")
                             //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
@@ -920,6 +923,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
                             otherhead.appendChild(link);
                         }
+                        MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
                         /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
@@ -1382,18 +1386,17 @@
                     }
                 }
 
-                Menu.setApplicationMenu(menu)
+                //Menu.setApplicationMenu(menu)
 
-                //MyTitleBar.updateMenu(menu);
+                MyTitleBar.updateMenu(menu);
 
                 $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
                     function (data, textStatus, jqXHR) {  // success callback
-                        /*MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
-                        MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));*/
                         document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         if (colorcustom == 'sync') {
+                            MyTitleBar.updateBackground(customTitlebar.Color.fromHex(''+data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
                             //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
@@ -1404,6 +1407,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
                             otherhead.appendChild(link);
                         } else {
+                            MyTitleBar.updateBackground(customTitlebar.Color.fromHex('#111111'));
                             let test = hexToRgbA('#111111')
                             let okithing = test.replace(/[\d\.]+\)$/g, "1")
                             //iframe.contentWindow.document.getElementsByClassName('sidebar')[0].style.backgroundColor = okithing
@@ -1414,6 +1418,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: #111111 !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: #111111 !important;}';
                             otherhead.appendChild(link);
                         }
+                        MyTitleBar.updateTitle(nearart + ' : ' + elmnt);
                         /*if (iframe.contentWindow.document.getElementById('menuzero') || iframe.contentWindow.document.getElementById('menuone')) {
                             iframe.contentWindow.document.getElementById('menuzero').style.background = data
                             iframe.contentWindow.document.getElementById('menuone').style.background = data
@@ -1823,11 +1828,11 @@
                         }
                     }
 
-                    /*MyTitleBar.updateMenu(menu);
+                    MyTitleBar.updateMenu(menu);
 
-                    MyTitleBar.updateTitle('SAOX');*/
+                    MyTitleBar.updateTitle('SAOX');
 
-                    Menu.setApplicationMenu(menu)
+                    //Menu.setApplicationMenu(menu)
 
                     document.title = 'SAOX'
                 }
