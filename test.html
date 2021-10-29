@@ -94,6 +94,18 @@
         const storage = require('electron-json-storage');
         storage.setDataPath(os.tmpdir());
 
+        const RPG = require('discord-rpc');
+        const rpc = new RPG.Client({
+            transport: "ipc"
+        });
+
+        rpc.login({
+            clientId: "831916121497927731"
+        });
+
+        rpc.on("ready", () => {
+        }); 
+
         /*storage.set('foobar', { foo: 'bar' }, function(error) {
             if (error) throw error;
         });
@@ -877,6 +889,37 @@
                 let nearart = art.replaceAll("</a><a>", ",")
                 nearart = nearart.replaceAll("<a>", "")
                 nearart = nearart.replaceAll("</a>", "")
+
+                function padLeadingZeros(num, size) {
+                    var s = num + "";
+                    while (s.length < size) s = "0" + s;
+                    return s;
+                }
+
+                const arr = iframe.contentWindow.document.getElementsByClassName("sc-dnqmqq")[0].innerText.split(":"); // splitting the string by colon
+                let seconds
+                if(arr.length == 2) {
+                    seconds = parseInt((arr[0]*60))+parseInt(arr[1]);
+                }
+
+                /*let milliseconds= seconds * 1000; // 10 seconds = 10000 milliseconds
+                let timeObject = new Date(timeObject.getTime() + milliseconds);*/
+
+                d = new Date();
+                alert(d.getMinutes() + ':' + d.getSeconds()); //11:55
+                d.setSeconds(d.getSeconds() + parseInt(seconds));
+                alert(d.getMinutes() + ':' + padLeadingZeros(d.getSeconds(),2)); //12:05
+
+                rpc.setActivity({
+                    details: "กำลังฟังเพลง "+elmnt,
+                    state: nearart,
+                    startTimestamp: new Date(),
+                    endTimestamp: d,
+                    largeImageKey: "joox",
+                    largeImageText: ""+elmnt,
+                    smallImageKey: "joox",
+                    smallImageText: ""+nearart
+                });
 
                 console.log(language)
                 if (language == 'en') {
