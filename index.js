@@ -161,7 +161,7 @@ function createWindow() {
         event.preventDefault()
         shell.openExternal(url)
         //win.close()
-      } else if(!url.includes('facebook')) {
+      } else if(!url.includes('facebook') || (url.includes('facebook') && url.includes('share'))) {
         event.preventDefault()
         shell.openExternal(url)
         //win.close()

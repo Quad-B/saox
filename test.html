@@ -72,7 +72,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         onload="window.$ = window.jQuery = module.exports;"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>\
+    <script src="https://chir.ag/projects/ntc/ntc.js"></script>
 
     <!--script src="js/update.js"></script-->
 
@@ -87,9 +88,10 @@
         const osLocale = require('os-locale');
         let colorcustom = 'sync'
         let language = 'en'
-        let musicname
+        let sooxlogo = "joox"
         let areyouok = require('@electron/remote').app.getAppPath()
         let changelag = false
+        let musicname,discordmenu
 
         console.log(areyouok)
 
@@ -191,6 +193,110 @@
         function updateApp() {
             ipcRenderer.send('update_app');
         }*/
+
+        const discordacthandleClick = (menuItem, browserWindow, event) => {
+            console.log(menuItem.label)
+            if (menuItem.label == 'เปิด' || menuItem.label == 'Enable') {
+                storage.set('discordstatus', { status: 'on' }, function (error) {
+                    if (error) throw error;
+                });
+                if(language == 'en'){
+                    discordmenu = {
+                        label: 'Status In Discord',
+                        submenu: [
+                            {
+                                label: 'Enable',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'Disable',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }else{
+                    discordmenu = {
+                        label: 'สถานะในดิสคอร์ด',
+                        submenu: [
+                            {
+                                label: 'เปิด',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'ปิด',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }
+                /*colorcustom = 'sync'
+
+                storage.set('customcolor', { color: 'sync' }, function (error) {
+                    if (error) throw error;
+                });
+
+                console.log('ok')*/
+            } else {
+                storage.set('discordstatus', { status: 'off' }, function (error) {
+                    if (error) throw error;
+                });
+                if(language == 'en'){
+                    discordmenu = {
+                        label: 'Status In Discord',
+                        submenu: [
+                            {
+                                label: 'Enable',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'Disable',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }else{
+                    discordmenu = {
+                        label: 'สถานะในดิสคอร์ด',
+                        submenu: [
+                            {
+                                label: 'เปิด',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'ปิด',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }
+                /*colorcustom = 'dark'
+
+                storage.set('customcolor', { color: 'dark' }, function (error) {
+                    if (error) throw error;
+                });
+
+                console.log('ok')*/
+            }
+            if (document.title == 'SAOX') {
+                updatedl('notok')
+            } else {
+                updatedl('ok')
+            }
+            //updatedl('changecolor')
+            console.log('ok')
+        }
 
         const changecolorhandleClick = (menuItem, browserWindow, event) => {
             console.log(menuItem.label)
@@ -366,6 +472,22 @@
                                     click: changecolorhandleClick
                                 }
                             ]
+                        },
+                        {
+                            label: 'Status In Discord',
+                            submenu: [
+                                {
+                                    label: 'Enable',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: discordacthandleClick
+                                },
+                                {
+                                    label: 'Disable',
+                                    type: 'radio',
+                                    click: discordacthandleClick
+                                }
+                            ]
                         }
                     ]
                 }));
@@ -407,12 +529,26 @@
                                     click: changecolorhandleClick
                                 }
                             ]
+                        },
+                        {
+                            label: 'Status In Discord',
+                            submenu: [
+                                {
+                                    label: 'Enable',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: discordacthandleClick
+                                },
+                                {
+                                    label: 'Disable',
+                                    type: 'radio',
+                                    click: discordacthandleClick
+                                }
+                            ]
                         }
                     ]
                 }));
             }
-
-
 
             if (require('@electron/remote').app.isPackaged == true && areyouok.toLowerCase().includes('temp') != true && areyouok.toLowerCase().includes('snap') != true) {
                 menu.append(new MenuItem({
@@ -583,6 +719,22 @@
                                     click: changecolorhandleClick
                                 }
                             ]
+                        },
+                        {
+                            label: 'สถานะในดิสคอร์ด',
+                            submenu: [
+                                {
+                                    label: 'เปิด',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: discordacthandleClick
+                                },
+                                {
+                                    label: 'ปิด',
+                                    type: 'radio',
+                                    click: discordacthandleClick
+                                }
+                            ]
                         }
                     ]
                 }));
@@ -619,6 +771,22 @@
                                     type: 'radio',
                                     checked: true,
                                     click: changecolorhandleClick
+                                }
+                            ]
+                        },
+                        {
+                            label: 'สถานะในดิสคอร์ด',
+                            submenu: [
+                                {
+                                    label: 'เปิด',
+                                    type: 'radio',
+                                    checked: true,
+                                    click: discordacthandleClick
+                                },
+                                {
+                                    label: 'ปิด',
+                                    type: 'radio',
+                                    click: discordacthandleClick
                                 }
                             ]
                         }
@@ -755,7 +923,7 @@
                             shell.openExternal(oFrame.contentWindow.location.href)
                             oFrame.contentWindow.history.back()
                         }
-                    }, 1000);
+                    }, 500);
                 /*if (oFrame.contentWindow.location.href.includes('vip')) {
                     shell.openExternal(oFrame.contentWindow.location.href)
                     oFrame.contentWindow.history.back()
@@ -799,6 +967,81 @@
         }
 
         function updatedl(ok) {
+
+            var data = storage.getSync('discordstatus');
+            if (data.status == 'on') {
+                if(language == 'en'){
+                    discordmenu = {
+                        label: 'Status In Discord',
+                        submenu: [
+                            {
+                                label: 'Enable',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'Disable',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }else{
+                    discordmenu = {
+                        label: 'สถานะในดิสคอร์ด',
+                        submenu: [
+                            {
+                                label: 'เปิด',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'ปิด',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }
+            }else{
+                if(language == 'en'){
+                    discordmenu = {
+                        label: 'Status In Discord',
+                        submenu: [
+                            {
+                                label: 'Enable',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'Disable',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }else{
+                    discordmenu = {
+                        label: 'สถานะในดิสคอร์ด',
+                        submenu: [
+                            {
+                                label: 'เปิด',
+                                type: 'radio',
+                                click: discordacthandleClick
+                            },
+                            {
+                                label: 'ปิด',
+                                type: 'radio',
+                                checked: true,
+                                click: discordacthandleClick
+                            }
+                        ]
+                    };
+                }
+            }
 
             checkplay()
 
@@ -857,35 +1100,59 @@
                     d.setSeconds(d.getSeconds() + parseInt(seconds));
                     //alert(d.getMinutes() + ':' + padLeadingZeros(d.getSeconds(),2)); //12:05
 
-                    if (language == 'en') {
-                        try {
-                            rpc.setActivity({
-                                details: "Listening "+elmnt,
-                                state: nearart,
-                                startTimestamp: new Date(),
-                                endTimestamp: d,
-                                largeImageKey: "joox",
-                                largeImageText: ""+elmnt,
-                                smallImageKey: "joox",
-                                smallImageText: ""+nearart
-                            });
-                        } catch (error) {
-                                
+                    const wordToHex = ["aliceblue","antiquewhite","aqua","aquamarine","azure","beige","bisque","black","blanchedalmond","blue","blueviolet","brown","burlywood","cadetblue","chartreuse","chocolate","coral","cornflowerblue","cornsilk","crimson","cyan","darkblue","darkcyan","darkgoldenrod","darkgray","darkgrey","darkgreen","darkkhaki","darkmagenta","darkolivegreen","darkorange","darkorchid","darkred","darksalmon","darkseagreen","darkslateblue","darkslategray","darkslategrey","darkturquoise","darkviolet","deeppink","deepskyblue","dimgray","dimgrey","dodgerblue","firebrick","floralwhite","forestgreen","fuchsia","gainsboro","ghostwhite","gold","goldenrod","gray","grey","green","greenyellow","honeydew","hotpink","indianred","indigo","ivory","khaki","lavender","lavenderblush","lawngreen","lemonchiffon","lightblue","lightcoral","lightcyan","lightgoldenrodyellow","lightgray","lightgrey","lightgreen","lightpink","lightsalmon","lightseagreen","lightskyblue","lightslategray","lightslategrey","lightsteelblue","lightyellow","lime","limegreen","linen","magenta","maroon","mediumaquamarine","mediumblue","mediumorchid","mediumpurple","mediumseagreen","mediumslateblue","mediumspringgreen","mediumturquoise","mediumvioletred","midnightblue","mintcream","mistyrose","moccasin","navajowhite","navy","oldlace","olive","olivedrab","orange","orangered","orchid","palegoldenrod","palegreen","paleturquoise","palevioletred","papayawhip","peachpuff","peru","pink","plum","powderblue","purple","rebeccapurple","red","rosybrown","royalblue","saddlebrown","salmon","sandybrown","seagreen","seashell","sienna","silver","skyblue","slateblue","slategray","slategrey","snow","springgreen","steelblue","tan","teal","thistle","tomato","turquoise","violet","wheat","white","whitesmoke","yellow","yellowgreen"];
+
+                    if(sooxlogo.split(" ") > 1){
+                        let thewarbeing = sooxlogo.split(" ");
+                        thewarbeing.forEach(element => {
+                            if(wordToHex.find(inelement => inelement == element)){
+                                sooxlogo = element
+                                return true
+                            }
+                        });
+                    }else{
+                        if(!wordToHex.find(element => element == sooxlogo)){
+                            sooxlogo = "joox"
+                        }
+                    }
+
+                    if(storage.getSync('discordstatus').status == 'on'){
+                        if (language == 'en') {
+                            try {
+                                rpc.setActivity({
+                                    details: "Listening "+elmnt,
+                                    state: nearart,
+                                    startTimestamp: new Date(),
+                                    endTimestamp: d,
+                                    largeImageKey: sooxlogo,
+                                    largeImageText: ""+elmnt,
+                                    smallImageKey: sooxlogo,
+                                    smallImageText: ""+nearart
+                                });
+                            } catch (error) {
+                                    
+                            }
+                        }else{
+                            try {
+                                rpc.setActivity({
+                                    details: "กำลังฟัง "+elmnt,
+                                    state: nearart,
+                                    startTimestamp: new Date(),
+                                    endTimestamp: d,
+                                    largeImageKey: sooxlogo,
+                                    largeImageText: ""+elmnt,
+                                    smallImageKey: sooxlogo,
+                                    smallImageText: ""+nearart
+                                });
+                            } catch (error) {
+                                    
+                            }
                         }
                     }else{
                         try {
-                            rpc.setActivity({
-                                details: "กำลังฟัง "+elmnt,
-                                state: nearart,
-                                startTimestamp: new Date(),
-                                endTimestamp: d,
-                                largeImageKey: "joox",
-                                largeImageText: ""+elmnt,
-                                smallImageKey: "joox",
-                                smallImageText: ""+nearart
-                            });
+                            rpc.clearActivity();
                         } catch (error) {
-                                
+                            
                         }
                     }
                 }
@@ -901,6 +1168,12 @@
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         if (colorcustom == 'sync') {
+                            var n_match = ntc.name(data);
+                            /*n_rgb = n_match[0]; // RGB value of closest match
+                            n_name = n_match[1]; // Text string: Color name
+                            n_exactmatch = n_match[2]; // True if exact color match*/
+                            //alert(n_match);
+                            sooxlogo = n_match[1].toLowerCase();
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
@@ -912,6 +1185,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
                             otherhead.appendChild(link);
                         } else {
+                            sooxlogo = "joox";
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex('#111111'));
                             let test = hexToRgbA('#111111')
                             let okithing = test.replace(/[\d\.]+\)$/g, "1")
@@ -951,6 +1225,30 @@
                 let nearart = art.replaceAll("</a><a>", ",")
                 nearart = nearart.replaceAll("<a>", "")
                 nearart = nearart.replaceAll("</a>", "")
+
+                iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundImage = ""
+
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow'
+                };
+
+                fetch("https://ytgif.pwisetthon.com/?name="+elmnt+"&art="+nearart, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result)
+                    //alert(elmnt)
+                    //alert(nearart)
+                    //alert(result)
+                    if(result != ""){
+                        iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundImage = "url("+result+")"
+                        iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundPosition = "top"
+                        iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundRepeat = "no-repeat"
+                        iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundSize = "cover"
+                        iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.filter = "brightness(0.5)"
+                    }
+                })
+                .catch(error => console.log('error', error));
 
                 function padLeadingZeros(num, size) {
                     var s = num + "";
@@ -1031,7 +1329,7 @@
                                             click: changecolorhandleClick
                                         }
                                     ]
-                                }
+                                },discordmenu
                             ]
                         }));
                     } else {
@@ -1072,7 +1370,7 @@
                                             click: changecolorhandleClick
                                         }
                                     ]
-                                }
+                                },discordmenu
                             ]
                         }));
                     }
@@ -1250,7 +1548,7 @@
                                             click: changecolorhandleClick
                                         }
                                     ]
-                                }
+                                },discordmenu
                             ]
                         }));
                     } else {
@@ -1288,7 +1586,7 @@
                                             click: changecolorhandleClick
                                         }
                                     ]
-                                }
+                                },discordmenu
                             ]
                         }));
                     }
@@ -1390,12 +1688,42 @@
 
                 MyTitleBar.updateMenu(menu);
 
+                /*if(iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundImage == ''){
+                    var requestOptions = {
+                        method: 'GET',
+                        redirect: 'follow'
+                    };
+
+                    fetch("https://ytgif.pwisetthon.com/?name="+elmnt+"&art="+nearart, requestOptions)
+                    .then(response => response.text())
+                    .then(result => {
+                        console.log(result)
+                        //alert(elmnt)
+                        //alert(nearart)
+                        //alert(result)
+                        if(result != ""){
+                            iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundImage = "url("+result+")"
+                            iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundPosition = "top"
+                            iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundRepeat = "no-repeat"
+                            iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.backgroundSize = "cover"
+                            iframe.contentWindow.document.getElementsByClassName('sc-bwzfXH fHRtps')[0].style.filter = "brightness(0.5)"
+                        }
+                    })
+                    .catch(error => console.log('error', error));
+                }*/
+
                 $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
                     function (data, textStatus, jqXHR) {  // success callback
                         document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
                         if (colorcustom == 'sync') {
+                            var n_match = ntc.name(data);
+                            /*n_rgb = n_match[0]; // RGB value of closest match
+                            n_name = n_match[1]; // Text string: Color name
+                            n_exactmatch = n_match[2]; // True if exact color match*/
+                            //alert(n_match);
+                            sooxlogo = n_match[1].toLowerCase();
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex(''+data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
@@ -1407,6 +1735,7 @@
                             link.innerHTML = '.ScrollbarsCustom-Thumb{background: ' + data + ' !important;} .sidebar{background-color: ' + okithing + ') !important;} .MainHeader{background-color: ' + data + ' !important;}';
                             otherhead.appendChild(link);
                         } else {
+                            sooxlogo = "joox";
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex('#111111'));
                             let test = hexToRgbA('#111111')
                             let okithing = test.replace(/[\d\.]+\)$/g, "1")
@@ -1491,7 +1820,7 @@
                                                 click: changecolorhandleClick
                                             }
                                         ]
-                                    }
+                                    },discordmenu
                                 ]
                             }));
                         } else {
@@ -1532,7 +1861,7 @@
                                                 click: changecolorhandleClick
                                             }
                                         ]
-                                    }
+                                    },discordmenu
                                 ]
                             }));
                         }
@@ -1684,7 +2013,7 @@
                                                 click: changecolorhandleClick
                                             }
                                         ]
-                                    }
+                                    },discordmenu
                                 ]
                             }));
                         } else {
@@ -1722,7 +2051,7 @@
                                                 click: changecolorhandleClick
                                             }
                                         ]
-                                    }
+                                    },discordmenu
                                 ]
                             }));
                         }
