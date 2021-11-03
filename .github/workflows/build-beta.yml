@@ -24,15 +24,11 @@ jobs:
         with:
           node-version: 14.x
           
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
-        
-      - run: echo ${{steps.package-version.outputs.current-version}}
+      - run: npm view saox version > ${{ env.betalevel }}
       
-      - run: npm version ${{steps.package-version.outputs.current-version}}-beta
+      - run: npm version ${{ env.betalevel }}-beta
       
-      - run: echo ${{steps.package-version.outputs.current-version}}
+      - run: npm view saox version
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
