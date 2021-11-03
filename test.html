@@ -74,11 +74,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>\
     <script src="https://chir.ag/projects/ntc/ntc.js"></script>
+    <script src="https://unpkg.com/fast-average-color/dist/index.min.js"></script>
 
     <!--script src="js/update.js"></script-->
 
     <script>
 
+        const fac = new FastAverageColor();
         /*const { app, remote, ipcRenderer, shell } = require('electron')
         const { Menu, MenuItem } = remote*/
         const { app, ipcRenderer, shell } = require('electron')
@@ -1102,19 +1104,29 @@
 
                     const wordToHex = ["aliceblue","antiquewhite","aqua","aquamarine","azure","beige","bisque","black","blanchedalmond","blue","blueviolet","brown","burlywood","cadetblue","chartreuse","chocolate","coral","cornflowerblue","cornsilk","crimson","cyan","darkblue","darkcyan","darkgoldenrod","darkgray","darkgrey","darkgreen","darkkhaki","darkmagenta","darkolivegreen","darkorange","darkorchid","darkred","darksalmon","darkseagreen","darkslateblue","darkslategray","darkslategrey","darkturquoise","darkviolet","deeppink","deepskyblue","dimgray","dimgrey","dodgerblue","firebrick","floralwhite","forestgreen","fuchsia","gainsboro","ghostwhite","gold","goldenrod","gray","grey","green","greenyellow","honeydew","hotpink","indianred","indigo","ivory","khaki","lavender","lavenderblush","lawngreen","lemonchiffon","lightblue","lightcoral","lightcyan","lightgoldenrodyellow","lightgray","lightgrey","lightgreen","lightpink","lightsalmon","lightseagreen","lightskyblue","lightslategray","lightslategrey","lightsteelblue","lightyellow","lime","limegreen","linen","magenta","maroon","mediumaquamarine","mediumblue","mediumorchid","mediumpurple","mediumseagreen","mediumslateblue","mediumspringgreen","mediumturquoise","mediumvioletred","midnightblue","mintcream","mistyrose","moccasin","navajowhite","navy","oldlace","olive","olivedrab","orange","orangered","orchid","palegoldenrod","palegreen","paleturquoise","palevioletred","papayawhip","peachpuff","peru","pink","plum","powderblue","purple","rebeccapurple","red","rosybrown","royalblue","saddlebrown","salmon","sandybrown","seagreen","seashell","sienna","silver","skyblue","slateblue","slategray","slategrey","snow","springgreen","steelblue","tan","teal","thistle","tomato","turquoise","violet","wheat","white","whitesmoke","yellow","yellowgreen"];
 
-                    if(sooxlogo.split(" ") > 1){
+                    if(sooxlogo.split(" ").length > 1){
                         let thewarbeing = sooxlogo.split(" ");
+                        let allway
                         thewarbeing.forEach(element => {
                             if(wordToHex.find(inelement => inelement == element)){
-                                sooxlogo = element
+                                sooxlogo = element.toLowerCase()
+                                //alert(sooxlogo)
+                                allway = true
                                 return true
+                            }else{
+                                allway = false
                             }
                         });
+                        if(allway == false){
+                            sooxlogo = "joox"
+                        }
                     }else{
                         if(!wordToHex.find(element => element == sooxlogo)){
                             sooxlogo = "joox"
                         }
                     }
+
+                    //alert(sooxlogo)
 
                     if(storage.getSync('discordstatus').status == 'on'){
                         if (language == 'en') {
@@ -1159,8 +1171,16 @@
             }
 
             if (ok == "changecolor" && iframe.contentWindow.document.getElementsByClassName("sc-iRbamj")[0] != null) {
-                $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
-                    function (data, textStatus, jqXHR) {  // success callback
+                //$.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
+                    //function (data, textStatus, jqXHR) {  // success callback
+                    fac.getColorAsync(image)
+                    .then(color => {
+                        let data = color.hex
+                        //container.style.backgroundColor = color.rgba;
+                        //container.style.color = color.isDark ? '#fff' : '#000';
+
+                        //console.log('Average color', color);
+                        
                         let nearart = art.replaceAll("</a><a>", ",")
                         nearart = nearart.replaceAll("<a>", "")
                         nearart = nearart.replaceAll("</a>", "")
@@ -1214,7 +1234,11 @@
                         //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                         //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                    })
+                    .catch(e => {
+                        console.log(e);
                     });
+                //});
             }
 
             if (ok == "ok" && (musicname != elmnt || changelag == true)) {
@@ -1712,8 +1736,15 @@
                     .catch(error => console.log('error', error));
                 }*/
 
-                $.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
-                    function (data, textStatus, jqXHR) {  // success callback
+                //$.get('https://pwisetthon.com/getcolor.php?url=' + image,  // url
+                //    function (data, textStatus, jqXHR) {  // success callback
+                    fac.getColorAsync(image)
+                    .then(color => {
+                        let data = color.hex
+                            //container.style.backgroundColor = color.rgba;
+                            //container.style.color = color.isDark ? '#fff' : '#000';
+
+                        
                         document.title = nearart + ' : ' + elmnt
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.backgroundColor = data
                         //iframe.contentWindow.document.getElementsByClassName('MainHeader')[0].style.filter = 'brightness(50%)'
@@ -1764,7 +1795,12 @@
                         //console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                         //iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[0].className = ''
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
+                        //console.log('Average color', color);
+                    })
+                    .catch(e => {
+                        console.log(e);
                     });
+                //});
             } else {
                 if (document.title == 'SAOX' && ok == 'notok') {
                     const menu = new Menu();

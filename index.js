@@ -81,7 +81,7 @@ function createWindow() {
   // });
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
-    windowOptions['node-integration'] = false;
+    windowOptions['auto'] = false;
   });*/
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
@@ -134,14 +134,14 @@ function createWindow() {
     event.newGuest = win
   })*/
 
-  win.webContents.on('new-window', (event, url, options, referrer, postBody) => {
+  win.webContents.on('new-window', (event, url, options, referrer, postBody, windowOptions) => {
     /*event.preventDefault()
-    //const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
-    const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
-    //win.once('ready-to-show', () => win.show())
-    //win.loadURL(url)
-
+    const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
+    //const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
     win.once('ready-to-show', () => win.show())
+    win.loadURL(url)*/
+
+    /*win.once('ready-to-show', () => win.show())
     if (!options.webContents) {
       const loadOptions = {
         httpReferrer: referrer
