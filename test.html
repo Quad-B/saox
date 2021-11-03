@@ -51,6 +51,7 @@
 
 <body style="margin:0px;padding:0px;overflow:hidden">
 
+    <div style="z-index: 1000;width:100%;height:100%;background-color: black;position: absolute;font-size: 100px;text-align: center;background-image: url(https://raw.githubusercontent.com/Quad-B/saox/master/img/saox.gif);background-position: center;background-repeat: no-repeat;" id="loadingdiv"><!--img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Ajux_loader.gif" style="display: block;margin: 0 auto;"--></div>
     <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onload="updatedl()"
         style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"
         height="100%" width="100%">
@@ -72,6 +73,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         onload="window.$ = window.jQuery = module.exports;"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>\
     <script src="https://chir.ag/projects/ntc/ntc.js"></script>
     <script src="https://unpkg.com/fast-average-color/dist/index.min.js"></script>
@@ -967,6 +969,34 @@
             });
 
         }
+
+        $('iframe').on('load', function() {
+            anime({
+                targets: '#loadingdiv',
+                opacity: 0,
+                duration: 500,
+                easing: 'linear',
+                direction: 'alternate',
+                loop: false,
+                complete: function(anim) {
+                    document.getElementById('loadingdiv').style.display = 'none';
+                }
+            })
+        });
+
+        /*$('#iframe').on(function () {
+            anime({
+                targets: '#loadingdiv',
+                opacity: 0,
+                duration: 500,
+                easing: 'linear',
+                direction: 'alternate',
+                loop: false,
+                complete: function(anim) {
+                    document.getElementById('loadingdiv').style.display = 'none';
+                }
+            })
+        });*/
 
         function updatedl(ok) {
 

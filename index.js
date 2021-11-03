@@ -17,8 +17,10 @@ function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     icon: __dirname + '/img/saoxlogo.png',
-    width: 800,
-    height: 600,
+    width: 0,
+    height: 0,
+    minWidth: 800,
+    minHeight: 800,
     //autoHideMenuBar: false,
     autoHideMenuBar: true,
     frame: false,
