@@ -24,9 +24,18 @@ jobs:
         with:
           node-version: 14.x
           
-      - run: npm view saox version >> ${{ env.betalevel }}
+      #- run: npm view saox version >> ${{ env.betalevel }}
       
-      - run: npm version ${{ env.betalevel }}-beta
+      #- run: npm version ${{ env.betalevel }}-beta
+      
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+        
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
+        
+      - run: npm version ${{ steps.extract_version.outputs.version }}-beta
       
       - run: npm view saox version
           
