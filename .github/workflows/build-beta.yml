@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 14.x
           
-      - run: npm view saox version > ${{ env.betalevel }}
+      - run: npm view saox version >> ${{ env.betalevel }}
       
       - run: npm version ${{ env.betalevel }}-beta
       
