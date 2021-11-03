@@ -35,6 +35,9 @@ jobs:
       - name: Print version
         run: echo ${{ steps.extract_version.outputs.version }}
         
+      - run: git config --global user.email "boy1556@hotmail.com"
+      - run: git config --global user.name "Your Name"
+        
       - run: npm version ${{ steps.extract_version.outputs.version }}-beta
       
       - run: npm view saox version
