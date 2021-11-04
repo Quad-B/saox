@@ -7,7 +7,7 @@ Login ผ่าน Facebook, Wechat และ E-mail ได้
 ปรับแต่ง หน้าเว็บ เล็กๆน้อยๆ ให้มันดูเหมือนใน มือถือ มากที่สุด
 
 [![Download](https://img.shields.io/badge/software.thaiware.com-Download-green?style=flat-square)](https://software.thaiware.com/13247-SAOX-JOOX-Download.html)
-[![Download Beta Version](https://img.shields.io/badge/software.thaiware.com-Download_Beta_Version-green?style=flat-square)](https://github.com/Quad-B/saox/releases)
+[![Download Beta Version](https://img.shields.io/badge/github.com-Download_Beta_Version-green?style=flat-square)](https://github.com/Quad-B/saox/releases)
 
 # อื่นๆ
 [แจ้งปัญหา!](https://github.com/boyphongsakorn/saox/issues)
