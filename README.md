@@ -6,7 +6,8 @@ JOOX Web App
 Login ผ่าน Facebook, Wechat และ E-mail ได้ 
 ปรับแต่ง หน้าเว็บ เล็กๆน้อยๆ ให้มันดูเหมือนใน มือถือ มากที่สุด
 
-การอัดเดต ใน software.thaiware.com จะช้ากว่าใน github ประมาณ 1 ถึง 2 วัน (ไม่นับเสาร์-อาทิตย์)
+[![Download](https://img.shields.io/badge/software.thaiware.com-Download-green?style=flat-square)](https://software.thaiware.com/13247-SAOX-JOOX-Download.html)
+[![Download Beta Version](https://img.shields.io/badge/software.thaiware.com-Download-green?style=flat-square)](https://github.com/Quad-B/saox/releases)
 
 # อื่นๆ
 [แจ้งปัญหา!](https://github.com/boyphongsakorn/saox/issues)
