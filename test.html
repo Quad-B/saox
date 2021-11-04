@@ -907,12 +907,12 @@
 
         document.title = 'SAOX'
 
-        setInterval(function () {
+        /*setInterval(function () {
 
             updatedl('notok')
             console.log('test')
 
-        }, 5000);
+        }, 5000);*/
 
         window.onload = function () {
             var oFrame = document.getElementById("iframe");
@@ -970,6 +970,11 @@
 
         }
 
+        function myFunction() {
+            updatedl('notok')
+            console.log('test')
+        }
+
         $('iframe').on('load', function() {
             anime({
                 targets: '#loadingdiv',
@@ -982,6 +987,12 @@
                     document.getElementById('loadingdiv').style.display = 'none';
                 }
             })
+
+            // Get the video element with id="myVideo"
+            var vid = iframe.contentWindow.document.getElementById("jooxAudio");
+
+            // Assign an ontimeupdate event to the video element, and execute a function if the current playback position has changed
+            vid.onplaying = function() {myFunction()};
         });
 
         /*$('#iframe').on(function () {
