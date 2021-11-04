@@ -28,19 +28,34 @@ jobs:
       
       #- run: npm version ${{ env.betalevel }}-beta
       
-      - name: Extract version
-        id: extract_version
-        uses: Saionaro/extract-package-version@v1.0.6
+      #- name: Extract version
+      #  id: extract_version
+      #  uses: Saionaro/extract-package-version@v1.0.6
         
-      - name: Print version
-        run: echo ${{ steps.extract_version.outputs.version }}
+      #- name: Print version
+      #  run: echo ${{ steps.extract_version.outputs.version }}
         
-      - run: git config --global user.email "boy1556@hotmail.com"
-      - run: git config --global user.name "Your Name"
+      #- run: git config --global user.email "boy1556@hotmail.com"
+      #- run: git config --global user.name "Your Name"
         
-      - run: npm version ${{ steps.extract_version.outputs.version }}-beta
+      #- run: npm version ${{ steps.extract_version.outputs.version }}-beta
       
-      - run: npm view saox version
+      #- run: npm view saox version
+
+      - run: node prere.js
+
+      - name: Minecraft Custom Tag
+        id: mctagcustom
+        uses: boyphongsakorn/minecraft-beta-version-style@v1.15
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ steps.mctagcustom.outputs.betaversion }}
+      
+      - run: npm version ${{ steps.mctagcustom.outputs.betaversion }}
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
