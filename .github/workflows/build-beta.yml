@@ -55,7 +55,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ steps.extract_version.outputs.version }}-beta-${{ steps.mctagcustom.outputs.betaversion }}
       
-      - run: npm version ${{ steps.extract_version.outputs.version }}-beta-${{ steps.mctagcustom.outputs.betaversion }}
+      - run: npm version ${{ steps.extract_version.outputs.version }}-beta-${{ steps.mctagcustom.outputs.betaversion }} --no-git-tag-version
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
