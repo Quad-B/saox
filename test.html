@@ -97,7 +97,7 @@
         let changelag = false
         let musicname,discordmenu
 
-        console.log(areyouok)
+        //console.log(areyouok)
 
         const os = require('os');
         const storage = require('electron-json-storage');
@@ -199,10 +199,11 @@
         }*/
 
         const discordacthandleClick = (menuItem, browserWindow, event) => {
-            console.log(menuItem.label)
+            //console.log(menuItem.label)
             if (menuItem.label == 'เปิด' || menuItem.label == 'Enable') {
                 storage.set('discordstatus', { status: 'on' }, function (error) {
                     if (error) throw error;
+                    updatedl('notok')
                 });
                 if(language == 'en'){
                     discordmenu = {
@@ -249,6 +250,7 @@
             } else {
                 storage.set('discordstatus', { status: 'off' }, function (error) {
                     if (error) throw error;
+                    updatedl('notok')
                 });
                 if(language == 'en'){
                     discordmenu = {
@@ -293,17 +295,17 @@
 
                 console.log('ok')*/
             }
-            if (document.title == 'SAOX') {
+            /*if (document.title == 'SAOX') {
                 updatedl('notok')
             } else {
                 updatedl('ok')
-            }
+            }*/
             //updatedl('changecolor')
-            console.log('ok')
+            //console.log('ok')
         }
 
         const changecolorhandleClick = (menuItem, browserWindow, event) => {
-            console.log(menuItem.label)
+            //console.log(menuItem.label)
             if (menuItem.label == 'Sync by Music thumbnail' || menuItem.label == 'ซิงค์ตามภาพขนาดย่อของเพลง') {
                 colorcustom = 'sync'
 
@@ -311,7 +313,7 @@
                     if (error) throw error;
                 });
 
-                console.log('ok')
+                //console.log('ok')
             } else {
                 colorcustom = 'dark'
 
@@ -319,7 +321,7 @@
                     if (error) throw error;
                 });
 
-                console.log('ok')
+                //console.log('ok')
             }
             /*if (document.title == 'SAOX') {
                 updatedl('notok')
@@ -327,17 +329,17 @@
                 updatedl('ok')
             }*/
             updatedl('changecolor')
-            console.log('ok')
+            //console.log('ok')
         }
 
         const handleClick = (menuItem, browserWindow, event) => {
-            console.log(menuItem.label)
+            //console.log(menuItem.label)
             if (menuItem.label == 'English' || menuItem.label == 'อังกฤษ') {
                 language = 'en'
-                console.log(language)
+                //console.log(language)
             } else {
                 language = 'th'
-                console.log(language)
+                //console.log(language)
             }
             changelag = true
             if (document.title == 'SAOX') {
@@ -346,7 +348,7 @@
                 //updatedl('changelag')
                 updatedl('ok')
             }
-            console.log('ok')
+            //console.log('ok')
         }
 
         function hexToRgbA(hex) {
@@ -369,16 +371,19 @@
         });
 
         const isMac = process.platform === 'darwin'
-
+        
         require('electron').ipcRenderer.on('media-key', (event, message) => {
             if (message == "MediaPlayPause") {
-                if (iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0) {
-                    iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].click()
+                if (iframe.contentWindow.document.getElementById("jooxAudio").paused == true) {
+                    iframe.contentWindow.document.getElementById("jooxAudio").play()
+                    iframe.contentWindow.document.querySelector('.YCPsB').innerHTML = "<small>หยุด</small><i class=\"playerIcon playerIcon--pause\"></i>"
                     ipcRenderer.send('play');
                 } else {
-                    iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].click()
+                    iframe.contentWindow.document.getElementById("jooxAudio").pause()
+                    iframe.contentWindow.document.querySelector('.YCPsB').innerHTML = "<small>เล่น</small><i class=\"playerIcon playerIcon--play\"></i>"
                     ipcRenderer.send('pause');
                 }
+                setTimeout(checkplay(), 1000)
             }
             if (message == "Prev") {
                 iframe.contentWindow.document.querySelectorAll('.ilQaFf')[0].click()
@@ -392,7 +397,7 @@
 
         function checkplay() {
             try {
-                if (iframe.contentWindow.document.querySelectorAll('.YCPsB')[0].innerHTML.search("เล่น") > 0) {
+                if (iframe.contentWindow.document.getElementById("jooxAudio").paused == true) {
                     ipcRenderer.send('pause');
                 } else {
                     ipcRenderer.send('play');
@@ -938,7 +943,7 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            console.log('Geolocation is not supported by this browser.')
+            //console.log('Geolocation is not supported by this browser.')
         }
 
         function showPosition(position) {
@@ -947,7 +952,7 @@
 
                 if (json.country == "ประเทศไทย") {
                     (async () => {
-                        console.log(await osLocale());
+                        //console.log(await osLocale());
                         if (await osLocale() == 'th-TH' || await osLocale() == 'th') {
                             language = 'th'
                             if (document.title == 'SAOX') {
@@ -972,7 +977,7 @@
 
         function myFunction() {
             updatedl('notok')
-            console.log('test')
+            //console.log('test')
         }
 
         $('iframe').on('load', function() {
@@ -993,6 +998,7 @@
 
             // Assign an ontimeupdate event to the video element, and execute a function if the current playback position has changed
             vid.onplaying = function() {myFunction()};
+            vid.onpause = function() {myFunction()};
         });
 
         /*$('#iframe').on(function () {
@@ -1121,17 +1127,19 @@
                     nearart = nearart.replaceAll("<a>", "")
                     nearart = nearart.replaceAll("</a>", "")
                 
-                    const arr = iframe.contentWindow.document.getElementsByClassName("sc-dnqmqq")[0].innerText.split(":"); // splitting the string by colon
-                    let seconds
-                    if(arr.length == 2) {
+                    /*const arr = iframe.contentWindow.document.getElementsByClassName("sc-dnqmqq")[0].innerText.split(":"); // splitting the string by colon
+                    console.log(arr)*/
+                    let seconds = iframe.contentWindow.document.getElementById("jooxAudio").duration
+                    /*if(arr.length == 2) {
                         seconds = parseInt((arr[0]*60))+parseInt(arr[1]);
                     }
 
                     const arrtwo = iframe.contentWindow.document.getElementsByClassName("sc-htoDjs")[0].innerText.split(":"); // splitting the string by colon
-                    let secondstwo
-                    if(arrtwo.length == 2) {
+                    console.log(arrtwo)*/
+                    let secondstwo = iframe.contentWindow.document.getElementById("jooxAudio").currentTime
+                    /*if(arrtwo.length == 2) {
                         secondstwo = parseInt((arrtwo[0]*60))+parseInt(arrtwo[1]);
-                    }
+                    }*/
 
                     seconds = seconds - secondstwo;
 
@@ -1145,6 +1153,8 @@
 
                     const wordToHex = ["aliceblue","antiquewhite","aqua","aquamarine","azure","beige","bisque","black","blanchedalmond","blue","blueviolet","brown","burlywood","cadetblue","chartreuse","chocolate","coral","cornflowerblue","cornsilk","crimson","cyan","darkblue","darkcyan","darkgoldenrod","darkgray","darkgrey","darkgreen","darkkhaki","darkmagenta","darkolivegreen","darkorange","darkorchid","darkred","darksalmon","darkseagreen","darkslateblue","darkslategray","darkslategrey","darkturquoise","darkviolet","deeppink","deepskyblue","dimgray","dimgrey","dodgerblue","firebrick","floralwhite","forestgreen","fuchsia","gainsboro","ghostwhite","gold","goldenrod","gray","grey","green","greenyellow","honeydew","hotpink","indianred","indigo","ivory","khaki","lavender","lavenderblush","lawngreen","lemonchiffon","lightblue","lightcoral","lightcyan","lightgoldenrodyellow","lightgray","lightgrey","lightgreen","lightpink","lightsalmon","lightseagreen","lightskyblue","lightslategray","lightslategrey","lightsteelblue","lightyellow","lime","limegreen","linen","magenta","maroon","mediumaquamarine","mediumblue","mediumorchid","mediumpurple","mediumseagreen","mediumslateblue","mediumspringgreen","mediumturquoise","mediumvioletred","midnightblue","mintcream","mistyrose","moccasin","navajowhite","navy","oldlace","olive","olivedrab","orange","orangered","orchid","palegoldenrod","palegreen","paleturquoise","palevioletred","papayawhip","peachpuff","peru","pink","plum","powderblue","purple","rebeccapurple","red","rosybrown","royalblue","saddlebrown","salmon","sandybrown","seagreen","seashell","sienna","silver","skyblue","slateblue","slategray","slategrey","snow","springgreen","steelblue","tan","teal","thistle","tomato","turquoise","violet","wheat","white","whitesmoke","yellow","yellowgreen"];
 
+                    //alert(sooxlogo)
+                    
                     if(sooxlogo.split(" ").length > 1){
                         let thewarbeing = sooxlogo.split(" ");
                         let allway
@@ -1158,6 +1168,7 @@
                                 allway = false
                             }
                         });
+                        //alert(sooxlogo)
                         if(allway == false){
                             sooxlogo = "joox"
                         }
@@ -1169,7 +1180,7 @@
 
                     //alert(sooxlogo)
 
-                    if(storage.getSync('discordstatus').status == 'on'){
+                    if(storage.getSync('discordstatus').status == 'on' && iframe.contentWindow.document.getElementById("jooxAudio").paused != true){
                         if (language == 'en') {
                             try {
                                 rpc.setActivity({
@@ -1235,6 +1246,7 @@
                             n_exactmatch = n_match[2]; // True if exact color match*/
                             //alert(n_match);
                             sooxlogo = n_match[1].toLowerCase();
+                            updatedl('notok')
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex(data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
@@ -1277,13 +1289,13 @@
                         // console.log(iframe.contentWindow.document.getElementsByClassName('ScrollbarsCustom-Thumb ScrollbarsCustom-ThumbY')[1].style.background = data)
                     })
                     .catch(e => {
-                        console.log(e);
+                        //console.log(e);
                     });
                 //});
             }
 
             if (ok == "ok" && (musicname != elmnt || changelag == true)) {
-                console.log("wow")
+                //console.log("wow")
                 musicname = iframe.contentWindow.document.getElementsByClassName("sc-iAyFgw")[0].innerText
                 changelag = false
 
@@ -1301,7 +1313,7 @@
                 fetch("https://ytgif.pwisetthon.com/?name="+elmnt+"&art="+nearart, requestOptions)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result)
+                    //console.log(result)
                     //alert(elmnt)
                     //alert(nearart)
                     //alert(result)
@@ -1321,7 +1333,7 @@
                     return s;
                 }
 
-                console.log(language)
+                //console.log(language)
                 if (language == 'en') {
 
                     try {
@@ -1796,6 +1808,7 @@
                             n_exactmatch = n_match[2]; // True if exact color match*/
                             //alert(n_match);
                             sooxlogo = n_match[1].toLowerCase();
+                            updatedl('notok')
                             MyTitleBar.updateBackground(customTitlebar.Color.fromHex(''+data));
                             let test = hexToRgbA(data)
                             let okithing = test.replace(/[\d\.]+\)$/g, "0.5")
@@ -1839,7 +1852,7 @@
                         //console.log('Average color', color);
                     })
                     .catch(e => {
-                        console.log(e);
+                        //console.log(e);
                     });
                 //});
             } else {
