@@ -977,6 +977,13 @@
 
         function myFunction() {
             updatedl('notok')
+            if (iframe.contentWindow.document.getElementById("jooxAudio").paused == true) {
+                    iframe.contentWindow.document.querySelector('.YCPsB').innerHTML = "<small>เล่น</small><i class=\"playerIcon playerIcon--play\"></i>"
+                    //ipcRenderer.send('pause');
+            } else {
+                    iframe.contentWindow.document.querySelector('.YCPsB').innerHTML = "<small>หยุด</small><i class=\"playerIcon playerIcon--pause\"></i>"
+                    //ipcRenderer.send('play');
+            }
             //console.log('test')
         }
 
@@ -999,6 +1006,19 @@
             // Assign an ontimeupdate event to the video element, and execute a function if the current playback position has changed
             vid.onplaying = function() {myFunction()};
             vid.onpause = function() {myFunction()};
+
+            iframe.contentWindow.document.querySelector('.YCPsB').addEventListener("click", function() {
+                //alert(iframe.contentWindow.document.querySelector('.YCPsB').innerText)
+                if(iframe.contentWindow.document.querySelector('.YCPsB').innerText == "เล่น"){
+                    if (iframe.contentWindow.document.getElementById("jooxAudio").paused == true) {
+                        iframe.contentWindow.document.getElementById("jooxAudio").play()
+                        iframe.contentWindow.document.querySelector('.YCPsB').innerHTML = "<small>หยุด</small><i class=\"playerIcon playerIcon--pause\"></i>"
+                    }
+                    /*iframe.contentWindow.document.getElementById("jooxAudio").pause()
+                    iframe.contentWindow.document.getElementById("jooxAudio").play()*/
+                }
+            });
+
         });
 
         /*$('#iframe').on(function () {
