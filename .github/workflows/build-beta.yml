@@ -61,11 +61,15 @@ jobs:
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
-      - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+      #- run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+      #  if: matrix.os == 'ubuntu-latest'
+      - run: wget -nc https://dl.winehq.org/wine-builds/winehq.key
+        if: matrix.os == 'ubuntu-latest'
+      - run: sudo apt-key add winehq.key
         if: matrix.os == 'ubuntu-latest'
       - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
         if: matrix.os == 'ubuntu-latest'
-      - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ focal main"
+      - run: sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
         if: matrix.os == 'ubuntu-latest'
       #- run: sudo apt install --install-recommends winehq-stable
       #  if: matrix.os == 'ubuntu-latest'
