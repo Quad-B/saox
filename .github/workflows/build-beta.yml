@@ -69,7 +69,13 @@ jobs:
       #  if: matrix.os == 'ubuntu-latest'
       #- run: sudo apt install --install-recommends winehq-stable
       #  if: matrix.os == 'ubuntu-latest'
-      - run: sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ groovy main'
+      - run: wget -nc https://dl.winehq.org/wine-builds/Release.key
+        if: matrix.os == 'ubuntu-latest'
+      - run: sudo apt-key add Release.key
+        if: matrix.os == 'ubuntu-latest'
+      - run: sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+        if: matrix.os == 'ubuntu-latest'
+      - run: sudo apt-get update
         if: matrix.os == 'ubuntu-latest'
       - run: sudo apt install --install-recommends winehq-stable
         if: matrix.os == 'ubuntu-latest'
