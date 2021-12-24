@@ -24,13 +24,15 @@ jobs:
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
-      - run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-        if: matrix.os == 'ubuntu-latest'
+      #- run: wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+      #  if: matrix.os == 'ubuntu-latest'
       - run: sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
         if: matrix.os == 'ubuntu-latest'
-      - run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-        if: matrix.os == 'ubuntu-latest'
-      - run: sudo apt install --install-recommends winehq-stable
+      #- run: sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
+      #  if: matrix.os == 'ubuntu-latest'
+      #- run: sudo apt install --install-recommends winehq-stable
+      #  if: matrix.os == 'ubuntu-latest'
+      - run: wget -O - https://gist.githubusercontent.com/datawookie/0e0e9cfebef214502bf19d36a6ba21bb/raw/208fe5a7ed24d526ff9746f10c6ecd435dc07e83/install-wine.sh | bash
         if: matrix.os == 'ubuntu-latest'
 
       - name: Build/release Electron app
