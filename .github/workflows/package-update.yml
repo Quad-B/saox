@@ -19,5 +19,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         LOG_LEVEL: debug
         UPDATE_COMMAND: npm
+        SET_NODE_VERSION: 16.13.0
       with:
         args: update
