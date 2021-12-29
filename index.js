@@ -21,16 +21,12 @@ function createWindow() {
     height: 0,
     minWidth: 800,
     minHeight: 800,
-    //autoHideMenuBar: false,
     autoHideMenuBar: true,
     frame: false,
-    //frame: true,
     webPreferences: {
       nodeIntegration: true,
-      nativeWindowOpen: true,
       enableRemoteModule: true,
-      contextIsolation: false,
-      webviewTag: true
+      contextIsolation: false
     }
   })
 
@@ -38,9 +34,9 @@ function createWindow() {
   win.loadFile('test.html')
   //win.loadURL('https://facebook.com')
 
-  win.on('closed', function () {
-    win = null;
-  });
+  //win.on('closed', function () {
+  //  win = null;
+  //});
 
   autoUpdater.autoDownload = false;
 
@@ -159,16 +155,37 @@ function createWindow() {
     event.newGuest = win*/
     console.log(url)
     //if (!url.includes('facebook')) {
-      if(url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))){
-        event.preventDefault()
-        shell.openExternal(url)
-        //win.close()
-      } else if(!url.includes('facebook') || (url.includes('facebook') && url.includes('share'))) {
-        event.preventDefault()
-        shell.openExternal(url)
-        //win.close()
-      }
+    if (url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))) {
+      event.preventDefault()
+      shell.openExternal(url)
       //win.close()
+    } else if (!url.includes('facebook') || (url.includes('facebook') && url.includes('share'))) {
+      event.preventDefault()
+      shell.openExternal(url)
+      //win.close()
+    } else {
+      event.preventDefault()
+      const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: { nodeIntegration: false } })
+      //const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
+      win.once('ready-to-show', () => win.show())
+      win.loadURL(url)
+
+      win.once('ready-to-show', () => win.show())
+      if (!options.webContents) {
+        const loadOptions = {
+          httpReferrer: referrer
+        }
+        if (postBody != null) {
+          const { data, contentType, boundary } = postBody
+          loadOptions.postData = postBody.data
+          loadOptions.extraHeaders = `content-type: ${contentType}; boundary=${boundary}`
+        }
+
+        win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
+      }
+      event.newGuest = win
+    }
+    //win.close()
     //}
     /*if(process.platform != "win32"){
       event.preventDefault()
@@ -340,11 +357,11 @@ ipcMain.on('play', () => {
 //}, 5000)
 //})
 
-app.on('ready', function () {
+/*app.on('ready', function () {
   Nucleus.appStarted()
   createWindow();
   process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
-});
+});*/
 
 // Quit when all windows are closed.
 /*app.on('window-all-closed', () => {
@@ -355,15 +372,25 @@ app.on('ready', function () {
   }
 })*/
 
-app.on('window-all-closed', function () {
+app.whenReady().then(() => {
+  Nucleus.appStarted()
+  createWindow()
+  process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      Nucleus.appStarted()
+      createWindow()
+      process.env.GOOGLE_API_KEY = Buffer.from("QUl6YVN5RGtLSEpqa1h5c29uT2l5VWxrbUFHR2xkemRQQzZfZmY0", 'base64').toString('ascii')
+    }
+  })
+})
+
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    //if (update == '1'){
-    //  autoUpdater.quitAndInstall();
-    //}else{
-    app.quit();
-    //}
+    app.quit()
   }
-});
+})
 
 //app.on('window-all-closed', app.quit);
 //app.on('before-quit', () => {
