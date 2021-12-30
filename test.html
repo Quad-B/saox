@@ -88,7 +88,7 @@
         const { app, ipcRenderer, shell } = require('electron')
         //const remote = require('@electron/remote')
         const { Menu, MenuItem } = require('@electron/remote')
-        const customTitlebar = require('custom-electron-titlebar');
+        const customTitlebar = require('@treverix/custom-electron-titlebar');
         const osLocale = require('os-locale');
         let colorcustom = 'sync'
         let language = 'en'
@@ -1021,7 +1021,7 @@
 
         });
 
-        /*$('#iframe').on(function () {
+        $('#iframe').on(function () {
             anime({
                 targets: '#loadingdiv',
                 opacity: 0,
@@ -1033,7 +1033,7 @@
                     document.getElementById('loadingdiv').style.display = 'none';
                 }
             })
-        });*/
+        });
 
         function updatedl(ok) {
 

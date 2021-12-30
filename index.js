@@ -72,7 +72,7 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
@@ -153,7 +153,7 @@ function createWindow() {
       win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
     }
     event.newGuest = win*/
-    console.log(url)
+    //console.log(url)
     //if (!url.includes('facebook')) {
     if (url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))) {
       event.preventDefault()
@@ -163,12 +163,12 @@ function createWindow() {
       event.preventDefault()
       shell.openExternal(url)
       //win.close()
-    } else {
+    } /*else {
       event.preventDefault()
       const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: { nodeIntegration: false } })
       //const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
-      win.once('ready-to-show', () => win.show())
-      win.loadURL(url)
+      //win.once('ready-to-show', () => win.show())
+      //win.loadURL(url)
 
       win.once('ready-to-show', () => win.show())
       if (!options.webContents) {
@@ -184,7 +184,7 @@ function createWindow() {
         win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
       }
       event.newGuest = win
-    }
+    }*/
     //win.close()
     //}
     /*if(process.platform != "win32"){
