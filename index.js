@@ -26,6 +26,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      webviewTag: true,
       contextIsolation: false
     }
   })
@@ -34,9 +35,9 @@ function createWindow() {
   win.loadFile('test.html')
   //win.loadURL('https://facebook.com')
 
-  //win.on('closed', function () {
-  //  win = null;
-  //});
+  win.on('closed', function () {
+    win = null;
+  });
 
   autoUpdater.autoDownload = false;
 
@@ -72,7 +73,7 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+   win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
