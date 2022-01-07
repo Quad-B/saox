@@ -27,7 +27,8 @@ function createWindow() {
       nodeIntegration: true,
       enableRemoteModule: true,
       webviewTag: true,
-      contextIsolation: false
+      contextIsolation: false,
+      nativeWindowOpen: true
     }
   })
 
@@ -73,7 +74,7 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-   win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)

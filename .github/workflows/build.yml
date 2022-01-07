@@ -20,7 +20,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
           
       - run: sudo dpkg --add-architecture i386
         if: matrix.os == 'ubuntu-latest'
@@ -59,7 +59,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
@@ -93,7 +93,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
