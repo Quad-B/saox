@@ -88,7 +88,7 @@
         const { app, ipcRenderer, shell } = require('electron')
         //const remote = require('@electron/remote')
         const { Menu, MenuItem } = require('@electron/remote')
-        const customTitlebar = require('@treverix/custom-electron-titlebar');
+        const customTitlebar = require('custom-electron-titlebar');
         const osLocale = require('os-locale');
         let colorcustom = 'sync'
         let language = 'en'
@@ -366,8 +366,11 @@
 
         let MyTitleBar = new customTitlebar.Titlebar({
             backgroundColor: customTitlebar.Color.fromHex('#444'),
-            shadow: true,
-            icon: 'img/saoxnew.svg'
+            icon: 'img/saoxnew.svg',
+            onMinimize: () => ipcRenderer.send('window-minimize'),
+            onMaximize: () => ipcRenderer.send('window-maximize'),
+            onClose: () => ipcRenderer.send('window-close'),
+            isMaximized: () => ipcRenderer.sendSync('window-is-maximized')
         });
 
         const isMac = process.platform === 'darwin'

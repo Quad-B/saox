@@ -21,8 +21,8 @@ function createWindow() {
     height: 0,
     minWidth: 800,
     minHeight: 800,
-    autoHideMenuBar: true,
     frame: false,
+    titleBarStyle: "hidden",
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -67,14 +67,14 @@ function createWindow() {
 
   ])
 
-  win.maximize();
+  //win.maximize();
 
   /*win.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
   });*/
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // session.defaultSession.cookies.get({}, (error, cookies) => {
   //  console.log(error, cookies)
@@ -344,6 +344,23 @@ ipcMain.on('play', () => {
 
   ])
 });
+
+ipcMain.on('window-minimize', function (event) {
+  BrowserWindow.fromWebContents(event.sender).minimize();
+})
+
+ipcMain.on('window-maximize', function (event) {
+  const window = BrowserWindow.fromWebContents(event.sender);
+  window.isMaximized() ? window.unmaximize() : window.maximize();
+})
+
+ipcMain.on('window-close', function (event) {
+  BrowserWindow.fromWebContents(event.sender).close()
+})
+
+ipcMain.on('window-is-maximized', function (event) {
+  event.returnValue = BrowserWindow.fromWebContents(event.sender).isMaximized()
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
