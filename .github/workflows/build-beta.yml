@@ -84,8 +84,10 @@ jobs:
         if: matrix.os == 'ubuntu-18.04'
         
       - run: npm update
+        if: matrix.os == 'windows-2022'
       
       - run: npm i electron-builder@22.9.1
+        if: matrix.os == 'windows-2022'
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
