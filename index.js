@@ -25,10 +25,8 @@ function createWindow() {
     titleBarStyle: "hidden",
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
       webviewTag: true,
-      contextIsolation: false,
-      nativeWindowOpen: true
+      contextIsolation: false
     }
   })
 
@@ -67,7 +65,7 @@ function createWindow() {
 
   ])
 
-  //win.maximize();
+  win.maximize();
 
   /*win.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
@@ -76,9 +74,9 @@ function createWindow() {
   // Open the DevTools.
   win.webContents.openDevTools()
 
-  // session.defaultSession.cookies.get({}, (error, cookies) => {
-  //  console.log(error, cookies)
-  // });
+  session.defaultSession.cookies.get({}, (error, cookies) => {
+    //console.log(error, cookies)
+  });
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
     windowOptions['auto'] = false;
@@ -134,7 +132,21 @@ function createWindow() {
     event.newGuest = win
   })*/
 
-  win.webContents.on('new-window', (event, url, options, referrer, postBody, windowOptions) => {
+  /*win.webContents.setWindowOpenHandler(({ url }) => {
+    if (url === 'about:blank') {
+      return {
+        action: 'allow',
+        overrideBrowserWindowOptions: {
+          frame: false,
+          fullscreenable: false,
+          backgroundColor: 'black'
+        }
+      }
+    }
+    return { action: 'deny' }
+  })*/
+
+  /*win.webContents.on('new-window', (event, url, options, referrer, postBody, windowOptions) => {
     /*event.preventDefault()
     const win = new BrowserWindow({ icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true, webPreferences: {nodeIntegration: false}})
     //const win = new BrowserWindow({ webContents: options.webContents, icon: __dirname + '/img/saoxlogo.png', show: false, autoHideMenuBar: true })
@@ -157,7 +169,7 @@ function createWindow() {
     event.newGuest = win*/
     //console.log(url)
     //if (!url.includes('facebook')) {
-    if (url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))) {
+    /*if (url.toLowerCase().includes('facebook') && (url.toLowerCase().includes('jooxsouthafrica') || url.toLowerCase().includes('jooxmy') || url.toLowerCase().includes('jooxid') || url.toLowerCase().includes('jooxth') || url.toLowerCase().includes('jooxmyanmar') || url.toLowerCase().includes('jooxhk'))) {
       event.preventDefault()
       shell.openExternal(url)
       //win.close()
@@ -195,8 +207,8 @@ function createWindow() {
     }
     if(process.platform != "win32"){
       shell.openExternal(url)
-    }*/
-  })
+    }
+  })*/
 
   require("@electron/remote/main").enable(win.webContents)
 }
