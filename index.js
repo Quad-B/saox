@@ -71,16 +71,16 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   session.defaultSession.cookies.get({}, (error, cookies) => {
     //console.log(error, cookies)
   });
 
-  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+  /*session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
     details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36';
     callback({ cancel: false, requestHeaders: details.requestHeaders });
-  });
+  });*/
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
     windowOptions['auto'] = false;
