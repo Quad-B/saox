@@ -52,7 +52,7 @@
 <body style="margin:0px;padding:0px;overflow:hidden">
 
     <div style="z-index: 1000;width:100%;height:100%;background-color: black;position: absolute;font-size: 100px;text-align: center;background-image: url(https://raw.githubusercontent.com/Quad-B/saox/master/img/saox.gif);background-position: center;background-repeat: no-repeat;" id="loadingdiv"><!--img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Ajux_loader.gif" style="display: block;margin: 0 auto;"--></div>
-    <iframe src="https://www.joox.com/th" id="iframe" frameborder="0" onload="updatedl()"
+    <iframe src="https://www.joox.com" id="iframe" frameborder="0" onload="updatedl()"
         style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"
         height="100%" width="100%">
     </iframe>
@@ -370,7 +370,8 @@
             onMinimize: () => ipcRenderer.send('window-minimize'),
             onMaximize: () => ipcRenderer.send('window-maximize'),
             onClose: () => ipcRenderer.send('window-close'),
-            isMaximized: () => ipcRenderer.sendSync('window-is-maximized')
+            isMaximized: () => ipcRenderer.sendSync('window-is-maximized'),
+            onMenuItemClick: (commandId) => ipcRenderer.send('menu-event', commandId)
         });
 
         const isMac = process.platform === 'darwin'

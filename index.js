@@ -25,7 +25,6 @@ function createWindow() {
     titleBarStyle: "hidden",
     webPreferences: {
       nodeIntegration: true,
-      webviewTag: true,
       contextIsolation: false
     }
   })
@@ -76,6 +75,11 @@ function createWindow() {
 
   session.defaultSession.cookies.get({}, (error, cookies) => {
     //console.log(error, cookies)
+  });
+
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36';
+    callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
   /*win.webContents.on('new-window', (event, url, frameName, disposition, windowOptions) => {
@@ -373,6 +377,12 @@ ipcMain.on('window-close', function (event) {
 ipcMain.on('window-is-maximized', function (event) {
   event.returnValue = BrowserWindow.fromWebContents(event.sender).isMaximized()
 })
+
+ipcMain.on('menu-event', (event, commandId) => {
+  const menu = Menu.getApplicationMenu();
+  const item = getMenuItemByCommandId(commandId, menu);
+  item?.click(undefined, BrowserWindow.fromWebContents(event.sender), event.sender);
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
