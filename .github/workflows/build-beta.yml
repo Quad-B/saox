@@ -12,7 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest,windows-2022]
+        #os: [ubuntu-latest,windows-2022]
+        os: [ubuntu-latest,windows-latest]
 
     steps:
       - name: Minecraft Custom Tag
@@ -49,7 +50,7 @@ jobs:
 
       - name: Bump version and push tag
         id: tag_version
-        if: matrix.os == 'windows-2022'
+        if: matrix.os == 'windows-latest'
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -84,10 +85,10 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         
       - run: npm update
-        if: matrix.os == 'windows-2022'
+        if: matrix.os == 'windows-latest'
       
-      - run: npm i electron-builder@22.9.1
-        if: matrix.os == 'windows-2022'
+      #- run: npm i electron-builder@22.9.1
+      #  if: matrix.os == 'windows-latest'
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
