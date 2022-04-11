@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         #os: [ubuntu-latest,windows-2022]
-        os: [ubuntu-latest,windows-latest]
+        os: [ubuntu-latest,windows-2019]
 
     steps:
       - name: Minecraft Custom Tag
@@ -50,7 +50,7 @@ jobs:
 
       - name: Bump version and push tag
         id: tag_version
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -85,7 +85,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         
       - run: npm update
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-2019'
       
       #- run: npm i electron-builder@22.9.1
       #  if: matrix.os == 'windows-latest'
