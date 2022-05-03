@@ -84,8 +84,8 @@ jobs:
       - run: wget -O - https://gist.githubusercontent.com/datawookie/0e0e9cfebef214502bf19d36a6ba21bb/raw/208fe5a7ed24d526ff9746f10c6ecd435dc07e83/install-wine.sh | bash
         if: matrix.os == 'ubuntu-latest'
       
-      #- run: npm i electron-builder@22.9.1
-      #  if: matrix.os == 'windows-latest'
+      - run: npm i electron-builder@22.9.1
+        if: matrix.os == 'windows-latest'
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
