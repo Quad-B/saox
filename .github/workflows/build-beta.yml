@@ -95,6 +95,9 @@ jobs:
 
       - name: build
         run: npm run make
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       #- name: Build/release Electron app
       #  uses: tchurch1993/action-electron-builder@v1.1
