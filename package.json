@@ -16,7 +16,8 @@
     "distandpuhwin": "electron-builder --win --publish \"always\" -c.snap.publish=github",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --windows --linux",
-    "release": "electron-builder --windows --linux --publish always"
+    "release": "electron-builder --windows --linux --publish always",
+    "make": "electron-builder --publish always"
   },
   "repository": {
     "type": "git",
