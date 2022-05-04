@@ -17,7 +17,8 @@
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --windows --linux",
     "release": "electron-builder --windows --linux --publish always",
-    "make": "electron-builder --publish always"
+    "make": "electron-builder --linux --publish always",
+    "winmake": "electron-builder --windows --publish always"
   },
   "repository": {
     "type": "git",
