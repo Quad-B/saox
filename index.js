@@ -25,7 +25,10 @@ function createWindow() {
     titleBarStyle: "hidden",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      nativeWindowOpen: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
+      webviewTag: true
     }
   })
 
@@ -71,11 +74,26 @@ function createWindow() {
   });*/
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  /*win.webContents.openDevTools()
 
   session.defaultSession.cookies.get({}, (error, cookies) => {
     //console.log(error, cookies)
   });
+
+  session.defaultSession.webRequest.onHeadersReceived(
+    { urls: ['https://api.joox.com/*'] },
+    (details, callback) => {
+      if (
+        details.responseHeaders &&
+        details.responseHeaders['Set-Cookie'] &&
+        details.responseHeaders['Set-Cookie'].length &&
+        !details.responseHeaders['Set-Cookie'][0].includes('SameSite=none')
+      ) {
+        details.responseHeaders['Set-Cookie'][0] = details.responseHeaders['Set-Cookie'][0] + '; SameSite=none';
+      }
+        callback({ cancel: false, responseHeaders: details.responseHeaders });
+    },
+  );*/
 
   /*session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
     details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36';
