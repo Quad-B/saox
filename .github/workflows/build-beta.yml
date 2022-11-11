@@ -85,7 +85,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
 
       - name: install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
       
       - run: npm update
         if: matrix.os == 'windows-latest'
