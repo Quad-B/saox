@@ -84,7 +84,7 @@
     "custom-electron-titlebar": "^4.0.0-beta.1",
     "discord-rpc": "^4.0.1",
     "electron-json-storage": "^4.5.0",
-    "electron-updater": "^4.6.4",
+    "electron-updater": "^5.3.0",
     "nucleus-nodejs": "^3.0.8",
     "os-locale": "^5.0.0"
   },
