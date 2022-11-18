@@ -90,7 +90,7 @@ jobs:
       #- run: npm update
       #  if: matrix.os == 'windows-latest'
       
-      - run: npm i electron-builder@22.9.1
+      - run: npm i electron-builder@22.9.1 --legacy-peer-deps
         if: matrix.os == 'windows-latest'
 
       - name: build
