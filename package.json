@@ -89,7 +89,7 @@
     "os-locale": "^6.0.2"
   },
   "devDependencies": {
-    "electron": "^24.0.0",
+    "electron": "^25.0.0",
     "electron-builder": "^23.6.0"
   }
 }
